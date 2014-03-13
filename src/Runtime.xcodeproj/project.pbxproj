@@ -19,37 +19,37 @@
 		0AFD8D5612836353004B7863 /* AmazonWebServiceClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AFD8D5512836353004B7863 /* AmazonWebServiceClient.m */; };
 		0AFD8D6512836644004B7863 /* AmazonServiceRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AFD8D6312836644004B7863 /* AmazonServiceRequest.m */; };
 		0AFD8D6A1283667C004B7863 /* AmazonServiceResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AFD8D681283667C004B7863 /* AmazonServiceResponse.m */; };
-		38E1D27E16C5B55300613C99 /* AmazonCredentialsProvider.h in Headers */ = {isa = PBXBuildFile; fileRef = 38E1D27D16C5B55300613C99 /* AmazonCredentialsProvider.h */; };
+		38E1D27E16C5B55300613C99 /* AmazonCredentialsProvider.h in Headers */ = {isa = PBXBuildFile; fileRef = 38E1D27D16C5B55300613C99 /* AmazonCredentialsProvider.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		38E1D28616C5B73B00613C99 /* AmazonStaticCredentialsProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = 38E1D28416C5B73B00613C99 /* AmazonStaticCredentialsProvider.m */; };
-		38E1D28816C5B76200613C99 /* AmazonStaticCredentialsProvider.h in Headers */ = {isa = PBXBuildFile; fileRef = 38E1D28716C5B76200613C99 /* AmazonStaticCredentialsProvider.h */; };
-		38EFEA88161F542C0069348B /* AmazonAbstractWebServiceClient.h in Headers */ = {isa = PBXBuildFile; fileRef = 38EFEA6F161F542C0069348B /* AmazonAbstractWebServiceClient.h */; };
-		38EFEA89161F542C0069348B /* AmazonAuthUtils.h in Headers */ = {isa = PBXBuildFile; fileRef = 38EFEA70161F542C0069348B /* AmazonAuthUtils.h */; };
-		38EFEA8A161F542C0069348B /* AmazonBoolValueUnmarshaller.h in Headers */ = {isa = PBXBuildFile; fileRef = 38EFEA71161F542C0069348B /* AmazonBoolValueUnmarshaller.h */; };
-		38EFEA8B161F542D0069348B /* AmazonClientException.h in Headers */ = {isa = PBXBuildFile; fileRef = 38EFEA72161F542C0069348B /* AmazonClientException.h */; };
-		38EFEA8C161F542D0069348B /* AmazonCredentials.h in Headers */ = {isa = PBXBuildFile; fileRef = 38EFEA73161F542C0069348B /* AmazonCredentials.h */; };
-		38EFEA8D161F542D0069348B /* AmazonDictionaryUnmarshaller.h in Headers */ = {isa = PBXBuildFile; fileRef = 38EFEA74161F542C0069348B /* AmazonDictionaryUnmarshaller.h */; };
-		38EFEA8E161F542D0069348B /* AmazonEndpoints.h in Headers */ = {isa = PBXBuildFile; fileRef = 38EFEA75161F542C0069348B /* AmazonEndpoints.h */; };
-		38EFEA8F161F542D0069348B /* AmazonErrorHandler.h in Headers */ = {isa = PBXBuildFile; fileRef = 38EFEA76161F542C0069348B /* AmazonErrorHandler.h */; };
-		38EFEA90161F542D0069348B /* AmazonJSON.h in Headers */ = {isa = PBXBuildFile; fileRef = 38EFEA77161F542C0069348B /* AmazonJSON.h */; };
-		38EFEA91161F542D0069348B /* AmazonListUnmarshaller.h in Headers */ = {isa = PBXBuildFile; fileRef = 38EFEA78161F542C0069348B /* AmazonListUnmarshaller.h */; };
-		38EFEA92161F542D0069348B /* AmazonLogger.h in Headers */ = {isa = PBXBuildFile; fileRef = 38EFEA79161F542C0069348B /* AmazonLogger.h */; };
-		38EFEA93161F542D0069348B /* AmazonMD5Util.h in Headers */ = {isa = PBXBuildFile; fileRef = 38EFEA7A161F542C0069348B /* AmazonMD5Util.h */; };
-		38EFEA94161F542D0069348B /* AmazonRequestDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 38EFEA7B161F542C0069348B /* AmazonRequestDelegate.h */; };
-		38EFEA95161F542D0069348B /* AmazonSDKUtil.h in Headers */ = {isa = PBXBuildFile; fileRef = 38EFEA7C161F542C0069348B /* AmazonSDKUtil.h */; };
-		38EFEA96161F542D0069348B /* AmazonServiceException.h in Headers */ = {isa = PBXBuildFile; fileRef = 38EFEA7D161F542C0069348B /* AmazonServiceException.h */; };
-		38EFEA97161F542D0069348B /* AmazonServiceExceptionUnmarshaller.h in Headers */ = {isa = PBXBuildFile; fileRef = 38EFEA7E161F542C0069348B /* AmazonServiceExceptionUnmarshaller.h */; };
-		38EFEA98161F542D0069348B /* AmazonServiceRequest.h in Headers */ = {isa = PBXBuildFile; fileRef = 38EFEA7F161F542C0069348B /* AmazonServiceRequest.h */; };
-		38EFEA99161F542D0069348B /* AmazonServiceRequestConfig.h in Headers */ = {isa = PBXBuildFile; fileRef = 38EFEA80161F542C0069348B /* AmazonServiceRequestConfig.h */; };
-		38EFEA9A161F542D0069348B /* AmazonServiceResponse.h in Headers */ = {isa = PBXBuildFile; fileRef = 38EFEA81161F542C0069348B /* AmazonServiceResponse.h */; };
-		38EFEA9B161F542D0069348B /* AmazonServiceResponseUnmarshaller.h in Headers */ = {isa = PBXBuildFile; fileRef = 38EFEA82161F542C0069348B /* AmazonServiceResponseUnmarshaller.h */; };
-		38EFEA9C161F542D0069348B /* AmazonSignatureException.h in Headers */ = {isa = PBXBuildFile; fileRef = 38EFEA83161F542C0069348B /* AmazonSignatureException.h */; };
-		38EFEA9D161F542D0069348B /* AmazonUnmarshallerXMLParserDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 38EFEA84161F542C0069348B /* AmazonUnmarshallerXMLParserDelegate.h */; };
-		38EFEA9E161F542D0069348B /* AmazonURLRequest.h in Headers */ = {isa = PBXBuildFile; fileRef = 38EFEA85161F542C0069348B /* AmazonURLRequest.h */; };
-		38EFEA9F161F542D0069348B /* AmazonValueUnmarshaller.h in Headers */ = {isa = PBXBuildFile; fileRef = 38EFEA86161F542C0069348B /* AmazonValueUnmarshaller.h */; };
-		38EFEAA0161F542D0069348B /* AmazonWebServiceClient.h in Headers */ = {isa = PBXBuildFile; fileRef = 38EFEA87161F542C0069348B /* AmazonWebServiceClient.h */; };
+		38E1D28816C5B76200613C99 /* AmazonStaticCredentialsProvider.h in Headers */ = {isa = PBXBuildFile; fileRef = 38E1D28716C5B76200613C99 /* AmazonStaticCredentialsProvider.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		38EFEA88161F542C0069348B /* AmazonAbstractWebServiceClient.h in Headers */ = {isa = PBXBuildFile; fileRef = 38EFEA6F161F542C0069348B /* AmazonAbstractWebServiceClient.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		38EFEA89161F542C0069348B /* AmazonAuthUtils.h in Headers */ = {isa = PBXBuildFile; fileRef = 38EFEA70161F542C0069348B /* AmazonAuthUtils.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		38EFEA8A161F542C0069348B /* AmazonBoolValueUnmarshaller.h in Headers */ = {isa = PBXBuildFile; fileRef = 38EFEA71161F542C0069348B /* AmazonBoolValueUnmarshaller.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		38EFEA8B161F542D0069348B /* AmazonClientException.h in Headers */ = {isa = PBXBuildFile; fileRef = 38EFEA72161F542C0069348B /* AmazonClientException.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		38EFEA8C161F542D0069348B /* AmazonCredentials.h in Headers */ = {isa = PBXBuildFile; fileRef = 38EFEA73161F542C0069348B /* AmazonCredentials.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		38EFEA8D161F542D0069348B /* AmazonDictionaryUnmarshaller.h in Headers */ = {isa = PBXBuildFile; fileRef = 38EFEA74161F542C0069348B /* AmazonDictionaryUnmarshaller.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		38EFEA8E161F542D0069348B /* AmazonEndpoints.h in Headers */ = {isa = PBXBuildFile; fileRef = 38EFEA75161F542C0069348B /* AmazonEndpoints.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		38EFEA8F161F542D0069348B /* AmazonErrorHandler.h in Headers */ = {isa = PBXBuildFile; fileRef = 38EFEA76161F542C0069348B /* AmazonErrorHandler.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		38EFEA90161F542D0069348B /* AmazonJSON.h in Headers */ = {isa = PBXBuildFile; fileRef = 38EFEA77161F542C0069348B /* AmazonJSON.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		38EFEA91161F542D0069348B /* AmazonListUnmarshaller.h in Headers */ = {isa = PBXBuildFile; fileRef = 38EFEA78161F542C0069348B /* AmazonListUnmarshaller.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		38EFEA92161F542D0069348B /* AmazonLogger.h in Headers */ = {isa = PBXBuildFile; fileRef = 38EFEA79161F542C0069348B /* AmazonLogger.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		38EFEA93161F542D0069348B /* AmazonMD5Util.h in Headers */ = {isa = PBXBuildFile; fileRef = 38EFEA7A161F542C0069348B /* AmazonMD5Util.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		38EFEA94161F542D0069348B /* AmazonRequestDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 38EFEA7B161F542C0069348B /* AmazonRequestDelegate.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		38EFEA95161F542D0069348B /* AmazonSDKUtil.h in Headers */ = {isa = PBXBuildFile; fileRef = 38EFEA7C161F542C0069348B /* AmazonSDKUtil.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		38EFEA96161F542D0069348B /* AmazonServiceException.h in Headers */ = {isa = PBXBuildFile; fileRef = 38EFEA7D161F542C0069348B /* AmazonServiceException.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		38EFEA97161F542D0069348B /* AmazonServiceExceptionUnmarshaller.h in Headers */ = {isa = PBXBuildFile; fileRef = 38EFEA7E161F542C0069348B /* AmazonServiceExceptionUnmarshaller.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		38EFEA98161F542D0069348B /* AmazonServiceRequest.h in Headers */ = {isa = PBXBuildFile; fileRef = 38EFEA7F161F542C0069348B /* AmazonServiceRequest.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		38EFEA99161F542D0069348B /* AmazonServiceRequestConfig.h in Headers */ = {isa = PBXBuildFile; fileRef = 38EFEA80161F542C0069348B /* AmazonServiceRequestConfig.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		38EFEA9A161F542D0069348B /* AmazonServiceResponse.h in Headers */ = {isa = PBXBuildFile; fileRef = 38EFEA81161F542C0069348B /* AmazonServiceResponse.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		38EFEA9B161F542D0069348B /* AmazonServiceResponseUnmarshaller.h in Headers */ = {isa = PBXBuildFile; fileRef = 38EFEA82161F542C0069348B /* AmazonServiceResponseUnmarshaller.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		38EFEA9C161F542D0069348B /* AmazonSignatureException.h in Headers */ = {isa = PBXBuildFile; fileRef = 38EFEA83161F542C0069348B /* AmazonSignatureException.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		38EFEA9D161F542D0069348B /* AmazonUnmarshallerXMLParserDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 38EFEA84161F542C0069348B /* AmazonUnmarshallerXMLParserDelegate.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		38EFEA9E161F542D0069348B /* AmazonURLRequest.h in Headers */ = {isa = PBXBuildFile; fileRef = 38EFEA85161F542C0069348B /* AmazonURLRequest.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		38EFEA9F161F542D0069348B /* AmazonValueUnmarshaller.h in Headers */ = {isa = PBXBuildFile; fileRef = 38EFEA86161F542C0069348B /* AmazonValueUnmarshaller.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		38EFEAA0161F542D0069348B /* AmazonWebServiceClient.h in Headers */ = {isa = PBXBuildFile; fileRef = 38EFEA87161F542C0069348B /* AmazonWebServiceClient.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		AACBBE4A0F95108600F1A2B1 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AACBBE490F95108600F1A2B1 /* Foundation.framework */; };
 		CE17329816D8132A00DEC510 /* SBJson.h in Headers */ = {isa = PBXBuildFile; fileRef = CE17329716D8132A00DEC510 /* SBJson.h */; };
-		CE2CDC0A1703AE0F0013DE5F /* AWSRuntime.h in Headers */ = {isa = PBXBuildFile; fileRef = CE2CDC091703AE0F0013DE5F /* AWSRuntime.h */; };
+		CE2CDC0A1703AE0F0013DE5F /* AWSRuntime.h in Headers */ = {isa = PBXBuildFile; fileRef = CE2CDC091703AE0F0013DE5F /* AWSRuntime.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		CE39A67D15B73D890008DBEA /* AmazonErrorHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = CE39A67C15B73D890008DBEA /* AmazonErrorHandler.m */; };
 		CE96C1B7158BD58A0084D3CB /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE96C1A9158BC2A70084D3CB /* MobileCoreServices.framework */; };
 		CEEDD5D214FC0EF6009BA65E /* AmazonAbstractWebServiceClient.m in Sources */ = {isa = PBXBuildFile; fileRef = CEEDD5D114FC0EF6009BA65E /* AmazonAbstractWebServiceClient.m */; };
@@ -58,21 +58,21 @@
 		D01F6B0B12A3877C004A312D /* AmazonDictionaryUnmarshaller.m in Sources */ = {isa = PBXBuildFile; fileRef = D01F6B0A12A3877C004A312D /* AmazonDictionaryUnmarshaller.m */; };
 		D020EBF9136091CD008EB16D /* AmazonRequestDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D020EBF8136091CD008EB16D /* AmazonRequestDelegate.m */; };
 		D063F1E416E53B93006AD673 /* AmazonAbstractJsonWebServiceClient.m in Sources */ = {isa = PBXBuildFile; fileRef = D063F1E316E53B93006AD673 /* AmazonAbstractJsonWebServiceClient.m */; };
-		D063F1E716E53B9E006AD673 /* AmazonAbstractJsonWebServiceClient.h in Headers */ = {isa = PBXBuildFile; fileRef = D063F1E616E53B9E006AD673 /* AmazonAbstractJsonWebServiceClient.h */; };
+		D063F1E716E53B9E006AD673 /* AmazonAbstractJsonWebServiceClient.h in Headers */ = {isa = PBXBuildFile; fileRef = D063F1E616E53B9E006AD673 /* AmazonAbstractJsonWebServiceClient.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D07E9DA114BB9C160007304E /* AmazonJSON.m in Sources */ = {isa = PBXBuildFile; fileRef = D07E9DA014BB9C160007304E /* AmazonJSON.m */; };
 		D0828BE012DCE1880047F0C2 /* AmazonURLRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = D0828BDF12DCE1880047F0C2 /* AmazonURLRequest.m */; };
-		D0C5652614BB72D2002C4FEF /* AWS_SBJson.h in Headers */ = {isa = PBXBuildFile; fileRef = D0C5650E14BB72D2002C4FEF /* AWS_SBJson.h */; };
-		D0C5652714BB72D2002C4FEF /* AWS_SBJsonParser.h in Headers */ = {isa = PBXBuildFile; fileRef = D0C5650F14BB72D2002C4FEF /* AWS_SBJsonParser.h */; };
+		D0C5652614BB72D2002C4FEF /* AWS_SBJson.h in Headers */ = {isa = PBXBuildFile; fileRef = D0C5650E14BB72D2002C4FEF /* AWS_SBJson.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		D0C5652714BB72D2002C4FEF /* AWS_SBJsonParser.h in Headers */ = {isa = PBXBuildFile; fileRef = D0C5650F14BB72D2002C4FEF /* AWS_SBJsonParser.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D0C5652814BB72D2002C4FEF /* AWS_SBJsonParser.m in Sources */ = {isa = PBXBuildFile; fileRef = D0C5651014BB72D2002C4FEF /* AWS_SBJsonParser.m */; };
-		D0C5652914BB72D2002C4FEF /* AWS_SBJsonStreamParser.h in Headers */ = {isa = PBXBuildFile; fileRef = D0C5651114BB72D2002C4FEF /* AWS_SBJsonStreamParser.h */; };
+		D0C5652914BB72D2002C4FEF /* AWS_SBJsonStreamParser.h in Headers */ = {isa = PBXBuildFile; fileRef = D0C5651114BB72D2002C4FEF /* AWS_SBJsonStreamParser.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D0C5652A14BB72D2002C4FEF /* AWS_SBJsonStreamParser.m in Sources */ = {isa = PBXBuildFile; fileRef = D0C5651214BB72D2002C4FEF /* AWS_SBJsonStreamParser.m */; };
 		D0C5652B14BB72D2002C4FEF /* AWS_SBJsonStreamParserAccumulator.h in Headers */ = {isa = PBXBuildFile; fileRef = D0C5651314BB72D2002C4FEF /* AWS_SBJsonStreamParserAccumulator.h */; };
 		D0C5652C14BB72D2002C4FEF /* AWS_SBJsonStreamParserAccumulator.m in Sources */ = {isa = PBXBuildFile; fileRef = D0C5651414BB72D2002C4FEF /* AWS_SBJsonStreamParserAccumulator.m */; };
-		D0C5652D14BB72D2002C4FEF /* AWS_SBJsonStreamParserAdapter.h in Headers */ = {isa = PBXBuildFile; fileRef = D0C5651514BB72D2002C4FEF /* AWS_SBJsonStreamParserAdapter.h */; };
+		D0C5652D14BB72D2002C4FEF /* AWS_SBJsonStreamParserAdapter.h in Headers */ = {isa = PBXBuildFile; fileRef = D0C5651514BB72D2002C4FEF /* AWS_SBJsonStreamParserAdapter.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D0C5652E14BB72D2002C4FEF /* AWS_SBJsonStreamParserAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = D0C5651614BB72D2002C4FEF /* AWS_SBJsonStreamParserAdapter.m */; };
 		D0C5652F14BB72D2002C4FEF /* AWS_SBJsonStreamParserState.h in Headers */ = {isa = PBXBuildFile; fileRef = D0C5651714BB72D2002C4FEF /* AWS_SBJsonStreamParserState.h */; };
 		D0C5653014BB72D2002C4FEF /* AWS_SBJsonStreamParserState.m in Sources */ = {isa = PBXBuildFile; fileRef = D0C5651814BB72D2002C4FEF /* AWS_SBJsonStreamParserState.m */; };
-		D0C5653114BB72D2002C4FEF /* AWS_SBJsonStreamWriter.h in Headers */ = {isa = PBXBuildFile; fileRef = D0C5651914BB72D2002C4FEF /* AWS_SBJsonStreamWriter.h */; };
+		D0C5653114BB72D2002C4FEF /* AWS_SBJsonStreamWriter.h in Headers */ = {isa = PBXBuildFile; fileRef = D0C5651914BB72D2002C4FEF /* AWS_SBJsonStreamWriter.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D0C5653214BB72D2002C4FEF /* AWS_SBJsonStreamWriter.m in Sources */ = {isa = PBXBuildFile; fileRef = D0C5651A14BB72D2002C4FEF /* AWS_SBJsonStreamWriter.m */; };
 		D0C5653314BB72D2002C4FEF /* AWS_SBJsonStreamWriterAccumulator.h in Headers */ = {isa = PBXBuildFile; fileRef = D0C5651B14BB72D2002C4FEF /* AWS_SBJsonStreamWriterAccumulator.h */; };
 		D0C5653414BB72D2002C4FEF /* AWS_SBJsonStreamWriterAccumulator.m in Sources */ = {isa = PBXBuildFile; fileRef = D0C5651C14BB72D2002C4FEF /* AWS_SBJsonStreamWriterAccumulator.m */; };
@@ -82,7 +82,7 @@
 		D0C5653814BB72D2002C4FEF /* AWS_SBJsonTokeniser.m in Sources */ = {isa = PBXBuildFile; fileRef = D0C5652014BB72D2002C4FEF /* AWS_SBJsonTokeniser.m */; };
 		D0C5653914BB72D2002C4FEF /* AWS_SBJsonUTF8Stream.h in Headers */ = {isa = PBXBuildFile; fileRef = D0C5652114BB72D2002C4FEF /* AWS_SBJsonUTF8Stream.h */; };
 		D0C5653A14BB72D2002C4FEF /* AWS_SBJsonUTF8Stream.m in Sources */ = {isa = PBXBuildFile; fileRef = D0C5652214BB72D2002C4FEF /* AWS_SBJsonUTF8Stream.m */; };
-		D0C5653B14BB72D2002C4FEF /* AWS_SBJsonWriter.h in Headers */ = {isa = PBXBuildFile; fileRef = D0C5652314BB72D2002C4FEF /* AWS_SBJsonWriter.h */; };
+		D0C5653B14BB72D2002C4FEF /* AWS_SBJsonWriter.h in Headers */ = {isa = PBXBuildFile; fileRef = D0C5652314BB72D2002C4FEF /* AWS_SBJsonWriter.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D0C5653C14BB72D2002C4FEF /* AWS_SBJsonWriter.m in Sources */ = {isa = PBXBuildFile; fileRef = D0C5652414BB72D2002C4FEF /* AWS_SBJsonWriter.m */; };
 		D0C9CFDA13381003006BE1FE /* AmazonValueUnmarshaller.m in Sources */ = {isa = PBXBuildFile; fileRef = D0C9CFD813380FFB006BE1FE /* AmazonValueUnmarshaller.m */; };
 		D0E0A8AF128DF3E600C70564 /* AmazonServiceExceptionUnmarshaller.m in Sources */ = {isa = PBXBuildFile; fileRef = D0E0A8AE128DF3E600C70564 /* AmazonServiceExceptionUnmarshaller.m */; };
@@ -421,9 +421,9 @@
 /* End PBXLegacyTarget section */
 
 /* Begin PBXNativeTarget section */
-		D2AAC07D0554694100DB518D /* Runtime */ = {
+		D2AAC07D0554694100DB518D /* AWSRuntime */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 1DEB921E08733DC00010E9CD /* Build configuration list for PBXNativeTarget "Runtime" */;
+			buildConfigurationList = 1DEB921E08733DC00010E9CD /* Build configuration list for PBXNativeTarget "AWSRuntime" */;
 			buildPhases = (
 				D2AAC07A0554694100DB518D /* Headers */,
 				D2AAC07B0554694100DB518D /* Sources */,
@@ -433,7 +433,7 @@
 			);
 			dependencies = (
 			);
-			name = Runtime;
+			name = AWSRuntime;
 			productName = s3;
 			productReference = D069663F1234D53400BFBB1E /* libRuntime.a */;
 			productType = "com.apple.product-type.library.static";
@@ -461,7 +461,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				D2AAC07D0554694100DB518D /* Runtime */,
+				D2AAC07D0554694100DB518D /* AWSRuntime */,
 				0AFD8DD7128465B4004B7863 /* Framework */,
 			);
 		};
@@ -542,6 +542,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(NATIVE_ARCH_ACTUAL)";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				DSTROOT = /tmp/awsruntime.dst;
@@ -560,7 +561,8 @@
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = Runtime;
 				PROVISIONING_PROFILE = "";
-				SDKROOT = iphoneos;
+				PUBLIC_HEADERS_FOLDER_PATH = "include/$(TARGET_NAME)";
+				SDKROOT = "";
 				SKIP_INSTALL = YES;
 			};
 			name = Debug;
@@ -569,6 +571,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(NATIVE_ARCH_ACTUAL)";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				DSTROOT = /tmp/awsruntime.dst;
@@ -590,7 +593,8 @@
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = Runtime;
 				PROVISIONING_PROFILE = "";
-				SDKROOT = iphoneos;
+				PUBLIC_HEADERS_FOLDER_PATH = "include/$(TARGET_NAME)";
+				SDKROOT = "";
 				SKIP_INSTALL = YES;
 			};
 			name = Release;
@@ -658,6 +662,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				DSTROOT = /tmp/awsruntime.dst;
@@ -676,7 +681,8 @@
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = Runtime;
 				PROVISIONING_PROFILE = "";
-				SDKROOT = iphoneos;
+				PUBLIC_HEADERS_FOLDER_PATH = "include/$(TARGET_NAME)";
+				SDKROOT = "";
 				SKIP_INSTALL = YES;
 			};
 			name = Debug64;
@@ -715,6 +721,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				DSTROOT = /tmp/awsruntime.dst;
@@ -736,7 +743,8 @@
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = Runtime;
 				PROVISIONING_PROFILE = "";
-				SDKROOT = iphoneos;
+				PUBLIC_HEADERS_FOLDER_PATH = "include/$(TARGET_NAME)";
+				SDKROOT = "";
 				SKIP_INSTALL = YES;
 			};
 			name = Release64;
@@ -766,7 +774,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		1DEB921E08733DC00010E9CD /* Build configuration list for PBXNativeTarget "Runtime" */ = {
+		1DEB921E08733DC00010E9CD /* Build configuration list for PBXNativeTarget "AWSRuntime" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				1DEB921F08733DC00010E9CD /* Debug */,

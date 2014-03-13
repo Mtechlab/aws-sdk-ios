@@ -13,7 +13,8 @@
  * permissions and limitations under the License.
  */
 
-
+#import "AmazonErrorHandler.h"
+#import "AmazonLogger.h"
 
 // Public Constants
 NSString *const AWSiOSSDKServiceErrorDomain = @"com.amazonaws.iossdk.ServiceErrorDomain";
