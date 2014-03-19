@@ -21,8 +21,9 @@
 @class S3Bucket;
 
 /** Creates an S3VersionSummary from an XML service repsonse. */
-@interface S3VersionSummaryUnmarshaller:AmazonUnmarshallerXMLParserDelegate {
-    S3VersionSummary *summary;
+@interface S3VersionSummaryUnmarshaller : AmazonUnmarshallerXMLParserDelegate
+{
+    S3VersionSummary *_summary;
 }
 
 /** The S3VersionSummary represented by the XML */

@@ -17,13 +17,13 @@
 
 @implementation S3CopyPartResult;
 
-@synthesize etag;
-@synthesize lastModified;
+@synthesize etag = _etag;
+@synthesize lastModified = _lastModified;
 
 -(void)dealloc
 {
-    [etag release];
-    [lastModified release];
+    [_etag release];
+    [_lastModified release];
 
     [super dealloc];
 }

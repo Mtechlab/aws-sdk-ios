@@ -19,6 +19,21 @@
 @class AmazonServiceRequest;
 
 @interface S3GetObjectOperation_Internal : S3TransferOperation
+{
+    BOOL        _isExecuting;
+    BOOL        _isFinished;
+    CC_MD5_CTX  md5sum;
+    
+    int32_t                             _retryCount;
+    int64_t                             _s3FileSize;
+    NSString                            *_etag;
+    id<AmazonServiceRequestDelegate>    _delegate;
+    NSOutputStream                      *_outputStream;
+    
+    AmazonServiceResponse   *_response;
+    long long               _totalBytesTransferred;
+    long long               _totalBytesExpected;
+}
 
 @property (nonatomic, retain) AmazonServiceResponse *response;
 

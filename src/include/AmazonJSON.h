@@ -14,7 +14,7 @@
  */
 
 
-@interface AmazonJSON:NSObject {
+@interface AmazonJSON : NSObject {
 }
 
 +(NSString *)JSONRepresentation:(NSObject *)object;

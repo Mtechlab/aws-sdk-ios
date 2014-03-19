@@ -25,8 +25,9 @@
  * policy object with <code>null</code> policy text.
  *
  */
-@interface S3BucketPolicy:NSObject {
-    NSString *policyText;
+@interface S3BucketPolicy : NSObject
+{
+    NSString *_policyText;
 }
 
 /** The raw, policy JSON text, as returned by Amazon S3 */

@@ -24,6 +24,12 @@
 
 @implementation S3ListMultipartUploadsRequest
 
+@synthesize delimiter = _delimiter;
+@synthesize keyMarker = _keyMarker;
+@synthesize prefix = _prefix;
+@synthesize uploadIdMarker = _uploadIdMarker;
+@synthesize maxUploads = _maxUploads;
+@synthesize maxUploadsIsSet = _maxUploadsIsSet;
 
 -(id)init
 {
@@ -59,9 +65,9 @@
 
     [super configureURLRequest];
 
-    [urlRequest setHTTPMethod:kHttpMethodGet];
+    [_urlRequest setHTTPMethod:kHttpMethodGet];
 
-    return urlRequest;
+    return _urlRequest;
 }
 
 -(void)setMaxUploads:(int32_t)max

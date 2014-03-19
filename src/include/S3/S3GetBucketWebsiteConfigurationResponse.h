@@ -20,9 +20,9 @@
 /** Contains all the information about the getBucketWebsiteConfigurationResponse operation.
  *
  */
-@interface S3GetBucketWebsiteConfigurationResponse:S3Response
+@interface S3GetBucketWebsiteConfigurationResponse : S3Response
 {
-    BucketWebsiteConfiguration *configuration;
+    BucketWebsiteConfiguration *_configuration;
 }
 
 /** The BucketWebsiteConfiguration represented by the XML */

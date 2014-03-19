@@ -18,7 +18,7 @@
 
 @implementation S3SetACLRequest
 
-@synthesize acl;
+@synthesize acl = _acl;
 
 -(NSURLRequest *)configureURLRequest
 {
@@ -28,7 +28,7 @@
 
     [super configureURLRequest];
 
-    [urlRequest setHTTPMethod:kHttpMethodPut];
+    [_urlRequest setHTTPMethod:kHttpMethodPut];
 
     [[self urlRequest] setHTTPBody:[[[self acl] toXml] dataUsingEncoding:NSUTF8StringEncoding]];
 
@@ -37,7 +37,7 @@
 
 -(void)dealloc
 {
-    [acl release];
+    [_acl release];
 
     [super dealloc];
 }

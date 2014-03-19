@@ -18,7 +18,7 @@
 
 @implementation S3BucketLifecycleConfiguration
 
-@synthesize rules;
+@synthesize rules = _rules;
 
 -(NSString *)toXml
 {
@@ -26,7 +26,7 @@
 
     [xml appendString:@"<LifecycleConfiguration>"];
     
-    for (S3BucketLifecycleConfigurationRule *rule in rules) {
+    for (S3BucketLifecycleConfigurationRule *rule in _rules) {
         [xml appendString:[rule toXml]];
     }
 
@@ -41,7 +41,8 @@
 
 -(void)dealloc
 {
-    [rules release];
+    [_rules release];
+    
     [super dealloc];
 }
 

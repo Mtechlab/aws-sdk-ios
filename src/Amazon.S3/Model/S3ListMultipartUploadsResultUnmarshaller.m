@@ -17,6 +17,8 @@
 
 @implementation S3ListMultipartUploadsResultUnmarshaller
 
+@synthesize listMultipartUploadsResult = _listMultipartUploadsResult;
+
 #pragma mark NSXMLParserDelegate implementation
 
 -(void) parser:(NSXMLParser *)parser
@@ -70,12 +72,12 @@ qualifiedName:(NSString *)qName
         self.listMultipartUploadsResult.prefix = self.currentText;
     }
     if ([elementName isEqualToString:@"ListMultipartUploadsResult"]) {
-        if (caller != nil) {
-            [parser setDelegate:caller];
+        if (_caller != nil) {
+            [parser setDelegate:_caller];
         }
 
-        if (parentObject != nil && [parentObject respondsToSelector:parentSetter]) {
-            [parentObject performSelector:parentSetter withObject:self.listMultipartUploadsResult];
+        if (_parentObject != nil && [_parentObject respondsToSelector:_parentSetter]) {
+            [_parentObject performSelector:_parentSetter withObject:self.listMultipartUploadsResult];
         }
 
         return;
@@ -86,15 +88,16 @@ qualifiedName:(NSString *)qName
 
 -(S3ListMultipartUploadsResult *)listMultipartUploadsResult
 {
-    if (nil == listMultipartUploadsResult) {
-        listMultipartUploadsResult = [[S3ListMultipartUploadsResult alloc] init];
+    if (nil == _listMultipartUploadsResult) {
+        _listMultipartUploadsResult = [[S3ListMultipartUploadsResult alloc] init];
     }
-    return listMultipartUploadsResult;
+    
+    return _listMultipartUploadsResult;
 }
 
 -(void)dealloc
 {
-    [listMultipartUploadsResult release];
+    [_listMultipartUploadsResult release];
 
     [super dealloc];
 }

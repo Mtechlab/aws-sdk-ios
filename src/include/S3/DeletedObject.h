@@ -18,12 +18,12 @@
 /**
  * A successfully deleted object.
  */
-@interface DeletedObject:NSObject
+@interface DeletedObject : NSObject
 {
-    NSString *key;
-    NSString *versionId;
-    BOOL     deleteMarker;
-    NSString *deleteMarkerVersionId;
+    NSString *_key;
+    NSString *_versionId;
+    BOOL     _deleteMarker;
+    NSString *_deleteMarkerVersionId;
 }
 
 /**

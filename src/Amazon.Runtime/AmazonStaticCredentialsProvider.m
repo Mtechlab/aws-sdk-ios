@@ -19,7 +19,7 @@
 
 -(AmazonCredentials *)credentials
 {
-    return staticCredentials;
+    return _staticCredentials;
 }
 
 // refresh is a no-op for static credentials
@@ -32,7 +32,7 @@
     self = [super init];
     if (self)
     {
-        staticCredentials = [[AmazonCredentials alloc] initWithAccessKey:accessKey withSecretKey:secretKey];
+        _staticCredentials = [[AmazonCredentials alloc] initWithAccessKey:accessKey withSecretKey:secretKey];
     }
     return self;
 }
@@ -42,14 +42,14 @@
     self = [super init];
     if (self)
     {
-        staticCredentials = [theCredentials retain];
+        _staticCredentials = [theCredentials retain];
     }
     return self;
 }
 
 -(void)dealloc
 {
-    [staticCredentials release];
+    [_staticCredentials release];
     [super dealloc];
 }
 

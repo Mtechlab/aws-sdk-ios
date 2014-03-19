@@ -33,9 +33,10 @@
  * </p>
  *
  */
-@interface S3Grantee:S3Owner {
-    NSString *URI;
-    NSString *emailAddress;
+@interface S3Grantee : S3Owner
+{
+    NSString *_URI;
+    NSString *_emailAddress;
 }
 
 /** Gets and sets the URI property for group grantees */

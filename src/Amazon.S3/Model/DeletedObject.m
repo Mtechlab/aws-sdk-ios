@@ -17,13 +17,16 @@
 
 @implementation DeletedObject
 
-@synthesize key, versionId, deleteMarker, deleteMarkerVersionId;
+@synthesize key = _key;
+@synthesize versionId = _versionId;
+@synthesize deleteMarker = _deleteMarker;
+@synthesize deleteMarkerVersionId = _deleteMarkerVersionId;
 
 -(void)dealloc
 {
-    [key release];
-    [versionId release];
-    [deleteMarkerVersionId release];
+    [_key release];
+    [_versionId release];
+    [_deleteMarkerVersionId release];
 
     [super dealloc];
 }

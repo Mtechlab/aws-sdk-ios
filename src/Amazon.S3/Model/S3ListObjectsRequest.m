@@ -17,6 +17,10 @@
 
 @implementation S3ListObjectsRequest
 
+@synthesize prefix = _prefix;
+@synthesize marker = _marker;
+@synthesize delimiter = _delimiter;
+@synthesize maxKeys = _maxKeys;
 
 -(NSMutableURLRequest *)configureURLRequest
 {

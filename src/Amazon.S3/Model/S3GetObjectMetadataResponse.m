@@ -17,7 +17,7 @@
 
 @implementation S3GetObjectMetadataResponse
 
-@synthesize missingMeta;
+@synthesize missingMeta = _missingMeta;
 
 -(void)setValue:(id)value forHTTPHeaderField:(NSString *)header
 {

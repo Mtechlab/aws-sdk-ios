@@ -20,7 +20,10 @@
 /** Contains the parameters used for the completeMultipartUpload operation.
  *
  */
-@interface S3CompleteMultipartUploadRequest:S3Request {
+@interface S3CompleteMultipartUploadRequest : S3Request
+{
+    NSString                *_uploadId;
+    NSMutableDictionary     *_parts;
 }
 
 @property (nonatomic, retain) NSString *uploadId;

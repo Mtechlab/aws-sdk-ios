@@ -19,8 +19,9 @@
 /** Contains the response from a uploadPart operation.
  *
  */
-@interface S3CopyPartResponse:S3Response {
-    NSDate *lastModified;
+@interface S3CopyPartResponse : S3Response
+{
+    NSDate *_lastModified;
 }
 
 @property (nonatomic, retain) NSDate *lastModified;

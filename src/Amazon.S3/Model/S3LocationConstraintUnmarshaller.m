@@ -18,7 +18,7 @@
 
 @implementation S3LocationConstraintUnmarshaller
 
-@synthesize location;
+@synthesize location = _location;
 
 -(void) parser:(NSXMLParser *)parser
 didEndElement:(NSString *)elementName
@@ -41,7 +41,8 @@ qualifiedName:(NSString *)qName
 
 -(void)dealloc
 {
-    [location release];
+    [_location release];
+    
     [super dealloc];
 }
 

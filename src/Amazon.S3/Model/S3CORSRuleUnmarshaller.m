@@ -18,6 +18,8 @@
 
 @implementation S3CORSRuleUnmarshaller
 
+@synthesize rule = _rule;
+
 #pragma mark - NSXMLParserDelegate implementation
 
 -(void) parser:(NSXMLParser *)parser didEndElement:(NSString *)elementName namespaceURI:(NSString *)namespaceURI qualifiedName:(NSString *)qName
@@ -25,17 +27,17 @@
     [super parser:parser didEndElement:elementName namespaceURI:namespaceURI qualifiedName:qName];
     
     if ([elementName isEqualToString:@"CORSRule"]) {
-        if (caller != nil) {
-            [parser setDelegate:caller];
+        if (_caller != nil) {
+            [parser setDelegate:_caller];
         }
         
-        self.rule.allowedHeaders = allowedHeaders;
-        self.rule.allowedMethods = allowedMethods;
-        self.rule.allowedOrigins = allowedOrigins;
-        self.rule.exposeHeaders = exposeHeaders;
+        self.rule.allowedHeaders = _allowedHeaders;
+        self.rule.allowedMethods = _allowedMethods;
+        self.rule.allowedOrigins = _allowedOrigins;
+        self.rule.exposeHeaders = _exposeHeaders;
         
-        if (parentObject != nil && [parentObject respondsToSelector:parentSetter]) {
-            [parentObject performSelector:parentSetter withObject:self.rule];
+        if (_parentObject != nil && [_parentObject respondsToSelector:_parentSetter]) {
+            [_parentObject performSelector:_parentSetter withObject:self.rule];
         }
         
         return;
@@ -44,25 +46,25 @@
     if ([elementName isEqualToString:@"ID"]) {
         self.rule.ruleId = self.currentText;
     } else if ([elementName isEqualToString:@"AllowedMethod"]) {
-        if (allowedMethods == nil) {
-            allowedMethods = [[NSMutableArray alloc] initWithCapacity:2];
+        if (_allowedMethods == nil) {
+            _allowedMethods = [[NSMutableArray alloc] initWithCapacity:2];
         }
-        [allowedMethods addObject:self.currentText];
+        [_allowedMethods addObject:self.currentText];
     } else if ([elementName isEqualToString:@"AllowedOrigin"]) {
-        if (allowedOrigins == nil) {
-            allowedOrigins = [[NSMutableArray alloc] initWithCapacity:2];
+        if (_allowedOrigins == nil) {
+            _allowedOrigins = [[NSMutableArray alloc] initWithCapacity:2];
         }
-        [allowedOrigins addObject:self.currentText];
+        [_allowedOrigins addObject:self.currentText];
     } else if ([elementName isEqualToString:@"ExposeHeader"]) {
-        if (exposeHeaders == nil) {
-            exposeHeaders = [[NSMutableArray alloc] initWithCapacity:2];
+        if (_exposeHeaders == nil) {
+            _exposeHeaders = [[NSMutableArray alloc] initWithCapacity:2];
         }
-        [exposeHeaders addObject:self.currentText];
+        [_exposeHeaders addObject:self.currentText];
     } else if ([elementName isEqualToString:@"AllowedHeader"]) {
-        if (allowedHeaders == nil) {
-            allowedHeaders = [[NSMutableArray alloc] initWithCapacity:2];
+        if (_allowedHeaders == nil) {
+            _allowedHeaders = [[NSMutableArray alloc] initWithCapacity:2];
         }
-        [allowedHeaders addObject:self.currentText];
+        [_allowedHeaders addObject:self.currentText];
     } else if ([elementName isEqualToString:@"MaxAgeSeconds"]) {
         self.rule.maxAgeSeconds = [self.currentText integerValue];
     }
@@ -85,10 +87,11 @@
 -(void)dealloc
 {
     [_rule release];
-    [allowedOrigins release];
-    [allowedHeaders release];
-    [allowedMethods release];
-    [exposeHeaders release];
+    [_allowedOrigins release];
+    [_allowedHeaders release];
+    [_allowedMethods release];
+    [_exposeHeaders release];
+    
     [super dealloc];
 }
 

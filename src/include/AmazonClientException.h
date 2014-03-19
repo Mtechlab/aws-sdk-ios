@@ -20,7 +20,10 @@
  * configuration. These are conditions which need to be corrected in
  * the client. Service exceptions are indicated by throwing AWSServiceException.
  */
-@interface AmazonClientException : NSException {
+@interface AmazonClientException : NSException
+{
+    NSString *_message;
+    NSError *_error;
 }
 
 /** Description of the exception */

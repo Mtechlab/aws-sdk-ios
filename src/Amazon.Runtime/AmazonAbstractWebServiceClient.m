@@ -20,6 +20,12 @@
 
 @implementation AmazonAbstractWebServiceClient
 
+@synthesize provider = _provider;
+@synthesize endpoint = _endpoint;
+@synthesize maxRetries = _maxRetries;
+@synthesize timeout = _timeout;
+@synthesize connectionTimeout = _connectionTimeout;
+@synthesize delay = _delay;
 @synthesize userAgent = _userAgent;
 
 - (id)init

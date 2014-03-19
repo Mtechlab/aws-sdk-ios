@@ -19,12 +19,13 @@
 #import "AmazonCredentials.h"
 
 
-@interface AmazonServiceRequestConfig:NSObject {
-    id<AmazonServiceRequestDelegate> delegate;
-    AmazonCredentials                *credentials;
-    NSString                         *requestEndpoint;
-    NSURLConnection                  *urlConnection;
-    NSString                         *requestTag;
+@interface AmazonServiceRequestConfig : NSObject
+{
+    id<AmazonServiceRequestDelegate> _delegate;
+    AmazonCredentials                *_credentials;
+    NSString                         *_requestEndpoint;
+    NSURLConnection                  *_urlConnection;
+    NSString                         *_requestTag;
 }
 
 /** Request specific credentials. */

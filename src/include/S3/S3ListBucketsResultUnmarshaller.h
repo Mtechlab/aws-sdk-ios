@@ -20,8 +20,9 @@
 @class S3ListBucketsResult;
 
 /** Creates an S3ListAllMyBucketsResult from an XML service response */
-@interface S3ListBucketsResultUnmarshaller:AmazonUnmarshallerXMLParserDelegate {
-    S3ListBucketsResult *listBucketsResult;
+@interface S3ListBucketsResultUnmarshaller : AmazonUnmarshallerXMLParserDelegate
+{
+    S3ListBucketsResult *_listBucketsResult;
 }
 
 /** The result object represented by the XML */

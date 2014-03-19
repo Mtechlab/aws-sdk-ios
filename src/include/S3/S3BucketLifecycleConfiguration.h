@@ -20,8 +20,9 @@
 /**
  *
  */
-@interface S3BucketLifecycleConfiguration:NSObject {
-    NSArray *rules;
+@interface S3BucketLifecycleConfiguration : NSObject
+{
+    NSArray *_rules;
 }
 
 /** The list of rules */

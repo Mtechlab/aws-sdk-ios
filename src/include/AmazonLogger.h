@@ -18,7 +18,7 @@
 #define AMZLog(fmt, ...)    [AmazonLogger logInfo:(@"%@|%s|%d|" fmt),[[NSString stringWithUTF8String:__FILE__] lastPathComponent], __PRETTY_FUNCTION__, __LINE__, ##__VA_ARGS__]
 #define AMZLogDebug(fmt, ...)    [AmazonLogger logDebug:(@"%@|%s|%d|" fmt), [[NSString stringWithUTF8String:__FILE__] lastPathComponent], __PRETTY_FUNCTION__, __LINE__, ##__VA_ARGS__]
 
-@interface AmazonLogger:NSObject {
+@interface AmazonLogger : NSObject {
 }
 
 + (void)turnLoggingOff;

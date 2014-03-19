@@ -17,13 +17,13 @@
 
 @implementation AmazonURLRequest
 
-@synthesize endpointHost;
-@synthesize requestClass;
-@synthesize credentials;
+@synthesize endpointHost = _endpointHost;
+@synthesize requestClass = _requestClass;
+@synthesize credentials = _credentials;
 
 -(void)dealloc
 {
-    [endpointHost release];
+    [_endpointHost release];
 
     [super dealloc];
 }

@@ -18,7 +18,7 @@
 
 @implementation S3BucketTaggingConfiguration
 
-@synthesize tagsets;
+@synthesize tagsets = _tagsets;
 
 -(NSString *)toXml
 {
@@ -26,7 +26,7 @@
 
     [xml appendString:@"<Tagging>"];
     
-    for (S3BucketTagSet *tagset in tagsets) {
+    for (S3BucketTagSet *tagset in _tagsets) {
         [xml appendString:[tagset toXml]];
     }
 
@@ -41,7 +41,8 @@
 
 -(void)dealloc
 {
-    [tagsets release];
+    [_tagsets release];
+    
     [super dealloc];
 }
 

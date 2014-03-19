@@ -18,11 +18,12 @@
 /** The S3CompleteMultipartUploadResult contains all the information about the completeMultipartUploadResult method.
  *
  */
-@interface S3CompleteMultipartUploadResult:NSObject {
-    NSString *location;
-    NSString *bucket;
-    NSString *key;
-    NSString *etag;
+@interface S3CompleteMultipartUploadResult : NSObject
+{
+    NSString *_location;
+    NSString *_bucket;
+    NSString *_key;
+    NSString *_etag;
 }
 
 /** The URI that identifies the newly created object. */

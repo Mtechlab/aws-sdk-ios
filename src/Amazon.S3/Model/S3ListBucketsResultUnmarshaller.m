@@ -20,6 +20,8 @@
 
 @implementation S3ListBucketsResultUnmarshaller
 
+@synthesize listBucketsResult = _listBucketsResult;
+
 #pragma mark NSXMLParserDelegate implementation
 
 -(void) parser:(NSXMLParser *)parser
@@ -47,12 +49,12 @@ qualifiedName:(NSString *)qName
     [super parser:parser didEndElement:elementName namespaceURI:namespaceURI qualifiedName:qName];
 
     if ([elementName isEqualToString:@"ListAllMyBucketsResult"]) {
-        if (caller != nil) {
-            [parser setDelegate:caller];
+        if (_caller != nil) {
+            [parser setDelegate:_caller];
         }
 
-        if (parentObject != nil && [parentObject respondsToSelector:parentSetter]) {
-            [parentObject performSelector:parentSetter withObject:self.listBucketsResult];
+        if (_parentObject != nil && [_parentObject respondsToSelector:_parentSetter]) {
+            [_parentObject performSelector:_parentSetter withObject:self.listBucketsResult];
         }
 
         return;
@@ -64,16 +66,18 @@ qualifiedName:(NSString *)qName
 
 -(S3ListBucketsResult *)listBucketsResult
 {
-    if (nil == listBucketsResult)
+    if (nil == _listBucketsResult)
     {
-        listBucketsResult = [[S3ListBucketsResult alloc] init];
+        _listBucketsResult = [[S3ListBucketsResult alloc] init];
     }
-    return listBucketsResult;
+    
+    return _listBucketsResult;
 }
 
 -(void)dealloc
 {
-    [listBucketsResult release];
+    [_listBucketsResult release];
+    
     [super dealloc];
 }
 

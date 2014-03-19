@@ -19,6 +19,8 @@
 
 @implementation S3AbortMultipartUploadRequest
 
+@synthesize uploadId = _uploadId;
+
 -(id)initWithMultipartUpload:(S3MultipartUpload *)multipartUpload
 {
     if(self = [super init])
@@ -37,16 +39,14 @@
 
     [super configureURLRequest];
 
-    [urlRequest setHTTPMethod:kHttpMethodDelete];
+    [_urlRequest setHTTPMethod:kHttpMethodDelete];
 
-    return urlRequest;
+    return _urlRequest;
 }
-
-@synthesize uploadId;
 
 -(void)dealloc
 {
-    [uploadId release];
+    [_uploadId release];
 
     [super dealloc];
 }

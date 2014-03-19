@@ -21,6 +21,11 @@
  */
 @interface S3GetObjectResponse : S3Response
 {
+    NSDate                  *_lastModified;
+    NSMutableDictionary     *_metadata;
+    NSString                *_contentType;
+    NSString                *_redirectLocation;
+    NSOutputStream          *_outputStream;
 }
 
 /**

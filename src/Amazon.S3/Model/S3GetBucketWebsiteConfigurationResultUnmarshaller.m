@@ -17,7 +17,7 @@
 
 @implementation S3GetBucketWebsiteConfigurationResultUnmarshaller
 
-@synthesize configuration;
+@synthesize configuration = _configuration;
 
 #pragma mark - NSXMLParserDelegate implementation
 
@@ -39,18 +39,18 @@
 
 -(BucketWebsiteConfiguration *)configuration
 {
-    if (nil == configuration)
+    if (nil == _configuration)
     {
-        configuration = [[BucketWebsiteConfiguration alloc] init];
+        _configuration = [[BucketWebsiteConfiguration alloc] init];
     }
-    return configuration;
+    return _configuration;
 }
 
 #pragma mark -
 
 -(void)dealloc
 {
-    [configuration release];
+    [_configuration release];
 
     [super dealloc];
 }

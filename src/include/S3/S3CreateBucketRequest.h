@@ -31,10 +31,11 @@
 /** Contains the parameters used for the createBucket operation.
  *
  */
-@interface S3CreateBucketRequest:S3Request {
-    S3Region            *region;
-    S3CannedACL         *cannedACL;
-    S3AccessControlList *fullACL;
+@interface S3CreateBucketRequest : S3Request
+{
+    S3Region            *_region;
+    S3CannedACL         *_cannedACL;
+    S3AccessControlList *_fullACL;
 }
 
 /** Region where the bucket should be created. */

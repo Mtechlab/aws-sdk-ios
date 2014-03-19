@@ -18,10 +18,10 @@
 /**
  * A key to delete, with an optional version attribute.
  */
-@interface S3KeyVersion:NSObject
+@interface S3KeyVersion : NSObject
 {
-    NSString *key;
-    NSString *version;
+    NSString *_key;
+    NSString *_version;
 }
 
 -(id)initWithKey:(NSString *)theKey withVersion:(NSString *)theVersion;

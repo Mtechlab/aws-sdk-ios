@@ -20,8 +20,9 @@
 @class S3Owner;
 
 /** Creates an S3Owner from the an XML service response */
-@interface S3OwnerUnmarshaller:AmazonUnmarshallerXMLParserDelegate {
-    S3Owner *owner;
+@interface S3OwnerUnmarshaller : AmazonUnmarshallerXMLParserDelegate
+{
+    S3Owner *_owner;
 }
 
 /** The S3Owner represented by the XML */

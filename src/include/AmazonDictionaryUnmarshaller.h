@@ -17,18 +17,19 @@
 #import "AmazonServiceResponseUnmarshaller.h"
 
 
-@interface AmazonDictionaryUnmarshaller:AmazonServiceResponseUnmarshaller {
-    NSString            *keyXpathElement;
-    NSString            *valueXpathElement;
-    NSString            *entryEndElement;
-    NSString            *dictionaryEndElement;
+@interface AmazonDictionaryUnmarshaller : AmazonServiceResponseUnmarshaller
+{
+    NSString            *_keyXpathElement;
+    NSString            *_valueXpathElement;
+    NSString            *_entryEndElement;
+    NSString            *_dictionaryEndElement;
 
-    NSString            *key;
-    NSString            *value;
+    NSString            *_key;
+    NSString            *_value;
     
-    id                  delegateClass;
+    id                  _delegateClass;
 
-    NSMutableDictionary *dictionary;
+    NSMutableDictionary *_dictionary;
 }
 
 @property (nonatomic, retain) NSString            *key;

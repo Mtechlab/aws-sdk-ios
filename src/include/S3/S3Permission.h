@@ -25,8 +25,9 @@
  * @see http://docs.amazonwebservices.com/AmazonS3/latest/S3_ACLs.html#S3_ACLs_Permissions
  *
  */
-@interface S3Permission:NSObject {
-    NSString *xmlValue;
+@interface S3Permission : NSObject
+{
+    NSString *_xmlValue;
 }
 
 -(id)initWithXmlCode:(NSString *)code;

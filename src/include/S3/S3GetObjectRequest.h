@@ -28,16 +28,18 @@
 /** contains the parameters used for the getObject operation.
  *
  */
-@interface S3GetObjectRequest:S3Request {
-    int64_t                   rangeStart, rangeEnd;
-    bool                      rangeSet;
-    NSDate                    *ifModifiedSince;
-    NSDate                    *ifUnmodifiedSince;
-    NSString                  *ifMatch;
-    NSString                  *ifNoneMatch;
-    NSString                  *versionId;
-    NSOutputStream            *outputStream;
-    S3ResponseHeaderOverrides *responseHeaderOverrides;
+@interface S3GetObjectRequest : S3Request
+{
+    int64_t                   _rangeStart, _rangeEnd;
+    bool                      _rangeSet;
+    NSDate                    *_ifModifiedSince;
+    NSDate                    *_ifUnmodifiedSince;
+    NSString                  *_ifMatch;
+    NSString                  *_ifNoneMatch;
+    NSString                  *_versionId;
+    NSOutputStream            *_outputStream;
+    S3ResponseHeaderOverrides *_responseHeaderOverrides;
+    NSString                  *_targetFilePath;
 }
 
 /** Specifies the starting index of the byte range to download */

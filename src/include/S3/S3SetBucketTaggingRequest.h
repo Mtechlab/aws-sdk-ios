@@ -21,9 +21,9 @@
  * Contains the parameters used for the setBucketTagging operation.
  *
  */
-@interface S3SetBucketTaggingRequest:S3Request
+@interface S3SetBucketTaggingRequest : S3Request
 {
-    S3BucketTaggingConfiguration *configuration;
+    S3BucketTaggingConfiguration *_configuration;
 }
 
 -(id)initWithBucketName:(NSString *)theBucketName withConfiguration:(S3BucketTaggingConfiguration *)theConfiguration;

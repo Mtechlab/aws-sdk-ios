@@ -17,7 +17,7 @@
 
 @implementation S3DeleteObjectRequest
 
-@synthesize mfaAuth;
+@synthesize mfaAuth = _mfaAuth;
 
 -(NSMutableURLRequest *)configureURLRequest
 {
@@ -25,15 +25,16 @@
     [self.urlRequest setHTTPMethod:kHttpMethodDelete];
 
     if (nil != self.mfaAuth) {
-        [urlRequest setValue:self.mfaAuth forHTTPHeaderField:kHttpHdrAmzMfa];
+        [_urlRequest setValue:self.mfaAuth forHTTPHeaderField:kHttpHdrAmzMfa];
     }
 
-    return urlRequest;
+    return _urlRequest;
 }
 
 -(void)dealloc
 {
-    [mfaAuth release];
+    [_mfaAuth release];
+    
     [super dealloc];
 }
 

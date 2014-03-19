@@ -21,15 +21,17 @@
  * Contains the parameters used for the setBucketCrossOrigin operation.
  *
  */
-@interface S3SetBucketCrossOriginRequest:S3Request {
+@interface S3SetBucketCrossOriginRequest : S3Request
+{
+    S3BucketCrossOriginConfiguration *_configuration;
 }
+
+/** The new CORS configuration for the specified bucket. */
+@property (nonatomic, retain) S3BucketCrossOriginConfiguration *configuration;
 
 -(id)initWithBucketName:(NSString *)theBucketName withConfiguration:(S3BucketCrossOriginConfiguration *)theConfiguration;
 -(id)initWithBucketName:(NSString *)theBucketName;
 +(id)requestWithBucketName:(NSString *)theBucketName withConfiguration:(S3BucketCrossOriginConfiguration *)theConfiguration;
 +(id)requestWithBucketName:(NSString *)theBucketName;
-
-/** The new CORS configuration for the specified bucket. */
-@property (nonatomic, retain) S3BucketCrossOriginConfiguration *configuration;
 
 @end

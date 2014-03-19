@@ -44,8 +44,9 @@
  * </p>
  *
  */
-@interface S3Region:NSObject {
-    NSString *stringValue;
+@interface S3Region : NSObject
+{
+    NSString *_stringValue;
 }
 
 @property (readonly, atomic) NSString *stringValue;

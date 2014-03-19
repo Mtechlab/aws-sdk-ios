@@ -41,7 +41,7 @@
 
     [self.urlRequest setHTTPMethod:kHttpMethodDelete];
 
-    return urlRequest;
+    return _urlRequest;
 }
 
 @end

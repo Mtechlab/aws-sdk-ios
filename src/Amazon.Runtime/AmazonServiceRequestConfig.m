@@ -18,28 +18,28 @@
 
 @implementation AmazonServiceRequestConfig
 
-@synthesize credentials;
-@synthesize requestEndpoint;
-@synthesize urlConnection;
-@synthesize requestTag;
+@synthesize credentials = _credentials;
+@synthesize requestEndpoint = _requestEndpoint;
+@synthesize urlConnection = _urlConnection;
+@synthesize requestTag = _requestTag;
 
 -(void)setDelegate:(id<AmazonServiceRequestDelegate> )aDelegate;
 {
-    delegate = aDelegate;
+    _delegate = aDelegate;
 }
 
 -(id<AmazonServiceRequestDelegate> )delegate
 {
-    return delegate;
+    return _delegate;
 }
 
 -(void)dealloc
 {
-    delegate = nil;
-    [credentials release];
-    [requestEndpoint release];
-    [urlConnection release];
-    [requestTag release];
+    _delegate = nil;
+    [_credentials release];
+    [_requestEndpoint release];
+    [_urlConnection release];
+    [_requestTag release];
     [super dealloc];
 }
 

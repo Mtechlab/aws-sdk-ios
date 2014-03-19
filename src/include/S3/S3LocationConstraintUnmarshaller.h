@@ -17,8 +17,9 @@
 
 #import "../AmazonUnmarshallerXMLParserDelegate.h"
 
-@interface S3LocationConstraintUnmarshaller:AmazonUnmarshallerXMLParserDelegate {
-    NSString *location;
+@interface S3LocationConstraintUnmarshaller : AmazonUnmarshallerXMLParserDelegate
+{
+    NSString *_location;
 }
 
 @property (nonatomic, retain) NSString *location;

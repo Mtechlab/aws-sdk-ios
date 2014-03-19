@@ -17,6 +17,8 @@
 
 @implementation S3ListVersionsResultUnmarshaller
 
+@synthesize listVersionsResult = _listVersionsResult;
+
 #pragma mark NSXMLParserDelegate implementation
 
 -(void) parser:(NSXMLParser *)parser
@@ -94,12 +96,12 @@ qualifiedName:(NSString *)qName
     }
 
     if ([elementName isEqualToString:@"ListVersionsResult"]) {
-        if (caller != nil) {
-            [parser setDelegate:caller];
+        if (_caller != nil) {
+            [parser setDelegate:_caller];
         }
 
-        if (parentObject != nil && [parentObject respondsToSelector:parentSetter]) {
-            [parentObject performSelector:parentSetter withObject:self.listVersionsResult];
+        if (_parentObject != nil && [_parentObject respondsToSelector:_parentSetter]) {
+            [_parentObject performSelector:_parentSetter withObject:self.listVersionsResult];
         }
 
         return;
@@ -110,16 +112,18 @@ qualifiedName:(NSString *)qName
 
 -(S3ListVersionsResult *)listVersionsResult
 {
-    if (nil == listVersionsResult)
+    if (nil == _listVersionsResult)
     {
-        listVersionsResult = [[S3ListVersionsResult alloc] init];
+        _listVersionsResult = [[S3ListVersionsResult alloc] init];
     }
-    return listVersionsResult;
+    
+    return _listVersionsResult;
 }
 
 -(void)dealloc
 {
-    [listVersionsResult release];
+    [_listVersionsResult release];
+    
     [super dealloc];
 }
 

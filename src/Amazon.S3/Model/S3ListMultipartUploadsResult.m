@@ -18,44 +18,51 @@
 
 @implementation S3ListMultipartUploadsResult
 
-@synthesize bucket;
-@synthesize keyMarker;
-@synthesize uploadIdMarker;
-@synthesize nextKeyMarker;
-@synthesize nextUploadIdMarker;
-@synthesize maxUploads;
-@synthesize isTruncated;
-@synthesize delimiter;
-@synthesize prefix;
+@synthesize bucket = _bucket;
+@synthesize keyMarker = _keyMarker;
+@synthesize uploadIdMarker = _uploadIdMarker;
+@synthesize nextKeyMarker = _nextKeyMarker;
+@synthesize nextUploadIdMarker = _nextUploadIdMarker;
+@synthesize maxUploads = _maxUploads;
+@synthesize isTruncated = _isTruncated;
+@synthesize delimiter = _delimiter;
+@synthesize prefix = _prefix;
+@synthesize commonPrefixes = _commonPrefixes;
+@synthesize uploads = _uploads;
+
+
+
 
 -(NSMutableArray *)uploads
 {
-    if (uploads == nil)
+    if (_uploads == nil)
     {
-        uploads = [[NSMutableArray alloc] init];
+        _uploads = [[NSMutableArray alloc] init];
     }
-    return uploads;
+    
+    return _uploads;
 }
 
 -(NSMutableArray *)commonPrefixes
 {
-    if (commonPrefixes == nil) {
-        commonPrefixes = [[NSMutableArray alloc] init];
+    if (_commonPrefixes == nil) {
+        _commonPrefixes = [[NSMutableArray alloc] init];
     }
-    return commonPrefixes;
+    
+    return _commonPrefixes;
 }
 
 -(void)dealloc
 {
-    [bucket release];
-    [prefix release];
-    [uploads release];
-    [keyMarker release];
-    [delimiter release];
-    [nextKeyMarker release];
-    [commonPrefixes release];
-    [uploadIdMarker release];
-    [nextUploadIdMarker release];
+    [_bucket release];
+    [_prefix release];
+    [_uploads release];
+    [_keyMarker release];
+    [_delimiter release];
+    [_nextKeyMarker release];
+    [_commonPrefixes release];
+    [_uploadIdMarker release];
+    [_nextUploadIdMarker release];
 
     [super dealloc];
 }

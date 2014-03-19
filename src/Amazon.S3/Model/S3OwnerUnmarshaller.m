@@ -17,6 +17,8 @@
 
 @implementation S3OwnerUnmarshaller
 
+@synthesize owner = _owner;
+
 #pragma mark NSXMLParserDelegate implementation
 
 -(void) parser:(NSXMLParser *)parser
@@ -37,12 +39,12 @@ qualifiedName:(NSString *)qName
     }
 
     if ([elementName isEqualToString:@"Owner"] || (self.endElementTagName != nil && [elementName isEqualToString:self.endElementTagName])) {
-        if (caller != nil) {
-            [parser setDelegate:caller];
+        if (_caller != nil) {
+            [parser setDelegate:_caller];
         }
 
-        if (parentObject != nil && [parentObject respondsToSelector:parentSetter]) {
-            [parentObject performSelector:parentSetter withObject:self.owner];
+        if (_parentObject != nil && [_parentObject respondsToSelector:_parentSetter]) {
+            [_parentObject performSelector:_parentSetter withObject:self.owner];
         }
 
         return;
@@ -53,16 +55,18 @@ qualifiedName:(NSString *)qName
 
 -(S3Owner *)owner
 {
-    if (nil == owner)
+    if (nil == _owner)
     {
-        owner = [[S3Owner alloc] init];
+        _owner = [[S3Owner alloc] init];
     }
-    return owner;
+    
+    return _owner;
 }
 
 -(void)dealloc
 {
-    [owner release];
+    [_owner release];
+    
     [super dealloc];
 }
 

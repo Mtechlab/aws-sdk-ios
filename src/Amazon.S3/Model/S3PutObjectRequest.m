@@ -18,6 +18,18 @@
 
 @implementation S3PutObjectRequest
 
+@synthesize cacheControl = _cacheControl;
+@synthesize contentDisposition = _contentDisposition;
+@synthesize contentEncoding = _contentEncoding;
+@synthesize contentMD5 = _contentMD5;
+@synthesize generateMD5 = _generateMD5;
+@synthesize expect = _expect;
+@synthesize data = _data;
+@synthesize stream = _stream;
+@synthesize expires = _expires;
+@synthesize filename = _filename;
+@synthesize redirectLocation = _redirectLocation;
+
 -(id)init
 {
     if (self = [super init])
@@ -25,7 +37,7 @@
         _expires = 0;
         _generateMD5 = YES;
 
-        expiresSet  = NO;
+        _expiresSet  = NO;
     }
     
     return self;
@@ -79,7 +91,7 @@
 -(void)setExpires:(int32_t)exp
 {
     _expires    = exp;
-    expiresSet = YES;
+    _expiresSet = YES;
 }
 
 -(NSMutableURLRequest *)configureURLRequest
@@ -103,7 +115,7 @@
         }
     }
 
-    [urlRequest setHTTPMethod:kHttpMethodPut];
+    [_urlRequest setHTTPMethod:kHttpMethodPut];
 
     if (nil != self.expect) {
         [self.urlRequest setValue:self.expect
@@ -130,7 +142,7 @@
                forHTTPHeaderField:kHttpHdrAmzWebsiteRedirectLocation];
     }
 
-    if (expiresSet) {
+    if (_expiresSet) {
         [self.urlRequest setValue:[NSString stringWithFormat:@"%d", self.expires]
                forHTTPHeaderField:kHttpHdrExpires];
     }
@@ -146,7 +158,7 @@
         }
     }
 
-    return urlRequest;
+    return _urlRequest;
 }
 
 - (AmazonClientException *)validate

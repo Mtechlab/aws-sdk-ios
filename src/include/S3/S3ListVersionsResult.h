@@ -22,7 +22,19 @@
  * original request parameters.
  *
  */
-@interface S3ListVersionsResult:NSObject {
+@interface S3ListVersionsResult : NSObject
+{
+    NSMutableArray *_versionSummaries;
+    NSString        *_name;
+    NSString        *_prefix;
+    NSString        *_keyMarker;
+    NSString        *_nextKeyMarker;
+    NSString        *_versionIdMarker;
+    NSString        *_nextVersionIdMarker;
+    int32_t         _maxKeys;
+    NSString        *_delimiter;
+    BOOL            _isTruncated;
+    NSMutableArray  *_commonPrefixes;
 }
 
 /** A list of summary information describing the versions stored in the bucket */

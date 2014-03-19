@@ -19,8 +19,9 @@
 #import "S3BucketVersioningConfiguration.h"
 
 /** Creates an S3BucketVersioningConfiguration from an XML service repsonse. */
-@interface S3BucketVersioningConfigurationUnmarshaller:AmazonUnmarshallerXMLParserDelegate {
-    S3BucketVersioningConfiguration *versioningConfiguration;
+@interface S3BucketVersioningConfigurationUnmarshaller : AmazonUnmarshallerXMLParserDelegate
+{
+    S3BucketVersioningConfiguration *_versioningConfiguration;
 }
 
 /** The S3BucketVersioningConfiguration represented by the XML */

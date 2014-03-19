@@ -24,20 +24,21 @@
 @class AmazonServiceResponse;
 @class AmazonServiceException;
 
-@interface AmazonServiceRequest:NSObject <NSCoding> {
-    NSString                         *httpMethod;
-    NSMutableDictionary              *parameters;
-    NSString                         *endpoint;
-    NSString                         *userAgent;
-    AmazonCredentials                *credentials;
-    AmazonURLRequest                 *urlRequest;
-    NSURLConnection                  *urlConnection;
-    NSTimer                          *responseTimer;
-    NSString                         *requestTag;
-    NSString                         *serviceName;
-    NSString                         *regionName;
-    NSString                         *hostName;
-    id<AmazonServiceRequestDelegate> delegate;
+@interface AmazonServiceRequest : NSObject <NSCoding>
+{
+    NSString                         *_httpMethod;
+    NSMutableDictionary              *_parameters;
+    NSString                         *_endpoint;
+    NSString                         *_userAgent;
+    AmazonCredentials                *_credentials;
+    AmazonURLRequest                 *_urlRequest;
+    NSURLConnection                  *_urlConnection;
+    NSTimer                          *_responseTimer;
+    NSString                         *_requestTag;
+    NSString                         *_serviceName;
+    NSString                         *_regionName;
+    NSString                         *_hostName;
+    id<AmazonServiceRequestDelegate> _delegate;
 }
 
 /** Request specific credentials. */

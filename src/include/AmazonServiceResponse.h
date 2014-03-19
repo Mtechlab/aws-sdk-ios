@@ -29,21 +29,23 @@
  */
 extern NSString *const AWSClockSkewError;
 
-@interface AmazonServiceResponse:NSObject {
-    int32_t            httpStatusCode;
-    NSString             *requestId;
-    NSMutableData        *body;
-    NSDictionary         *responseHeader;
-    NSException          *exception;
-    BOOL                 isFinishedLoading;
-    BOOL                 didTimeout;
-    BOOL                 isAsyncCall;
-    Class                unmarshallerDelegate;
-    NSError *error;
+@interface AmazonServiceResponse : NSObject
+{
+    int32_t              _httpStatusCode;
+    NSString             *_requestId;
+    NSMutableData        *_body;
+    NSDictionary         *_responseHeader;
+    NSException          *_exception;
+    BOOL                 _isFinishedLoading;
+    BOOL                 _didTimeout;
+    BOOL                 _isAsyncCall;
+    BOOL                 _hasClockSkewError;
+    Class                _unmarshallerDelegate;
+    NSError              *_error;
 
-    AmazonServiceRequest *request;
+    AmazonServiceRequest *_request;
 
-    NSTimeInterval       processingTime;
+    NSTimeInterval       _processingTime;
 }
 
 /** The body of the html response. */

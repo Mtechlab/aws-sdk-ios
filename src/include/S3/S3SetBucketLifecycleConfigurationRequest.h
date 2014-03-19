@@ -21,9 +21,9 @@
  * Contains the parameters used for the setBucketLifecycleConfiguration operation.
  *
  */
-@interface S3SetBucketLifecycleConfigurationRequest:S3Request
+@interface S3SetBucketLifecycleConfigurationRequest : S3Request
 {
-    S3BucketLifecycleConfiguration *configuration;
+    S3BucketLifecycleConfiguration *_configuration;
 }
 
 -(id)initWithBucketName:(NSString *)theBucketName withConfiguration:(S3BucketLifecycleConfiguration *)theConfiguration;

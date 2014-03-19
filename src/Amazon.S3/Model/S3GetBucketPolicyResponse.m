@@ -18,7 +18,7 @@
 
 @implementation S3GetBucketPolicyResponse
 
-@synthesize policy;
+@synthesize policy = _policy;
 
 
 -(void)processBody
@@ -29,12 +29,13 @@
         policyText = [[[NSString alloc] initWithData:self.body encoding:NSUTF8StringEncoding] autorelease];
     }
 
-    policy = [[S3BucketPolicy alloc] initWithPolicy:policyText];
+    _policy = [[S3BucketPolicy alloc] initWithPolicy:policyText];
 }
 
 -(void) dealloc
 {
-    [policy release];
+    [_policy release];
+    
     [super dealloc];
 }
 

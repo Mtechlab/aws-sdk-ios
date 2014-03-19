@@ -22,7 +22,7 @@
 #endif
 
 /** Utilities for validating bucket names */
-@interface S3BucketNameUtilities:NSObject {
+@interface S3BucketNameUtilities : NSObject{
 }
 
 /** Validate that the supplied bucket name conforms to Amazon S3 bucket name

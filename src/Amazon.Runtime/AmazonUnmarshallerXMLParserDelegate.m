@@ -17,9 +17,9 @@
 
 @implementation AmazonUnmarshallerXMLParserDelegate
 
-@synthesize currentTag;
-@synthesize endElementTagName;
-
+@synthesize currentText = _currentText;
+@synthesize currentTag = _currentTag;
+@synthesize endElementTagName = _endElementTagName;
 //
 // When we find a start tag, keep track of the current tag
 // subclasses should really, really call this method if overridden
@@ -29,9 +29,9 @@ namespaceURI:(NSString *)namespaceURI qualifiedName:(NSString *)qualifiedName
 attributes:(NSDictionary *)attributeDict
 {
     // reset the current text
-    if (currentText != nil) {
-        [currentText release];
-        currentText = nil;
+    if (_currentText != nil) {
+        [_currentText release];
+        _currentText = nil;
     }
 
     self.currentTag = elementName;
@@ -42,12 +42,12 @@ attributes:(NSDictionary *)attributeDict
 //
 -(void)parser:(NSXMLParser *)parser foundCharacters:(NSString *)string
 {
-    if (nil == currentText)
+    if (nil == _currentText)
     {
-        currentText = [[NSMutableString alloc] initWithCapacity:50];
+        _currentText = [[NSMutableString alloc] initWithCapacity:50];
     }
 
-    [currentText appendString:string];
+    [_currentText appendString:string];
 }
 
 
@@ -66,11 +66,11 @@ qualifiedName:(NSString *)qName
 
 -(NSString *)currentText
 {
-    if (nil == currentText) {
+    if (nil == _currentText) {
         return @"";
     }
 
-    return [NSString stringWithString:currentText];
+    return [NSString stringWithString:_currentText];
 }
 
 //
@@ -81,26 +81,26 @@ qualifiedName:(NSString *)qName
 //
 -(AmazonUnmarshallerXMLParserDelegate *) initWithCaller:(AmazonUnmarshallerXMLParserDelegate *)aCaller withParentObject:(id)parent withSetter:(SEL)setter
 {
-    caller            = aCaller;
-    parentObject      = parent;
-    parentSetter      = setter;
-    endElementTagName = nil;
+    _caller            = aCaller;
+    _parentObject      = parent;
+    _parentSetter      = setter;
+    _endElementTagName = nil;
     return self;
 }
 
 -(AmazonUnmarshallerXMLParserDelegate *) initWithCaller:(AmazonUnmarshallerXMLParserDelegate *)aCaller withParentObject:(id)parent withSetter:(SEL)setter withAlias:(NSString *)alias
 {
-    caller            = aCaller;
-    parentObject      = parent;
-    parentSetter      = setter;
-    endElementTagName = alias;
+    _caller            = aCaller;
+    _parentObject      = parent;
+    _parentSetter      = setter;
+    _endElementTagName = alias;
     return self;
 }
 
 -(void)dealloc
 {
-    [currentTag release];
-    [currentText release];
+    [_currentTag release];
+    [_currentText release];
     [super dealloc];
 }
 

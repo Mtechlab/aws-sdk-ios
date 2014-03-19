@@ -27,8 +27,9 @@
  * @see http://docs.amazonwebservices.com/AmazonS3/latest/RESTAccessPolicy.html#RESTCannedAccessPolicies
  *
  */
-@interface S3CannedACL:NSObject <NSCoding> {
-    NSString *stringValue;
+@interface S3CannedACL : NSObject <NSCoding>
+{
+    NSString *_stringValue;
 }
 
 -(id)initWithStringValue:(NSString *)value;

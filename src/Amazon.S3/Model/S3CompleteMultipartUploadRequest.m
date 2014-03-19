@@ -24,6 +24,8 @@
 
 @implementation S3CompleteMultipartUploadRequest
 
+@synthesize uploadId = _uploadId;
+@synthesize parts = _parts;
 
 -(id)initWithMultipartUpload:(S3MultipartUpload *)multipartUpload
 {
@@ -43,13 +45,13 @@
 
     [super configureURLRequest];
 
-    [urlRequest setHTTPMethod:kHttpMethodPost];
+    [_urlRequest setHTTPMethod:kHttpMethodPost];
 
-    [urlRequest setHTTPBody:[self requestBody]];
-    [urlRequest setValue:[NSString stringWithFormat:@"%lu", (unsigned long)[[urlRequest HTTPBody] length]] forHTTPHeaderField:kHttpHdrContentLength];
-    [urlRequest setValue:@"text/xml" forHTTPHeaderField:kHttpHdrContentType];
+    [_urlRequest setHTTPBody:[self requestBody]];
+    [_urlRequest setValue:[NSString stringWithFormat:@"%lu", (unsigned long)[[_urlRequest HTTPBody] length]] forHTTPHeaderField:kHttpHdrContentLength];
+    [_urlRequest setValue:@"text/xml" forHTTPHeaderField:kHttpHdrContentType];
 
-    return urlRequest;
+    return _urlRequest;
 }
 
 -(void)addPartWithPartNumber:(int)partNumber withETag:(NSString *)etag

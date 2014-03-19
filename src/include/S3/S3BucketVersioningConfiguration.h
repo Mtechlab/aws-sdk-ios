@@ -51,9 +51,10 @@
  * for information on how versioning status affects the semantics of that
  * particular API.
  */
-@interface S3BucketVersioningConfiguration:NSObject {
-    NSString *status;
-    bool     isMfaDeleteEnabled;
+@interface S3BucketVersioningConfiguration : NSObject
+{
+    NSString *_status;
+    bool     _isMfaDeleteEnabled;
 }
 
 /** The current status of versioning */

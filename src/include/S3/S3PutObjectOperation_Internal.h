@@ -21,6 +21,13 @@
 
 @interface S3PutObjectOperation_Internal : S3TransferOperation
 {
+    BOOL _isExecuting;
+    BOOL _isFinished;
+    
+    NSInteger                           _retryCount;
+    id<AmazonServiceRequestDelegate>    _delegate;
+    
+    AmazonServiceResponse *_response;
 }
 
 @property (nonatomic, retain) AmazonServiceResponse *response;

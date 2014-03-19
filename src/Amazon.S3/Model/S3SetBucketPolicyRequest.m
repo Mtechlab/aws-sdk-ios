@@ -18,7 +18,7 @@
 
 @implementation S3SetBucketPolicyRequest
 
-@synthesize policy;
+@synthesize policy = _policy;
 
 -(NSURLRequest *)configureURLRequest
 {
@@ -28,16 +28,17 @@
 
     [super configureURLRequest];
 
-    [urlRequest setHTTPMethod:kHttpMethodPut];
+    [_urlRequest setHTTPMethod:kHttpMethodPut];
 
-    [[self urlRequest] setHTTPBody:[policy.policyText dataUsingEncoding:NSUTF8StringEncoding]];
+    [[self urlRequest] setHTTPBody:[_policy.policyText dataUsingEncoding:NSUTF8StringEncoding]];
 
     return self.urlRequest;
 }
 
 -(void)dealloc
 {
-    [policy release];
+    [_policy release];
+    
     [super dealloc];
 }
 

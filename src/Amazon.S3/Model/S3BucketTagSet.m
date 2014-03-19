@@ -18,7 +18,7 @@
 
 @implementation S3BucketTagSet
 
-@synthesize tags;
+@synthesize tags = _tags;
 
 -(NSString *)toXml
 {
@@ -26,10 +26,10 @@
 
     [xml appendString:@"<TagSet>"];
     
-    for (NSString *key in [tags allKeys]) {
+    for (NSString *key in [_tags allKeys]) {
         [xml appendString:@"<Tag>"];
         [xml appendFormat:@"<Key>%@</Key>", key];
-        [xml appendFormat:@"<Value>%@</Value>", [tags objectForKey:key]];
+        [xml appendFormat:@"<Value>%@</Value>", [_tags objectForKey:key]];
         [xml appendString:@"</Tag>"];
     }
     
@@ -44,7 +44,8 @@
 
 -(void)dealloc
 {
-    [tags release];
+    [_tags release];
+    
     [super dealloc];
 }
 

@@ -25,6 +25,12 @@
 /** Generic excpetion type for AWS Service Errors. */
 @implementation AmazonServiceException
 
+@synthesize requestId = _requestId;
+@synthesize errorCode = _errorCode;
+@synthesize serviceName = _serviceName;
+@synthesize statusCode = _statusCode;
+@synthesize additionalFields = _additionalFields;
+
 +(id)exceptionWithMessage:(NSString *)theMessage
 {
     AmazonServiceException *e = [[[self class] alloc] initWithName:@"AmazonServiceException"

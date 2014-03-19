@@ -21,7 +21,12 @@
  * This object doesn't contain the version's full metadata or any of its contents.
  *
  */
-@interface S3VersionSummary:S3ObjectSummary {
+@interface S3VersionSummary : S3ObjectSummary
+{
+    NSString    *_versionId;
+    NSString    *_displayName;
+    BOOL        _isLatest;
+    BOOL        _isDeleteMarker;
 }
 
 

@@ -19,14 +19,14 @@
 
 @implementation S3Region
 
-@synthesize stringValue;
+@synthesize stringValue = _stringValue;
 
 
 -(id)initWithStringValue:(NSString *)value
 {
     self = [super init];
     if (self) {
-        stringValue = [value retain];
+        _stringValue = [value retain];
     }
     return self;
 }
@@ -167,12 +167,13 @@
 
 -(NSString *)description
 {
-    return stringValue;
+    return _stringValue;
 }
 
 -(void)dealloc
 {
-    [stringValue release];
+    [_stringValue release];
+    
     [super dealloc];
 }
 @end

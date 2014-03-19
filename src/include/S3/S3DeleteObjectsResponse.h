@@ -19,10 +19,10 @@
 /** Contains the response from a deleteObject operation.
  *
  */
-@interface S3DeleteObjectsResponse:S3Response
+@interface S3DeleteObjectsResponse : S3Response
 {
-    NSArray *deletedObjects;
-    NSArray *deleteErrors;
+    NSArray *_deletedObjects;
+    NSArray *_deleteErrors;
 }
 
 /** The list of DeletedObjects represented by the XML */

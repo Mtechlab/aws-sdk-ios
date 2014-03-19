@@ -18,6 +18,13 @@
 
 @implementation S3ObjectSummary
 
+@synthesize key = _key;
+@synthesize etag = _etag;
+@synthesize size = _size;
+@synthesize lastModified = _lastModified;
+@synthesize storageClass = _storageClass;
+@synthesize owner = _owner;
+
 -(NSString *)description
 {
     return self.key;

@@ -20,9 +20,9 @@
 /** Contains all the information about the getBucketTaggingResponse operation.
  *
  */
-@interface S3GetBucketTaggingResponse:S3Response
+@interface S3GetBucketTaggingResponse : S3Response
 {
-    S3BucketTaggingConfiguration *configuration;
+    S3BucketTaggingConfiguration *_configuration;
 }
 
 /** The cost allocation tagging configuration represented by the XML */

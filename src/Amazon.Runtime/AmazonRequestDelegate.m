@@ -18,25 +18,25 @@
 
 @implementation AmazonRequestDelegate
 
-@synthesize response;
-@synthesize error;
-@synthesize exception;
+@synthesize response = _response;
+@synthesize error = _error;
+@synthesize exception = _exception;
 
 -(id)init
 {
     self = [super init];
     if (self)
     {
-        response  = nil;
-        exception = nil;
-        error     = nil;
+        _response  = nil;
+        _exception = nil;
+        _error     = nil;
     }
     return self;
 }
 
 -(bool)isFinishedOrFailed
 {
-    return (response != nil || error != nil || exception != nil);
+    return (_response != nil || _error != nil || _exception != nil);
 }
 
 -(void)request:(AmazonServiceRequest *)request didReceiveResponse:(NSURLResponse *)aResponse
@@ -47,9 +47,9 @@
 -(void)request:(AmazonServiceRequest *)request didCompleteWithResponse:(AmazonServiceResponse *)aResponse
 {
     AMZLogDebug(@"didCompleteWithResponse");
-    [response release];
-    response         = [aResponse retain];
-    response.request = request;
+    [_response release];
+    _response         = [aResponse retain];
+    _response.request = request;
 }
 
 -(void)request:(AmazonServiceRequest *)request didReceiveData:(NSData *)data
@@ -65,15 +65,15 @@
 -(void)request:(AmazonServiceRequest *)request didFailWithError:(NSError *)theError
 {
     AMZLogDebug(@"didFailWithError: %@", theError);
-    [error release];
-    error = [theError retain];
+    [_error release];
+    _error = [theError retain];
 }
 
 -(void)request:(AmazonServiceRequest *)request didFailWithServiceException:(NSException *)theException
 {
     AMZLogDebug(@"didFailWithServiceException");
-    [exception release];
-    exception = [theException retain];
+    [_exception release];
+    _exception = [theException retain];
 }
 
 - (void)request:(AmazonServiceRequest *)request didReceiveData:(NSData *)data totalBytesWritten:(long long)totalBytesWritten expectedTotalBytes:(long long)expectedTotalBytes
@@ -83,9 +83,9 @@
 
 -(void)dealloc
 {
-    [error release];
-    [exception release];
-    [response release];
+    [_error release];
+    [_exception release];
+    [_response release];
 
     [super dealloc];
 }

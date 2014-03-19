@@ -18,6 +18,8 @@
 
 @implementation S3BucketCrossOriginConfigurationUnmarshaller
 
+@synthesize configuration = _configuration;
+
 #pragma mark NSXMLParserDelegate implementation
 
 -(void) parser:(NSXMLParser *)parser didStartElement:(NSString *)elementName namespaceURI:(NSString *)namespaceURI qualifiedName:(NSString *)qualifiedName attributes:(NSDictionary *)attributeDict
@@ -34,17 +36,17 @@
 
 -(S3BucketCrossOriginConfiguration *)configuration
 {
-    if (nil == configuration)
+    if (nil == _configuration)
     {
-        configuration = [[S3BucketCrossOriginConfiguration alloc] init];
-        configuration.rules = [NSMutableArray arrayWithCapacity:1];
+        _configuration = [[S3BucketCrossOriginConfiguration alloc] init];
+        _configuration.rules = [NSMutableArray arrayWithCapacity:1];
     }
-    return configuration;
+    return _configuration;
 }
 
 -(void)dealloc
 {
-    [configuration release];
+    [_configuration release];
     [super dealloc];
 }
 

@@ -27,7 +27,16 @@
 /** Contains the parameters used for the CopyObject operation.
  *
  */
-@interface S3CopyObjectRequest:S3AbstractPutRequest {
+@interface S3CopyObjectRequest : S3AbstractPutRequest
+{
+    NSString *_sourceKey;
+    NSString *_sourceBucket;
+    NSString *_metadataDirective;
+    NSString *_ifMatch;
+    NSString *_ifNoneMatch;
+    NSDate *_ifModifiedSince;
+    NSDate *_ifUnmodifiedSince;
+    NSString *_redirectLocation;
 }
 
 /** The name of the source object. */

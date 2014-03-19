@@ -17,8 +17,8 @@
 
 @implementation S3Owner
 
-@synthesize ID;
-@synthesize displayName;
+@synthesize ID = _ID;
+@synthesize displayName = _displayName;
 
 -(id)initWithID:(NSString *)theID withDisplayName:(NSString *)theDisplayName
 {
@@ -37,8 +37,8 @@
 
 - (void)encodeWithCoder:(NSCoder *)encoder
 {
-    [encoder encodeObject:ID forKey:@"ID"];
-    [encoder encodeObject:displayName forKey:@"DisplayName"];
+    [encoder encodeObject:_ID forKey:@"ID"];
+    [encoder encodeObject:_displayName forKey:@"DisplayName"];
 }
 
 - (id)initWithCoder:(NSCoder *)decoder
@@ -53,8 +53,8 @@
 
 -(void)dealloc
 {
-    [ID release];
-    [displayName release];
+    [_ID release];
+    [_displayName release];
 
     [super dealloc];
 }

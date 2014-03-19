@@ -23,7 +23,14 @@
 /**
  *
  */
-@interface S3BucketLifecycleConfigurationRule:NSObject {
+@interface S3BucketLifecycleConfigurationRule : NSObject
+{
+    NSString    *_ruleId;
+    NSString    *_status;
+    NSString    *_prefix;
+    int32_t     _expirationInDays;
+    NSDate      *_expirationDate;
+    NSArray     *_transitions;
 }
 
 /** The id for this rule **/

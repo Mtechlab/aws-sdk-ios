@@ -18,6 +18,8 @@
 
 @implementation S3ListPartsResultUnmarshaller
 
+@synthesize listPartsResult = _listPartsResult;
+
 #pragma mark NSXMLParserDelegate implementation
 
 -(void) parser:(NSXMLParser *)parser
@@ -71,12 +73,12 @@ qualifiedName:(NSString *)qName
         self.listPartsResult.isTruncated = [self.currentText boolValue];
     }
     if ([elementName isEqualToString:@"ListPartsResult"]) {
-        if (caller != nil) {
-            [parser setDelegate:caller];
+        if (_caller != nil) {
+            [parser setDelegate:_caller];
         }
 
-        if (parentObject != nil && [parentObject respondsToSelector:parentSetter]) {
-            [parentObject performSelector:parentSetter withObject:self.listPartsResult];
+        if (_parentObject != nil && [_parentObject respondsToSelector:_parentSetter]) {
+            [_parentObject performSelector:_parentSetter withObject:self.listPartsResult];
         }
 
         return;
@@ -87,15 +89,15 @@ qualifiedName:(NSString *)qName
 
 -(S3ListPartsResult *)listPartsResult
 {
-    if (nil == listPartsResult) {
-        listPartsResult = [[S3ListPartsResult alloc] init];
+    if (nil == _listPartsResult) {
+        _listPartsResult = [[S3ListPartsResult alloc] init];
     }
-    return listPartsResult;
+    return _listPartsResult;
 }
 
 -(void)dealloc
 {
-    [listPartsResult release];
+    [_listPartsResult release];
 
     [super dealloc];
 }

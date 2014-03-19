@@ -18,7 +18,7 @@
 
 @implementation S3BucketLifecycleConfigurationTransitionUnmarshaller
 
-@synthesize transition;
+@synthesize transition = _transition;
 
 #pragma mark - NSXMLParserDelegate implementation
 
@@ -40,12 +40,12 @@
     }
     else if ([elementName isEqualToString:@"Transition"])
     {
-        if (caller != nil) {
-            [parser setDelegate:caller];
+        if (_caller != nil) {
+            [parser setDelegate:_caller];
         }
         
-        if (parentObject != nil && [parentObject respondsToSelector:parentSetter]) {
-            [parentObject performSelector:parentSetter withObject:self.transition];
+        if (_parentObject != nil && [_parentObject respondsToSelector:_parentSetter]) {
+            [_parentObject performSelector:_parentSetter withObject:self.transition];
         }
         
         return;
@@ -56,19 +56,19 @@
 
 -(S3BucketLifecycleConfigurationTransition *)transition
 {
-    if (transition == nil)
+    if (_transition == nil)
     {
-        transition = [[S3BucketLifecycleConfigurationTransition alloc] init];
+        _transition = [[S3BucketLifecycleConfigurationTransition alloc] init];
     }
     
-    return transition;
+    return _transition;
 }
 
 #pragma mark -
 
 -(void)dealloc
 {
-    [transition release];
+    [_transition release];
     
     [super dealloc];
 }

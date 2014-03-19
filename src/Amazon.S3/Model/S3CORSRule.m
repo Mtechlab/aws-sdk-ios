@@ -18,6 +18,13 @@
 
 @implementation S3CORSRule
 
+@synthesize ruleId = _ruleId;
+@synthesize allowedMethods = _allowedMethods;
+@synthesize allowedOrigins = _allowedOrigins;
+@synthesize maxAgeSeconds = _maxAgeSeconds;
+@synthesize exposeHeaders = _exposeHeaders;
+@synthesize allowedHeaders = _allowedHeaders;
+
 -(NSString *)toXml
 {
     NSMutableString *xml = [[NSMutableString alloc] init];

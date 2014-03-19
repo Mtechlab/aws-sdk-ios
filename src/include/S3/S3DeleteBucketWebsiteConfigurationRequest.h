@@ -20,8 +20,7 @@
  * Contains the parameters used for the deleteBucketWebsiteConfigurationRequest operation.
  *
  */
-@interface S3DeleteBucketWebsiteConfigurationRequest:S3Request
-{
+@interface S3DeleteBucketWebsiteConfigurationRequest : S3Request {
 }
 
 -(id)initWithBucketName:(NSString *)theBucketName;

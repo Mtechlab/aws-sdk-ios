@@ -20,7 +20,11 @@
 /** Contains the parameters used for the listParts operation.
  *
  */
-@interface S3ListPartsRequest:S3Request {
+@interface S3ListPartsRequest : S3Request
+{
+    NSString *_uploadId;
+    int32_t _maxParts;
+    int32_t _partNumberMarker;
 }
 
 /** The uploadId of the multipart upload to list */

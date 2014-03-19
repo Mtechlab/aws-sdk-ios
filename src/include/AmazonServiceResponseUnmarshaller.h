@@ -17,7 +17,7 @@
 #import "AmazonUnmarshallerXMLParserDelegate.h"
 #import "AmazonServiceResponse.h"
 
-@interface AmazonServiceResponseUnmarshaller:AmazonUnmarshallerXMLParserDelegate {
+@interface AmazonServiceResponseUnmarshaller : AmazonUnmarshallerXMLParserDelegate {
 }
 
 

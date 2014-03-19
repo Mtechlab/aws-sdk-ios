@@ -20,6 +20,8 @@
 
 @implementation S3ListBucketResultUnmarshaller
 
+@synthesize objectListing = _objectListing;
+
 #pragma mark NSXMLParserDelegate implementation
 
 -(void) parser:(NSXMLParser *)parser
@@ -82,12 +84,12 @@ qualifiedName:(NSString *)qName
     }
 
     if ([elementName isEqualToString:@"ListBucketResult"]) {
-        if (caller != nil) {
-            [parser setDelegate:caller];
+        if (_caller != nil) {
+            [parser setDelegate:_caller];
         }
 
-        if (parentObject != nil && [parentObject respondsToSelector:parentSetter]) {
-            [parentObject performSelector:parentSetter withObject:self.objectListing];
+        if (_parentObject != nil && [_parentObject respondsToSelector:_parentSetter]) {
+            [_parentObject performSelector:_parentSetter withObject:self.objectListing];
         }
 
         return;
@@ -99,16 +101,18 @@ qualifiedName:(NSString *)qName
 
 -(S3ListObjectsResult *)objectListing
 {
-    if (nil == objectListing)
+    if (nil == _objectListing)
     {
-        objectListing = [[S3ListObjectsResult alloc] init];
+        _objectListing = [[S3ListObjectsResult alloc] init];
     }
-    return objectListing;
+    
+    return _objectListing;
 }
 
 -(void)dealloc
 {
-    [objectListing release];
+    [_objectListing release];
+    
     [super dealloc];
 }
 

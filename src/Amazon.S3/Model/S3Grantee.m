@@ -17,8 +17,8 @@
 
 @implementation S3Grantee
 
-@synthesize emailAddress;
-@synthesize URI;
+@synthesize emailAddress = _emailAddress;
+@synthesize URI = _URI;
 
 +(id)granteeWithID:(NSString *)theID withDisplayName:(NSString *)theDisplayName
 {
@@ -123,8 +123,8 @@
 
 -(void)dealloc
 {
-    [emailAddress release];
-    [URI release];
+    [_emailAddress release];
+    [_URI release];
 
     [super dealloc];
 }

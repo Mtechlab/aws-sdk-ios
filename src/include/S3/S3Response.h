@@ -28,7 +28,18 @@
 /** response headers that are common to Amazon S3 responses.
  *
  */
-@interface S3Response:AmazonServiceResponse {
+@interface S3Response : AmazonServiceResponse
+{
+    NSString                *_connectionState;
+    NSString                *_etag;
+    NSString                *_server;
+    NSString                *_id2;
+    NSString                *_versionId;
+    NSString                *_serverSideEncryption;
+    NSDate                  *_date;
+    BOOL                    _deleteMarker;
+    int64_t                 _contentLength;
+    NSMutableDictionary     *_headers;
 }
 
 /** Specfies whether the connection to the server is open or closed. */

@@ -20,8 +20,9 @@
 #import "S3PartUnmarshaller.h"
 #import "S3OwnerUnmarshaller.h"
 
-@interface S3ListPartsResultUnmarshaller:AmazonUnmarshallerXMLParserDelegate {
-    S3ListPartsResult *listPartsResult;
+@interface S3ListPartsResultUnmarshaller : AmazonUnmarshallerXMLParserDelegate
+{
+    S3ListPartsResult *_listPartsResult;
 }
 
 @property (nonatomic, readonly) S3ListPartsResult *listPartsResult;

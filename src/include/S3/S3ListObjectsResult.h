@@ -15,7 +15,16 @@
 
 #import <Foundation/Foundation.h>
 
-@interface S3ListObjectsResult:NSObject {
+@interface S3ListObjectsResult : NSObject
+{
+    NSMutableArray  *_objectSummaries;
+    NSString        *_bucketName;
+    NSString        *_prefix;
+    NSString        *_marker;
+    int32_t         _maxKeys;
+    NSString        *_delimiter;
+    BOOL            _isTruncated;
+    NSMutableArray *_commonPrefixes;
 }
 
 /** The list of buckets */

@@ -17,23 +17,23 @@
 
 @implementation S3MultipartUpload
 
-@synthesize key;
-@synthesize bucket;
-@synthesize uploadId;
-@synthesize initiator;
-@synthesize owner;
-@synthesize storageClass;
-@synthesize initiated;
+@synthesize key = _key;
+@synthesize bucket = _bucket;
+@synthesize uploadId = _uploadId;
+@synthesize initiator = _initiator;
+@synthesize owner = _owner;
+@synthesize storageClass = _storageClass;
+@synthesize initiated = _initiated;
 
 -(void)dealloc
 {
-    [key release];
-    [bucket release];
-    [uploadId release];
-    [initiator release];
-    [owner release];
-    [initiated release];
-    [storageClass release];
+    [_key release];
+    [_bucket release];
+    [_uploadId release];
+    [_initiator release];
+    [_owner release];
+    [_initiated release];
+    [_storageClass release];
 
     [super dealloc];
 }

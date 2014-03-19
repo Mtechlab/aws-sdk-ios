@@ -17,13 +17,14 @@
 
 /** Base class for type-specific response unmarshallers.
  */
-@interface AmazonUnmarshallerXMLParserDelegate:NSObject<NSXMLParserDelegate> {
-    NSMutableString                     *currentText;
-    NSString                            *currentTag;
-    AmazonUnmarshallerXMLParserDelegate *caller;
-    id                                  parentObject;
-    SEL                                 parentSetter;
-    NSString                            *endElementTagName;
+@interface AmazonUnmarshallerXMLParserDelegate : NSObject<NSXMLParserDelegate>
+{
+    NSMutableString                     *_currentText;
+    NSString                            *_currentTag;
+    AmazonUnmarshallerXMLParserDelegate *_caller;
+    id                                  _parentObject;
+    SEL                                 _parentSetter;
+    NSString                            *_endElementTagName;
 }
 
 /** Inner text of the current XML node */

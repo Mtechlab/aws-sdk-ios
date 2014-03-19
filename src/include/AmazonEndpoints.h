@@ -215,7 +215,7 @@ typedef enum
 #define AMAZON_STS_ENDPOINT_SECURE    @"https://sts.amazonaws.com"
 
 
-@interface AmazonEndpoints:NSObject {
+@interface AmazonEndpoints : NSObject {
 }
 
 +(NSString *)s3Endpoint:(AmazonRegion)region;

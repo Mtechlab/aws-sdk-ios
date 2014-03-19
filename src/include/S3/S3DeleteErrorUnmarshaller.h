@@ -17,9 +17,9 @@
 #import "../AmazonUnmarshallerXMLParserDelegate.h"
 #import "DeleteError.h"
 
-@interface S3DeleteErrorUnmarshaller:AmazonUnmarshallerXMLParserDelegate
+@interface S3DeleteErrorUnmarshaller : AmazonUnmarshallerXMLParserDelegate
 {
-    DeleteError *deleteError;
+    DeleteError *_deleteError;
 }
 
 /** The DeleteError represented by the XML */

@@ -18,7 +18,7 @@
 
 @implementation S3GetBucketCrossOriginResponse
 
-@synthesize configuration;
+@synthesize configuration = _configuration;
 
 -(void)processBody
 {

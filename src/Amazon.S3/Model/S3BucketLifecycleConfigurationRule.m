@@ -19,7 +19,14 @@
 
 @implementation S3BucketLifecycleConfigurationRule
 
--(NSString *)toXml 
+@synthesize ruleId = _ruleId;
+@synthesize status = _status;
+@synthesize prefix = _prefix;
+@synthesize expirationInDays = _expirationInDays;
+@synthesize expirationDate = _expirationDate;
+@synthesize transitions = _transitions;
+
+-(NSString *)toXml
 {
     NSMutableString *xml = [[NSMutableString alloc] init];
     

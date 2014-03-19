@@ -18,7 +18,7 @@
 
 @implementation S3GetBucketTaggingResponse
 
-@synthesize configuration;
+@synthesize configuration = _configuration;
 
 -(void)processBody
 {

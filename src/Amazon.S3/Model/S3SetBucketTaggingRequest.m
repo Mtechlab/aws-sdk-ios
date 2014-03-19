@@ -18,7 +18,7 @@
 
 @implementation S3SetBucketTaggingRequest
 
-@synthesize configuration;
+@synthesize configuration = _configuration;
 
 -(id)initWithBucketName:(NSString *)theBucketName withConfiguration:(S3BucketTaggingConfiguration *)theConfiguration
 {
@@ -65,12 +65,12 @@
     [self.urlRequest setValue:@"text/xml" forHTTPHeaderField:kHttpHdrContentType];
     [self.urlRequest setHTTPBody:data];
     
-    return urlRequest;
+    return _urlRequest;
 }
 
 -(void)dealloc
 {
-    [configuration release];
+    [_configuration release];
     
     [super dealloc];
 }

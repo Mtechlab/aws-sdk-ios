@@ -17,8 +17,8 @@
 
 @implementation AmazonValueUnmarshaller
 
-@synthesize value;
-@synthesize internalElementName;
+@synthesize value = _value;
+@synthesize internalElementName = _internalElementName;
 
 
 -(void)parser:(NSXMLParser *)parser didStartElement:(NSString *)elementName namespaceURI:(NSString *)namespaceURI qualifiedName:(NSString *)qName attributes:(NSDictionary *)attributeDict
@@ -28,15 +28,15 @@
 
 -(void)parser:(NSXMLParser *)parser didEndElement:(NSString *)elementName namespaceURI:(NSString *)namespaceURI qualifiedName:(NSString *)qName
 {
-    if ([elementName isEqualToString:internalElementName] || [elementName isEqualToString:endElementTagName]) {
+    if ([elementName isEqualToString:_internalElementName] || [elementName isEqualToString:_endElementTagName]) {
         self.value = self.currentText;
 
-        if (caller != nil) {
-            [parser setDelegate:caller];
+        if (_caller != nil) {
+            [parser setDelegate:_caller];
         }
 
-        if (parentObject != nil && [parentObject respondsToSelector:parentSetter]) {
-            [parentObject performSelector:parentSetter withObject:self.value];
+        if (_parentObject != nil && [_parentObject respondsToSelector:_parentSetter]) {
+            [_parentObject performSelector:_parentSetter withObject:self.value];
         }
 
         return;
@@ -45,13 +45,13 @@
 
 -(NSString *)value
 {
-    return value;
+    return _value;
 }
 
 -(void)dealloc
 {
-    [value release];
-    [internalElementName release];
+    [_value release];
+    [_internalElementName release];
     [super dealloc];
 }
 

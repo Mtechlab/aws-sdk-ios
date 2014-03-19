@@ -17,6 +17,8 @@
 
 @implementation S3BucketVersioningConfigurationUnmarshaller
 
+@synthesize versioningConfiguration = _versioningConfiguration;
+
 #pragma mark NSXMLParserDelegate implementation
 
 -(void) parser:(NSXMLParser *)parser
@@ -37,12 +39,12 @@ qualifiedName:(NSString *)qName
     }
 
     if ([elementName isEqualToString:@"VersioningConfiguration"]) {
-        if (caller != nil) {
-            [parser setDelegate:caller];
+        if (_caller != nil) {
+            [parser setDelegate:_caller];
         }
 
-        if (parentObject != nil && [parentObject respondsToSelector:parentSetter]) {
-            [parentObject performSelector:parentSetter withObject:self.versioningConfiguration];
+        if (_parentObject != nil && [_parentObject respondsToSelector:_parentSetter]) {
+            [_parentObject performSelector:_parentSetter withObject:self.versioningConfiguration];
         }
 
         return;
@@ -53,16 +55,18 @@ qualifiedName:(NSString *)qName
 
 -(S3BucketVersioningConfiguration *)versioningConfiguration
 {
-    if (nil == versioningConfiguration)
+    if (nil == _versioningConfiguration)
     {
-        versioningConfiguration = [[S3BucketVersioningConfiguration alloc] init];
+        _versioningConfiguration = [[S3BucketVersioningConfiguration alloc] init];
     }
-    return versioningConfiguration;
+    
+    return _versioningConfiguration;
 }
 
 -(void)dealloc
 {
-    [versioningConfiguration release];
+    [_versioningConfiguration release];
+    
     [super dealloc];
 }
 

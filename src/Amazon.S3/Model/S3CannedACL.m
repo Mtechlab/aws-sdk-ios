@@ -22,7 +22,7 @@
 {
     self = [super init];
     if (self) {
-        stringValue = [value retain];
+        _stringValue = [value retain];
     }
     return self;
 }
@@ -89,12 +89,12 @@
 
 -(NSString *)description
 {
-    return stringValue;
+    return _stringValue;
 }
 
 - (void)encodeWithCoder:(NSCoder *)encoder
 {
-    [encoder encodeObject:stringValue forKey:@"StringValue"];
+    [encoder encodeObject:_stringValue forKey:@"StringValue"];
 }
 
 - (id)initWithCoder:(NSCoder *)decoder

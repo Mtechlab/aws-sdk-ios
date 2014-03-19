@@ -19,8 +19,9 @@
 #import "S3MultipartUploadUnmarshaller.h"
 #import "S3CommonPrefixesUnmarshaller.h"
 
-@interface S3ListMultipartUploadsResultUnmarshaller:AmazonUnmarshallerXMLParserDelegate {
-    S3ListMultipartUploadsResult *listMultipartUploadsResult;
+@interface S3ListMultipartUploadsResultUnmarshaller : AmazonUnmarshallerXMLParserDelegate
+{
+    S3ListMultipartUploadsResult *_listMultipartUploadsResult;
 }
 
 @property (nonatomic, readonly) S3ListMultipartUploadsResult *listMultipartUploadsResult;

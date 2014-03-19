@@ -18,6 +18,8 @@
 
 @implementation S3SetBucketCrossOriginRequest
 
+@synthesize configuration = _configuration;
+
 -(id)initWithBucketName:(NSString *)theBucketName withConfiguration:(S3BucketCrossOriginConfiguration *)theConfiguration
 {
     self = [super init];
@@ -64,7 +66,7 @@
     [self.urlRequest setValue:@"text/xml" forHTTPHeaderField:kHttpHdrContentType];
     [self.urlRequest setHTTPBody:data];
     
-    return urlRequest;
+    return _urlRequest;
 }
 
 -(void)dealloc

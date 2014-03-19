@@ -21,7 +21,8 @@
 
 @implementation S3DeleteObjectsResultUnmarshaller
 
-@synthesize deletedObjects, deleteErrors;
+@synthesize deletedObjects = _deletedObjects;
+@synthesize deleteErrors = _deleteErrors;
 
 #pragma mark - NSXMLParserDelegate implementation
 
@@ -43,30 +44,30 @@
 
 -(NSMutableArray *)deletedObjects
 {
-    if (deletedObjects == nil)
+    if (_deletedObjects == nil)
     {
-        deletedObjects = [[NSMutableArray alloc] init];
+        _deletedObjects = [[NSMutableArray alloc] init];
     }
 
-    return deletedObjects;
+    return _deletedObjects;
 }
 
 -(NSMutableArray *)deleteErrors
 {
-    if (deleteErrors == nil)
+    if (_deleteErrors == nil)
     {
-        deleteErrors = [[NSMutableArray alloc] init];
+        _deleteErrors = [[NSMutableArray alloc] init];
     }
 
-    return deleteErrors;
+    return _deleteErrors;
 }
 
 #pragma mark -
 
 -(void)dealloc
 {
-    [deletedObjects release];
-    [deleteErrors release];
+    [_deletedObjects release];
+    [_deleteErrors release];
 
     [super dealloc];
 }

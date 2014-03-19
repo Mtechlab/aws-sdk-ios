@@ -17,10 +17,9 @@
 
 @implementation S3CommonPrefixesUnmarshaller
 
+@synthesize commonPrefixes = _commonPrefixes;
 
 #pragma mark NSXMLParserDelegate implementation
-
-
 -(void) parser:(NSXMLParser *)parser
 didEndElement:(NSString *)elementName
 namespaceURI:(NSString *)namespaceURI
@@ -33,12 +32,12 @@ qualifiedName:(NSString *)qName
     }
 
     if ([elementName isEqualToString:@"CommonPrefixes"]) {
-        if (caller != nil) {
-            [parser setDelegate:caller];
+        if (_caller != nil) {
+            [parser setDelegate:_caller];
         }
 
-        if (parentObject != nil && [parentObject respondsToSelector:parentSetter]) {
-            [parentObject performSelector:parentSetter withObject:self.commonPrefixes];
+        if (_parentObject != nil && [_parentObject respondsToSelector:_parentSetter]) {
+            [_parentObject performSelector:_parentSetter withObject:self.commonPrefixes];
         }
 
         return;
@@ -50,16 +49,18 @@ qualifiedName:(NSString *)qName
 
 -(NSMutableArray *)commonPrefixes
 {
-    if (nil == commonPrefixes)
+    if (nil == _commonPrefixes)
     {
-        commonPrefixes = [[NSMutableArray alloc] initWithCapacity:1];
+        _commonPrefixes = [[NSMutableArray alloc] initWithCapacity:1];
     }
-    return commonPrefixes;
+    
+    return _commonPrefixes;
 }
 
 -(void)dealloc
 {
-    [commonPrefixes release];
+    [_commonPrefixes release];
+    
     [super dealloc];
 }
 

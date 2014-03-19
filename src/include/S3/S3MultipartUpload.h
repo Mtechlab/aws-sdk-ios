@@ -20,14 +20,15 @@
  * interactions for this multipart upload.
  *
  */
-@interface S3MultipartUpload:NSObject {
-    NSString *key;
-    NSString *bucket;
-    NSString *uploadId;
-    NSString *storageClass;
-    NSDate   *initiated;
-    S3Owner  *initiator;
-    S3Owner  *owner;
+@interface S3MultipartUpload : NSObject
+{
+    NSString *_key;
+    NSString *_bucket;
+    NSString *_uploadId;
+    NSString *_storageClass;
+    NSDate   *_initiated;
+    S3Owner  *_initiator;
+    S3Owner  *_owner;
 }
 
 /** Object key for which the multipart upload was initiated. */

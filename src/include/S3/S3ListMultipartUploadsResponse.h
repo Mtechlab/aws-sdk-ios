@@ -20,8 +20,9 @@
 /** Contains the response from a listMultipartUploads operation.
  *
  */
-@interface S3ListMultipartUploadsResponse:S3Response {
-    S3ListMultipartUploadsResult *listMultipartUploadsResult;
+@interface S3ListMultipartUploadsResponse : S3Response
+{
+    S3ListMultipartUploadsResult *_listMultipartUploadsResult;
 }
 
 @property (nonatomic, retain) S3ListMultipartUploadsResult *listMultipartUploadsResult;

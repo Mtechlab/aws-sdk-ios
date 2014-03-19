@@ -19,7 +19,7 @@
 
 @implementation S3ListMultipartUploadsResponse
 
-@synthesize listMultipartUploadsResult;
+@synthesize listMultipartUploadsResult = _listMultipartUploadsResult;
 
 -(void)processBody
 {
@@ -37,7 +37,7 @@
 
 -(void)dealloc
 {
-    [listMultipartUploadsResult release];
+    [_listMultipartUploadsResult release];
 
     [super dealloc];
 }

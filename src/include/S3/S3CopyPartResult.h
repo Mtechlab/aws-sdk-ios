@@ -18,9 +18,10 @@
 /** Represents the response body from a copyObject response
  *
  */
-@interface S3CopyPartResult:NSObject {
-    NSString *lastModified;
-    NSString *etag;
+@interface S3CopyPartResult : NSObject
+{
+    NSString *_lastModified;
+    NSString *_etag;
 }
 
 /** Gets and sets the lastModified property */

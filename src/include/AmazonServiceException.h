@@ -18,7 +18,13 @@
 #import "AmazonSDKUtil.h"
 
 /** Represents an AWS Service Exception. */
-@interface AmazonServiceException:AmazonClientException {
+@interface AmazonServiceException : AmazonClientException
+{
+    NSString                *_requestId;
+    NSString                *_errorCode;
+    NSString                *_serviceName;
+    int32_t                 _statusCode;
+    NSMutableDictionary     *_additionalFields;
 }
 
 #pragma mark Properties

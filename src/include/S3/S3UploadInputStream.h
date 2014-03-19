@@ -22,7 +22,11 @@
  * Over 3G
  */
 __attribute__ ((deprecated))
-@interface S3UploadInputStream : NSInputStream {
+@interface S3UploadInputStream : NSInputStream
+{
+    NSInputStream   *_stream;
+    int32_t         _packetSize;
+    double          _delay;
 }
 
 /**

@@ -22,8 +22,9 @@
 /** Contains the parameters used for the abortMultipartUpload operation.
  *
  */
-@interface S3AbortMultipartUploadRequest:S3Request {
-    NSString *uploadId;
+@interface S3AbortMultipartUploadRequest : S3Request
+{
+    NSString *_uploadId;
 }
 
 /** The id of the upload to abort. */

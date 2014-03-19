@@ -20,7 +20,7 @@
 @implementation S3CopyPartResponse
 
 
-@synthesize lastModified;
+@synthesize lastModified = _lastModified;
 
 
 -(void)processBody
@@ -40,7 +40,8 @@
 
 -(void)dealloc
 {
-    [lastModified release];
+    [_lastModified release];
+    
     [super dealloc];
 }
 

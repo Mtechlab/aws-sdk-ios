@@ -17,13 +17,14 @@
 #import "AmazonServiceResponseUnmarshaller.h"
 
 
-@interface AmazonValueUnmarshaller:AmazonServiceResponseUnmarshaller {
-    NSString *value;
-    NSString *internalElementName;
+@interface AmazonValueUnmarshaller : AmazonServiceResponseUnmarshaller
+{
+    NSString *_value;
+    NSString *_internalElementName;
 }
 
-@property (nonatomic, retain) NSString   *value;
-@property (nonatomic, retain)   NSString *internalElementName;
+@property (nonatomic, retain) NSString *value;
+@property (nonatomic, retain) NSString *internalElementName;
 
 -(void)parser:(NSXMLParser *)parser didStartElement:(NSString *)elementName namespaceURI:(NSString *)namespaceURI qualifiedName:(NSString *)qName attributes:(NSDictionary *)attributeDict;
 -(void)parser:(NSXMLParser *)parser didEndElement:(NSString *)elementName namespaceURI:(NSString *)namespaceURI qualifiedName:(NSString *)qName;

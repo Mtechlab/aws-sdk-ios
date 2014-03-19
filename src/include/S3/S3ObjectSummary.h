@@ -19,7 +19,14 @@
 /** Represents an S3 Object Summary.
  *
  */
-@interface S3ObjectSummary:NSObject {
+@interface S3ObjectSummary : NSObject
+{
+    NSString    *_key;
+    NSString    *_etag;
+    int32_t     _size;
+    NSString    *_lastModified;
+    NSString    *_storageClass;
+    S3Owner     *_owner;
 }
 
 

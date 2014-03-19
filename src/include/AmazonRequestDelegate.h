@@ -15,12 +15,12 @@
 
 #import "AmazonServiceResponse.h"
 
-@interface AmazonRequestDelegate:NSObject<AmazonServiceRequestDelegate>
+@interface AmazonRequestDelegate : NSObject<AmazonServiceRequestDelegate>
 {
     @public
-    AmazonServiceResponse *response;
-    NSException           *exception;
-    NSError               *error;
+    AmazonServiceResponse *_response;
+    NSException           *_exception;
+    NSError               *_error;
 }
 
 @property (nonatomic, readonly) AmazonServiceResponse *response;

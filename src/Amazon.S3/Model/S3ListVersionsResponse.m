@@ -18,7 +18,7 @@
 
 @implementation S3ListVersionsResponse
 
-@synthesize listVersionsResult;
+@synthesize listVersionsResult = _listVersionsResult;
 
 -(void)processBody
 {
@@ -45,15 +45,16 @@
     [unmarshaller release];
 
     if (errDescription != nil) {
-        if(exception == nil) {
-            exception = [AmazonClientException exceptionWithMessage :[NSString stringWithFormat:@"Error parsing XML response: %@", errDescription]];
+        if(_exception == nil) {
+            _exception = [AmazonClientException exceptionWithMessage :[NSString stringWithFormat:@"Error parsing XML response: %@", errDescription]];
         }
     }
 }
 
 -(void)dealloc
 {
-    [listVersionsResult release];
+    [_listVersionsResult release];
+    
     [super dealloc];
 }
 

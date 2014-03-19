@@ -20,6 +20,10 @@
 
 @implementation S3BucketLifecycleConfigurationTransition
 
+@synthesize storageClass = _storageClass;
+@synthesize transitionDays = _transitionDays;
+@synthesize transitionDate = _transitionDate;
+
 -(NSString *)toXml
 {
     NSMutableString *xml = [[NSMutableString alloc] init];

@@ -18,6 +18,14 @@
 
 @implementation S3GetPreSignedURLRequest
 
+@synthesize expires = _expires;
+@synthesize protocol = _protocol;
+@synthesize httpVerb = _httpVerb;
+@synthesize accessKey = _accessKey;
+@synthesize versionId = _versionId;
+@synthesize responseHeaderOverrides = _responseHeaderOverrides;
+@synthesize queryString = _queryString;
+
 -(AmazonURLRequest *)configureURLRequest
 {
     NSMutableString *queryString = [NSMutableString stringWithCapacity:512];

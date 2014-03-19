@@ -14,8 +14,9 @@
 /**
  *
  */
-@interface S3PartUnmarshaller:AmazonUnmarshallerXMLParserDelegate {
-    S3Part *part;
+@interface S3PartUnmarshaller : AmazonUnmarshallerXMLParserDelegate
+{
+    S3Part *_part;
 }
 
 @property (nonatomic, readonly) S3Part *part;

@@ -17,13 +17,14 @@
 #import "AmazonServiceResponseUnmarshaller.h"
 
 
-@interface AmazonBoolValueUnmarshaller:AmazonServiceResponseUnmarshaller {
-    bool     value;
-    NSString *internalElementName;
+@interface AmazonBoolValueUnmarshaller : AmazonServiceResponseUnmarshaller
+{
+    BOOL     _value;
+    NSString *_internalElementName;
 }
 
-@property (nonatomic)           bool     value;
-@property (nonatomic, retain)   NSString *internalElementName;
+@property (nonatomic) BOOL value;
+@property (nonatomic, retain) NSString *internalElementName;
 
 
 -(void)parser:(NSXMLParser *)parser didStartElement:(NSString *)elementName namespaceURI:(NSString *)namespaceURI qualifiedName:(NSString *)qName attributes:(NSDictionary *)attributeDict;

@@ -20,6 +20,10 @@
 
 @implementation S3UploadInputStream
 
+@synthesize stream = _stream;
+@synthesize packetSize = _packetSize;
+@synthesize delay = _delay;
+
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wdeprecated-declarations"
 -(id)init 

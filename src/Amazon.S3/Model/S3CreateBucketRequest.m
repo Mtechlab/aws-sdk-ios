@@ -18,9 +18,9 @@
 
 @implementation S3CreateBucketRequest
 
-@synthesize region;
-@synthesize cannedACL;
-@synthesize fullACL;
+@synthesize region = _region;
+@synthesize cannedACL = _cannedACL;
+@synthesize fullACL = _fullACL;
 
 -(NSMutableURLRequest *)configureURLRequest
 {
@@ -88,9 +88,9 @@
 
 -(void)dealloc
 {
-    [region release];
-    [cannedACL release];
-    [fullACL release];
+    [_region release];
+    [_cannedACL release];
+    [_fullACL release];
 
     [super dealloc];
 }

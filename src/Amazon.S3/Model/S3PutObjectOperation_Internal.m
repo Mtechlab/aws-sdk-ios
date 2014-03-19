@@ -17,10 +17,6 @@
 #import "AmazonServiceRequest.h"
 
 @interface S3PutObjectOperation_Internal ()
-{
-    BOOL _isExecuting;
-    BOOL _isFinished;
-}
 
 @property (nonatomic, assign) NSInteger retryCount;
 @property (nonatomic, assign) id<AmazonServiceRequestDelegate> delegate;
@@ -29,7 +25,9 @@
 
 @implementation S3PutObjectOperation_Internal
 
-@synthesize transferRequestType = _transferRequestType;
+@synthesize response = _response;
+@synthesize retryCount = _retryCount;
+@synthesize delegate = _delegate;
 
 #pragma mark - Class Lifecycle
 

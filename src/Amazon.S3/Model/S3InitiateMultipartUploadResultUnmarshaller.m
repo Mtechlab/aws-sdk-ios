@@ -18,6 +18,8 @@
 
 @implementation S3InitiateMultipartUploadResultUnmarshaller
 
+@synthesize multipartUpload = _multipartUpload;
+
 #pragma mark NSXMLParserDelegate implementation
 
 -(void) parser:(NSXMLParser *)parser
@@ -38,12 +40,12 @@ qualifiedName:(NSString *)qName
     }
 
     if ([elementName isEqualToString:@"InitiateMultipartUploadResult"]) {
-        if (caller != nil) {
-            [parser setDelegate:caller];
+        if (_caller != nil) {
+            [parser setDelegate:_caller];
         }
 
-        if (parentObject != nil && [parentObject respondsToSelector:parentSetter]) {
-            [parentObject performSelector:parentSetter withObject:self.multipartUpload];
+        if (_parentObject != nil && [_parentObject respondsToSelector:_parentSetter]) {
+            [_parentObject performSelector:_parentSetter withObject:self.multipartUpload];
         }
 
         return;
@@ -54,16 +56,18 @@ qualifiedName:(NSString *)qName
 
 -(S3MultipartUpload *)multipartUpload
 {
-    if (nil == multipartUpload)
+    if (nil == _multipartUpload)
     {
-        multipartUpload = [[S3MultipartUpload alloc] init];
+        _multipartUpload = [[S3MultipartUpload alloc] init];
     }
-    return multipartUpload;
+    
+    return _multipartUpload;
 }
 
 -(void)dealloc
 {
-    [multipartUpload release];
+    [_multipartUpload release];
+    
     [super dealloc];
 }
 @end

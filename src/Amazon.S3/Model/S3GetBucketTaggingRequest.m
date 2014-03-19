@@ -41,7 +41,7 @@
 
     [self.urlRequest setHTTPMethod:kHttpMethodGet];
 
-    return urlRequest;
+    return _urlRequest;
 }
 
 @end

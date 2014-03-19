@@ -17,6 +17,15 @@
 
 @implementation S3ListObjectsResult
 
+@synthesize objectSummaries = _objectSummaries;
+@synthesize bucketName = _bucketName;
+@synthesize prefix = _prefix;
+@synthesize marker = _marker;
+@synthesize maxKeys = _maxKeys;
+@synthesize delimiter = _delimiter;
+@synthesize isTruncated = _isTruncated;
+@synthesize commonPrefixes = _commonPrefixes;
+
 -(NSMutableArray *)objectSummaries
 {
     if (nil == _objectSummaries) {

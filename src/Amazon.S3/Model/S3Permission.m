@@ -21,7 +21,7 @@
 {
     self = [super init];
     if (self) {
-        xmlValue = [code retain];
+        _xmlValue = [code retain];
     }
     return self;
 }
@@ -98,12 +98,13 @@
 
 -(NSString *)description
 {
-    return xmlValue;
+    return _xmlValue;
 }
 
 -(void)dealloc
 {
-    [xmlValue release];
+    [_xmlValue release];
+    
     [super dealloc];
 }
 

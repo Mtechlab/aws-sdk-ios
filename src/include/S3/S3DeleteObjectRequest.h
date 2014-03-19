@@ -21,8 +21,9 @@
 /** Request object for DeleteObject.
  *
  */
-@interface S3DeleteObjectRequest:S3Request {
-    NSString *mfaAuth;
+@interface S3DeleteObjectRequest : S3Request
+{
+    NSString *_mfaAuth;
 }
 
 /** The concatenation of the multi-factor authentication device's serial number,

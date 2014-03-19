@@ -20,37 +20,37 @@
 
 @implementation AmazonServiceRequest
 
-@synthesize httpMethod;
-@synthesize parameters;
-@synthesize endpoint;
-@synthesize userAgent;
-@synthesize credentials;
-@synthesize urlRequest;
-@synthesize urlConnection;
-@synthesize responseTimer;
-@synthesize requestTag;
-@synthesize serviceName;
-@synthesize regionName;
-@synthesize hostName;
-@synthesize delegate;
+@synthesize httpMethod = _httpMethod;
+@synthesize parameters = _parameters;
+@synthesize endpoint = _endpoint;
+@synthesize userAgent = _userAgent;
+@synthesize credentials = _credentials;
+@synthesize urlRequest = _urlRequest;
+@synthesize urlConnection = _urlConnection;
+@synthesize responseTimer = _responseTimer;
+@synthesize requestTag = _requestTag;
+@synthesize serviceName = _serviceName;
+@synthesize regionName = _regionName;
+@synthesize hostName = _hostName;
+@synthesize delegate = _delegate;
 
 - (id)init
 {
     if(self = [super init])
     {
-        httpMethod = nil;
-        parameters = nil;
-        endpoint = nil;
-        userAgent = nil;
-        credentials = nil;
-        urlRequest = [AmazonURLRequest new];
-        urlConnection = nil;
-        responseTimer = nil;
-        requestTag = nil;
-        serviceName = nil;
-        regionName = nil;
-        hostName = nil;
-        delegate = nil;
+        _httpMethod = nil;
+        _parameters = nil;
+        _endpoint = nil;
+        _userAgent = nil;
+        _credentials = nil;
+        _urlRequest = [AmazonURLRequest new];
+        _urlConnection = nil;
+        _responseTimer = nil;
+        _requestTag = nil;
+        _serviceName = nil;
+        _regionName = nil;
+        _hostName = nil;
+        _delegate = nil;
     }
 
     return self;
@@ -75,15 +75,15 @@
 
 - (void)encodeWithCoder:(NSCoder *)encoder
 {
-    [encoder encodeObject:httpMethod forKey:@"HttpMethod"];
-    [encoder encodeObject:parameters forKey:@"Parameters"];
-    [encoder encodeObject:endpoint forKey:@"Endpoint"];
-    [encoder encodeObject:userAgent forKey:@"UserAgent"];
-    [encoder encodeObject:responseTimer forKey:@"ResponseTimer"];
-    [encoder encodeObject:requestTag forKey:@"RequestTag"];
-    [encoder encodeObject:serviceName forKey:@"ServiceName"];
-    [encoder encodeObject:regionName forKey:@"RegionName"];
-    [encoder encodeObject:hostName forKey:@"HostName"];
+    [encoder encodeObject:_httpMethod forKey:@"HttpMethod"];
+    [encoder encodeObject:_parameters forKey:@"Parameters"];
+    [encoder encodeObject:_endpoint forKey:@"Endpoint"];
+    [encoder encodeObject:_userAgent forKey:@"UserAgent"];
+    [encoder encodeObject:_responseTimer forKey:@"ResponseTimer"];
+    [encoder encodeObject:_requestTag forKey:@"RequestTag"];
+    [encoder encodeObject:_serviceName forKey:@"ServiceName"];
+    [encoder encodeObject:_regionName forKey:@"RegionName"];
+    [encoder encodeObject:_hostName forKey:@"HostName"];
 }
 
 -(void)sign
@@ -108,8 +108,8 @@
     [self.urlRequest setValue:self.userAgent forHTTPHeaderField:@"User-Agent"];
 
     NSURL *url = [NSURL URLWithString:self.endpoint];
-    [urlRequest setURL:url];
-    [urlRequest setValue:[url host] forHTTPHeaderField:@"Host"];
+    [_urlRequest setURL:url];
+    [_urlRequest setValue:[url host] forHTTPHeaderField:@"Host"];
 
 
     return self.urlRequest;
@@ -140,8 +140,8 @@
 -(NSString *)hostName
 {
     // hostName was explicitly set
-    if (hostName != nil) {
-        return hostName;
+    if (_hostName != nil) {
+        return _hostName;
     }
     
     NSRange startOfHost = [self.endpoint rangeOfString:@"://"];
@@ -158,8 +158,8 @@
 -(NSString *)regionName
 {
     // regionName was explicitly set
-    if (regionName != nil) {
-        return regionName;
+    if (_regionName != nil) {
+        return _regionName;
     }
     // If we don't recognize the domain, just return the default
     if ([self.hostName hasSuffix:@".queue.amazonaws.com"]){
@@ -197,8 +197,8 @@
 -(NSString *)serviceName
 {
     // serviceName was explicitly set
-    if (serviceName != nil) {
-        return serviceName;
+    if (_serviceName != nil) {
+        return _serviceName;
     }
     
     // If we don't recognize the domain, just return nil
@@ -228,10 +228,10 @@
 
 -(void)setParameterValue:(NSString *)theValue forKey:(NSString *)theKey
 {
-    if (nil == parameters) {
-        parameters = [[NSMutableDictionary alloc] initWithCapacity:1];
+    if (nil == _parameters) {
+        _parameters = [[NSMutableDictionary alloc] initWithCapacity:1];
     }
-    [parameters setValue:theValue forKey:theKey];
+    [_parameters setValue:theValue forKey:theKey];
 }
 
 -(NSURL *)url
@@ -257,20 +257,20 @@
 
 -(void)dealloc
 {
-    delegate = nil;
+    _delegate = nil;
     
-    [credentials release];
-    [urlRequest release];
-    [urlConnection release];
-    [responseTimer release];
-    [httpMethod release];
-    [parameters release];
-    [endpoint release];
-    [serviceName release];
-    [regionName release];
-    [hostName release];
-    [userAgent release];
-    [requestTag release];
+    [_credentials release];
+    [_urlRequest release];
+    [_urlConnection release];
+    [_responseTimer release];
+    [_httpMethod release];
+    [_parameters release];
+    [_endpoint release];
+    [_serviceName release];
+    [_regionName release];
+    [_hostName release];
+    [_userAgent release];
+    [_requestTag release];
 
     [super dealloc];
 }

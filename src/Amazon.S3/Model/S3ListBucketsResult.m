@@ -18,20 +18,22 @@
 
 @implementation S3ListBucketsResult
 
-@synthesize owner;
+@synthesize owner = _owner;
+@synthesize buckets = _buckets;
 
 -(NSMutableArray *)buckets
 {
-    if (nil == buckets) {
-        buckets = [[NSMutableArray alloc] init];
+    if (nil == _buckets) {
+        _buckets = [[NSMutableArray alloc] init];
     }
-    return buckets;
+    
+    return _buckets;
 }
 
 -(void)dealloc
 {
-    [owner release];
-    [buckets release];
+    [_owner release];
+    [_buckets release];
 
     [super dealloc];
 }

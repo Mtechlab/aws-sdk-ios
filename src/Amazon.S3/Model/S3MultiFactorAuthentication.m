@@ -18,8 +18,8 @@
 
 @implementation S3MultiFactorAuthentication
 
-@synthesize deviceSerialNumber;
-@synthesize token;
+@synthesize deviceSerialNumber = _deviceSerialNumber;
+@synthesize token = _token;
 
 -(id)initWithSerialNumber:(NSString *)theDeviceSerialNumber andToken:(NSString *)theToken
 {
@@ -28,13 +28,15 @@
         self.deviceSerialNumber = theDeviceSerialNumber;
         self.token              = theToken;
     }
+    
     return self;
 }
 
 -(void)dealloc
 {
-    [deviceSerialNumber release];
-    [token release];
+    [_deviceSerialNumber release];
+    [_token release];
+    
     [super dealloc];
 }
 

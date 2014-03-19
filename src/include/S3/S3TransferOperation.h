@@ -26,6 +26,16 @@ typedef enum {
 } S3TransferType;
 
 @interface S3TransferOperation : NSOperation <AmazonServiceRequestDelegate>
+{
+    AmazonS3Client      *_s3;
+    S3PutObjectRequest  *_putRequest;
+    S3GetObjectRequest  *_getRequest;
+    S3TransferType      _transferRequestType;
+    BOOL                _isPaused;
+    NSString            *_requestMetadataFile;
+    NSError             *_error;
+    NSException         *_exception;
+}
 
 /** S3 client used to make transfer requests */
 @property (nonatomic, retain) AmazonS3Client *s3;

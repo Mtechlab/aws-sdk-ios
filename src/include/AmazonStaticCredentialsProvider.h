@@ -20,8 +20,9 @@
  *
  * @see AmazonCredentialsProvider
  */
-@interface AmazonStaticCredentialsProvider : NSObject<AmazonCredentialsProvider> {
-    AmazonCredentials* staticCredentials;
+@interface AmazonStaticCredentialsProvider : NSObject<AmazonCredentialsProvider>
+{
+    AmazonCredentials *_staticCredentials;
 }
 
 /** Inits the provider with the access key and the secret key.

@@ -18,6 +18,8 @@
 
 @implementation S3AccessControlListUnmarshaller
 
+@synthesize accessControlList = _accessControlList;
+
 #pragma mark NSXMLParserDelegate implementation
 
 -(void) parser:(NSXMLParser *)parser
@@ -45,12 +47,12 @@ qualifiedName:(NSString *)qName
     [super parser:parser didEndElement:elementName namespaceURI:namespaceURI qualifiedName:qName];
 
     if ([elementName isEqualToString:@"AccessControlPolicy"]) {
-        if (caller != nil) {
-            [parser setDelegate:caller];
+        if (_caller != nil) {
+            [parser setDelegate:_caller];
         }
 
-        if (parentObject != nil && [parentObject respondsToSelector:parentSetter]) {
-            [parentObject performSelector:parentSetter withObject:self.accessControlList];
+        if (_parentObject != nil && [_parentObject respondsToSelector:_parentSetter]) {
+            [_parentObject performSelector:_parentSetter withObject:self.accessControlList];
         }
 
         return;
@@ -61,16 +63,16 @@ qualifiedName:(NSString *)qName
 
 -(S3AccessControlList *)accessControlList
 {
-    if (nil == accessControlList)
+    if (nil == _accessControlList)
     {
-        accessControlList = [[S3AccessControlList alloc] init];
+        _accessControlList = [[S3AccessControlList alloc] init];
     }
-    return accessControlList;
+    return _accessControlList;
 }
 
 -(void)dealloc
 {
-    [accessControlList release];
+    [_accessControlList release];
     [super dealloc];
 }
 

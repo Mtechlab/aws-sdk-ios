@@ -18,7 +18,7 @@
 
 @implementation S3ListBucketsResponse
 
-@synthesize listBucketsResult;
+@synthesize listBucketsResult = _listBucketsResult;
 
 
 -(id)init
@@ -43,7 +43,7 @@
 
 -(void)dealloc
 {
-    [listBucketsResult release];
+    [_listBucketsResult release];
 
     [super dealloc];
 }

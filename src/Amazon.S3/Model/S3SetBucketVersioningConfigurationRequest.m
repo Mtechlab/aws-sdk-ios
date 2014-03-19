@@ -18,6 +18,9 @@
 
 @implementation S3SetBucketVersioningConfigurationRequest
 
+@synthesize versioningConfiguration = _versioningConfiguration;
+@synthesize mfa = _mfa;
+
 -(NSURLRequest *)configureURLRequest
 {
     // This needs to be done before the superclass's implementation so that
@@ -26,7 +29,7 @@
 
     [super configureURLRequest];
 
-    [urlRequest setHTTPMethod:kHttpMethodPut];
+    [_urlRequest setHTTPMethod:kHttpMethodPut];
 
 
     if (self.versioningConfiguration.isMfaDeleteEnabled) {

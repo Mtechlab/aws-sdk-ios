@@ -21,8 +21,9 @@
 /** Contains the response from a listObjects operation.
  *
  */
-@interface S3ListObjectsResponse:S3Response {
-    S3ListObjectsResult *listObjectsResult;
+@interface S3ListObjectsResponse : S3Response
+{
+    S3ListObjectsResult *_listObjectsResult;
 }
 
 /** The result object which contains the response elements from the request */

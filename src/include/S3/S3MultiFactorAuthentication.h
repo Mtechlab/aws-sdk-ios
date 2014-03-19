@@ -33,9 +33,10 @@
  * href="http://aws.amazon.com/mfa"/>http://aws.amazon.com/mfa</a>
  * </p>
  */
-@interface S3MultiFactorAuthentication:NSObject {
-    NSString *deviceSerialNumber;
-    NSString *token;
+@interface S3MultiFactorAuthentication : NSObject
+{
+    NSString *_deviceSerialNumber;
+    NSString *_token;
 }
 
 /**

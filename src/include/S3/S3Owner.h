@@ -18,9 +18,10 @@
 /** Represents an Owner of an Amazon S3 Bucket.
  *
  */
-@interface S3Owner:NSObject <NSCoding> {
-    NSString *ID;
-    NSString *displayName;
+@interface S3Owner:NSObject <NSCoding>
+{
+    NSString *_ID;
+    NSString *_displayName;
 }
 
 /** Gets and sets the owner ID */

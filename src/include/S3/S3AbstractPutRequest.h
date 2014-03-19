@@ -21,12 +21,13 @@
 /** Class with code common to Put* requests. Do not instantiate directly
  *
  */
-@interface S3AbstractPutRequest:S3Request {
-    S3CannedACL         *cannedACL;
-    S3AccessControlList *fullACL;
-    NSString            *storageClass;
-    NSString            *serverSideEncryption;
-    NSMutableDictionary *metadata;
+@interface S3AbstractPutRequest : S3Request
+{
+    S3CannedACL         *_cannedACL;
+    S3AccessControlList *_fullACL;
+    NSString            *_storageClass;
+    NSString            *_serverSideEncryption;
+    NSMutableDictionary *_metadata;
 }
 
 /** A canned access control list to apply to the object.

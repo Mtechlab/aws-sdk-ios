@@ -17,7 +17,7 @@
 
 @implementation S3DeleteErrorUnmarshaller
 
-@synthesize deleteError;
+@synthesize deleteError = _deleteError;
 
 #pragma mark - NSXMLParserDelegate implementation
 
@@ -43,12 +43,12 @@
     }
     else if ([elementName isEqualToString:@"Error"])
     {
-        if (caller != nil) {
-            [parser setDelegate:caller];
+        if (_caller != nil) {
+            [parser setDelegate:_caller];
         }
 
-        if (parentObject != nil && [parentObject respondsToSelector:parentSetter]) {
-            [parentObject performSelector:parentSetter withObject:self.deleteError];
+        if (_parentObject != nil && [_parentObject respondsToSelector:_parentSetter]) {
+            [_parentObject performSelector:_parentSetter withObject:self.deleteError];
         }
 
         return;
@@ -59,19 +59,19 @@
 
 -(DeleteError *)deleteError
 {
-    if (deleteError == nil)
+    if (_deleteError == nil)
     {
-        deleteError = [[DeleteError alloc] init];
+        _deleteError = [[DeleteError alloc] init];
     }
 
-    return deleteError;
+    return _deleteError;
 }
 
 #pragma mark -
 
 -(void)dealloc
 {
-    [deleteError release];
+    [_deleteError release];
 
     [super dealloc];
 }

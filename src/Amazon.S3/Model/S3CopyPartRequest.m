@@ -18,33 +18,33 @@
 
 @implementation S3CopyPartRequest
 
-@synthesize uploadId;
-@synthesize partNumber;
+@synthesize uploadId = _uploadId;
+@synthesize partNumber = _partNumber;
 
-@synthesize sourceBucketName;
-@synthesize sourceKey;
-@synthesize sourceVersionId;
+@synthesize sourceBucketName = _sourceBucketName;
+@synthesize sourceKey = _sourceKey;
+@synthesize sourceVersionId = _sourceVersionId;
 
-@synthesize destinationBucketName;
-@synthesize destinationKey;
+@synthesize destinationBucketName = _destinationBucketName;
+@synthesize destinationKey = _destinationKey;
 
-@synthesize ifMatch;
-@synthesize ifNoneMatch;
-@synthesize ifModifiedSince;
-@synthesize ifUnmodifiedSince;
+@synthesize ifMatch = _ifMatch;
+@synthesize ifNoneMatch = _ifNoneMatch;
+@synthesize ifModifiedSince = _ifModifiedSince;
+@synthesize ifUnmodifiedSince = _ifUnmodifiedSince;
 
-@synthesize firstByte;
-@synthesize lastByte;
+@synthesize firstByte = _firstByte;
+@synthesize lastByte = _lastByte;
 
 
 -(NSMutableURLRequest *)configureURLRequest
 {
-    self.bucket = destinationBucketName;
-    self.key    = destinationKey;
+    self.bucket = _destinationBucketName;
+    self.key    = _destinationKey;
 
     NSString *sourceHeader = [NSString stringWithFormat:@"/%@/%@", [AmazonSDKUtil urlEncode:self.sourceBucketName], [AmazonSDKUtil urlEncode:self.sourceKey]];
-    if (sourceVersionId != nil) {
-        sourceHeader = [NSString stringWithFormat:@"%@?%@=%@", sourceHeader, kS3SubResourceVersionId, sourceVersionId];
+    if (_sourceVersionId != nil) {
+        sourceHeader = [NSString stringWithFormat:@"%@?%@=%@", sourceHeader, kS3SubResourceVersionId, _sourceVersionId];
     }
     [self.urlRequest setValue:sourceHeader forHTTPHeaderField:kHttpHdrAmzCopySource];
 
@@ -63,7 +63,7 @@
     }
 
     if (nil != self.firstByte && nil != self.lastByte) {
-        NSString *range = [NSString stringWithFormat:@"bytes=%ld-%ld", [firstByte longValue], [lastByte longValue]];
+        NSString *range = [NSString stringWithFormat:@"bytes=%ld-%ld", [_firstByte longValue], [_lastByte longValue]];
         [self.urlRequest setValue:range forHTTPHeaderField:kHttpHdrRange];
     }
 
@@ -72,14 +72,14 @@
     self.contentLength = 0;
     [super configureURLRequest];
 
-    [urlRequest setHTTPMethod:kHttpMethodPut];
+    [_urlRequest setHTTPMethod:kHttpMethodPut];
 
-    return urlRequest;
+    return _urlRequest;
 }
 
 -(void)dealloc
 {
-    [uploadId release];
+    [_uploadId release];
 
     [super dealloc];
 }

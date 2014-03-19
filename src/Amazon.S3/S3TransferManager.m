@@ -30,8 +30,12 @@ NSString *const kMetaDataFilenameRegex = @"\\d{9}-.*\\.plist";
 
 @implementation S3TransferManager
 
+@synthesize delegate = _delegate;
 @synthesize s3 = _s3;
+@synthesize minimumUploadPartSize = _minimumUploadPartSize;
 @synthesize multipartUploadThreshold = _multipartUploadThreshold;
+@synthesize noSyncMethodsOnMainThread = _noSyncMethodsOnMainThread;
+@synthesize operationQueue = _operationQueue;
 
 #pragma mark - Class lifecycle Methods
 
@@ -650,15 +654,15 @@ NSString *const kMetaDataFilenameRegex = @"\\d{9}-.*\\.plist";
 
 - (NSOperationQueue *)operationQueue
 {
-    static NSOperationQueue *_operationQueue = nil;
+    static NSOperationQueue *anOperationQueue = nil;
     static dispatch_once_t onceToken;
     
     dispatch_once(&onceToken, ^{
-        _operationQueue = [NSOperationQueue new];
-        _operationQueue.maxConcurrentOperationCount = S3DefaultMaxConcurrentOperationCount;
+        anOperationQueue = [NSOperationQueue new];
+        anOperationQueue.maxConcurrentOperationCount = S3DefaultMaxConcurrentOperationCount;
     });
     
-    return _operationQueue;
+    return anOperationQueue;
 }
 
 - (BOOL)shouldUseMultipartUpload:(S3PutObjectRequest *)putObjectRequest

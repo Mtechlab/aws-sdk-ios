@@ -17,7 +17,8 @@
 
 @implementation BucketWebsiteConfiguration
 
-@synthesize indexDocumentSuffix, errorDocument;
+@synthesize indexDocumentSuffix = _indexDocumentSuffix;
+@synthesize errorDocument = _errorDocument;
 
 -(id)initWithIndexDocumentSuffix:(NSString *)theIndexDocumentSuffix withErrorDocument:(NSString *)theErrorDocument
 {

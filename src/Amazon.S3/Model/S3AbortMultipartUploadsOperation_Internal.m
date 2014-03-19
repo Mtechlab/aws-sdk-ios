@@ -16,17 +16,12 @@
 #import "S3AbortMultipartUploadsOperation_Internal.h"
 #import "AmazonServiceRequest.h"
 
-@interface S3AbortMultipartUploadsOperation_Internal ()
-{
-    BOOL _isExecuting;
-    BOOL _isFinished;
-}
-
-@end
-
 @implementation S3AbortMultipartUploadsOperation_Internal
 
-@synthesize transferRequestType = _transferRequestType;
+@synthesize delegate = _delegate;
+@synthesize bucket = _bucket;
+@synthesize date =_date;
+@synthesize key = _key;
 
 #pragma mark - Class Lifecycle
 

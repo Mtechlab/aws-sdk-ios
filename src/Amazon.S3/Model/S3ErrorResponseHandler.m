@@ -26,6 +26,9 @@
 
 @implementation S3ErrorResponseHandler
 
+@synthesize exception = _exception;
+@synthesize httpStatusCode = _httpStatusCode;
+
 -(id)initWithStatusCode:(int32_t)statusCode
 {
     if (self = [super init])

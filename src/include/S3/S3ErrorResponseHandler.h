@@ -27,7 +27,10 @@
  * AWSServiceException object.
  *
  */
-@interface S3ErrorResponseHandler:AmazonUnmarshallerXMLParserDelegate {
+@interface S3ErrorResponseHandler : AmazonUnmarshallerXMLParserDelegate
+{
+    AmazonServiceException  *_exception;
+    int32_t                 _httpStatusCode;
 }
 
 /** The exception represented by the XML */

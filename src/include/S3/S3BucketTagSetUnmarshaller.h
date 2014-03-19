@@ -19,8 +19,9 @@
 #import "../AmazonUnmarshallerXMLParserDelegate.h"
 
 /** Creates an S3BucketTagSet from an XML service repsonse. */
-@interface S3BucketTagSetUnmarshaller:AmazonUnmarshallerXMLParserDelegate {
-    S3BucketTagSet *tagset;
+@interface S3BucketTagSetUnmarshaller : AmazonUnmarshallerXMLParserDelegate
+{
+    S3BucketTagSet *_tagset;
 }
 
 /** The S3BucketTagSet represented by the XML */

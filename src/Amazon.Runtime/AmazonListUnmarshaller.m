@@ -17,15 +17,18 @@
 
 @implementation AmazonListUnmarshaller
 
-@synthesize list, delegateClass, entryElementName, endListElementName;
+@synthesize list = _list;
+@synthesize delegateClass = _delegateClass;
+@synthesize entryElementName = _entryElementName;
+@synthesize endListElementName = _endListElementName;
 
 -(void)parser:(NSXMLParser *)parser didStartElement:(NSString *)elementName namespaceURI:(NSString *)namespaceURI qualifiedName:(NSString *)qName attributes:(NSDictionary *)attributeDict
 {
     [super parser:parser didStartElement:elementName namespaceURI:namespaceURI qualifiedName:qName attributes:attributeDict];
 
-    if ([elementName isEqualToString:entryElementName]) {
-        id delegate = [[[delegateClass alloc] initWithCaller:self withParentObject:self.list withSetter:@selector(addObject:)] autorelease];
-        [delegate setEndElementTagName:entryElementName];
+    if ([elementName isEqualToString:_entryElementName]) {
+        id delegate = [[[_delegateClass alloc] initWithCaller:self withParentObject:self.list withSetter:@selector(addObject:)] autorelease];
+        [delegate setEndElementTagName:_entryElementName];
 
         [parser setDelegate:delegate];
     }
@@ -35,13 +38,13 @@
 {
     [super parser:parser didEndElement:elementName namespaceURI:namespaceURI qualifiedName:qName];
 
-    if ([elementName isEqualToString:endListElementName]) {
-        if (caller != nil) {
-            [parser setDelegate:caller];
+    if ([elementName isEqualToString:_endListElementName]) {
+        if (_caller != nil) {
+            [parser setDelegate:_caller];
         }
 
-        if (parentObject != nil && [parentObject respondsToSelector:parentSetter]) {
-            [parentObject performSelector:parentSetter withObject:self.list];
+        if (_parentObject != nil && [_parentObject respondsToSelector:_parentSetter]) {
+            [_parentObject performSelector:_parentSetter withObject:self.list];
         }
 
         return;
@@ -50,18 +53,18 @@
 
 -(NSMutableArray *)list
 {
-    if (nil == list) {
-        list = [[NSMutableArray alloc] init];
+    if (nil == _list) {
+        _list = [[NSMutableArray alloc] init];
     }
-    return list;
+    return _list;
 }
 
 -(void)dealloc
 {
-    [list release];
-    [entryElementName release];
-    [endListElementName release];
-    [delegateClass release];
+    [_list release];
+    [_entryElementName release];
+    [_endListElementName release];
+    [_delegateClass release];
     [super dealloc];
 }
 

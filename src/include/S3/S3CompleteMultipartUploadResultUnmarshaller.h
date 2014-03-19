@@ -20,8 +20,9 @@
 /**
  *
  */
-@interface S3CompleteMultipartUploadResultUnmarshaller:AmazonUnmarshallerXMLParserDelegate {
-    S3CompleteMultipartUploadResult *completeMultipartUploadResult;
+@interface S3CompleteMultipartUploadResultUnmarshaller : AmazonUnmarshallerXMLParserDelegate
+{
+    S3CompleteMultipartUploadResult *_completeMultipartUploadResult;
 }
 
 @property (nonatomic, readonly) S3CompleteMultipartUploadResult *completeMultipartUploadResult;

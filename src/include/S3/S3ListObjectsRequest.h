@@ -21,7 +21,12 @@
 /** Request Object for Listing the Objects in the specified bucket.
  *
  */
-@interface S3ListObjectsRequest:S3Request {
+@interface S3ListObjectsRequest : S3Request
+{
+    NSString    *_prefix;
+    NSString    *_marker;
+    NSString    *_delimiter;
+    int32_t     _maxKeys;
 }
 
 /** Limits the response to keys that begin with the specified prefix.

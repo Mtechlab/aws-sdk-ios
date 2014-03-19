@@ -18,7 +18,7 @@
 
 @implementation S3BucketPolicy
 
-@synthesize policyText;
+@synthesize policyText = _policyText;
 
 -(id)initWithPolicy:(NSString *)thePolicyText
 {
@@ -31,7 +31,7 @@
 
 -(void)dealloc
 {
-    [policyText release];
+    [_policyText release];
     [super dealloc];
 }
 

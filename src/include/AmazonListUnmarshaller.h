@@ -17,12 +17,13 @@
 #import "AmazonServiceResponseUnmarshaller.h"
 
 
-@interface AmazonListUnmarshaller:AmazonServiceResponseUnmarshaller {
-    NSMutableArray *list;
+@interface AmazonListUnmarshaller : AmazonServiceResponseUnmarshaller
+{
+    NSMutableArray *_list;
 
-    NSString       *entryElementName;
-    NSString       *endListElementName;
-    id             delegateClass;
+    NSString       *_entryElementName;
+    NSString       *_endListElementName;
+    id             _delegateClass;
 }
 
 @property (nonatomic, readonly) NSMutableArray *list;

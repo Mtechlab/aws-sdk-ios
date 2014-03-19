@@ -18,13 +18,13 @@
 
 @implementation S3Bucket
 
-@synthesize name;
-@synthesize creationDate;
+@synthesize name = _name;
+@synthesize creationDate = _creationDate;
 
 -(void)dealloc
 {
-    [name release];
-    [creationDate release];
+    [_name release];
+    [_creationDate release];
 
     [super dealloc];
 }

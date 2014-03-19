@@ -18,6 +18,8 @@
 
 @implementation S3CompleteMultipartUploadResultUnmarshaller
 
+@synthesize completeMultipartUploadResult = _completeMultipartUploadResult;
+
 #pragma mark NSXMLParserDelegate implementation
 
 -(void) parser:(NSXMLParser *)parser
@@ -41,12 +43,12 @@ qualifiedName:(NSString *)qName
     }
 
     if ([elementName isEqualToString:@"CompleteMultipartUploadResult"]) {
-        if (caller != nil) {
-            [parser setDelegate:caller];
+        if (_caller != nil) {
+            [parser setDelegate:_caller];
         }
 
-        if (parentObject != nil && [parentObject respondsToSelector:parentSetter]) {
-            [parentObject performSelector:parentSetter withObject:self.completeMultipartUploadResult];
+        if (_parentObject != nil && [_parentObject respondsToSelector:_parentSetter]) {
+            [_parentObject performSelector:_parentSetter withObject:self.completeMultipartUploadResult];
         }
 
         return;
@@ -57,16 +59,18 @@ qualifiedName:(NSString *)qName
 
 -(S3CompleteMultipartUploadResult *)completeMultipartUploadResult
 {
-    if (nil == completeMultipartUploadResult)
+    if (nil == _completeMultipartUploadResult)
     {
-        completeMultipartUploadResult = [[S3CompleteMultipartUploadResult alloc] init];
+        _completeMultipartUploadResult = [[S3CompleteMultipartUploadResult alloc] init];
     }
-    return completeMultipartUploadResult;
+    
+    return _completeMultipartUploadResult;
 }
 
 -(void)dealloc
 {
-    [completeMultipartUploadResult release];
+    [_completeMultipartUploadResult release];
+    
     [super dealloc];
 }
 

@@ -17,7 +17,7 @@
 
 @implementation S3CopyPartResultUnmarshaller
 
-@synthesize partCopyResult;
+@synthesize partCopyResult = _partCopyResult;
 
 #pragma mark NSXMLParserDelegate implementation
 
@@ -39,12 +39,12 @@ qualifiedName:(NSString *)qName
     }
 
     if ([elementName isEqualToString:@"CopyPartResult"]) {
-        if (caller != nil) {
-            [parser setDelegate:caller];
+        if (_caller != nil) {
+            [parser setDelegate:_caller];
         }
 
-        if (parentObject != nil && [parentObject respondsToSelector:parentSetter]) {
-            [parentObject performSelector:parentSetter withObject:self.partCopyResult];
+        if (_parentObject != nil && [_parentObject respondsToSelector:_parentSetter]) {
+            [_parentObject performSelector:_parentSetter withObject:self.partCopyResult];
         }
 
         return;
@@ -55,16 +55,18 @@ qualifiedName:(NSString *)qName
 
 -(S3CopyPartResult *)partCopyResult
 {
-    if (nil == partCopyResult)
+    if (nil == _partCopyResult)
     {
-        partCopyResult = [[S3CopyPartResult alloc] init];
+        _partCopyResult = [[S3CopyPartResult alloc] init];
     }
-    return partCopyResult;
+    
+    return _partCopyResult;
 }
 
 -(void)dealloc
 {
-    [partCopyResult release];
+    [_partCopyResult release];
+    
     [super dealloc];
 }
 

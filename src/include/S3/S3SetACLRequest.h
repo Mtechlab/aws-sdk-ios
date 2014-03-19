@@ -26,8 +26,9 @@
  * <br />Optional Parameters: key
  *
  */
-@interface S3SetACLRequest:S3Request {
-    S3AccessControlList *acl;
+@interface S3SetACLRequest : S3Request
+{
+    S3AccessControlList *_acl;
 }
 
 /** Gets and sets the access control list (ACL) to set on the bucket or object */

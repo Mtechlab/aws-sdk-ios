@@ -21,6 +21,13 @@
 
 @interface S3AbortMultipartUploadsOperation_Internal : S3TransferOperation
 {
+    BOOL _isExecuting;
+    BOOL _isFinished;
+    
+    id<AmazonServiceRequestDelegate>    _delegate;
+    NSString                            *_bucket;
+    NSDate                              *_date;
+    NSString                            *_key;
 }
 
 @property (nonatomic, assign) id<AmazonServiceRequestDelegate> delegate;

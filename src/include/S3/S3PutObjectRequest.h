@@ -29,8 +29,20 @@
  * Required parameters: bucket, key.
  *
  */
-@interface S3PutObjectRequest:S3AbstractPutRequest {
-    BOOL expiresSet;
+@interface S3PutObjectRequest : S3AbstractPutRequest
+{
+    NSString        *_cacheControl;
+    NSString        *_contentDisposition;
+    NSString        *_contentEncoding;
+    NSString        *_contentMD5;
+    BOOL            _generateMD5;
+    NSString        *_expect;
+    NSData          *_data;
+    NSInputStream   *_stream;
+    int32_t         _expires;
+    NSString        *_filename;
+    NSString        *_redirectLocation;
+    BOOL            _expiresSet;
 }
 
 /** Can be used to specify caching behavior along the request/reply chain.

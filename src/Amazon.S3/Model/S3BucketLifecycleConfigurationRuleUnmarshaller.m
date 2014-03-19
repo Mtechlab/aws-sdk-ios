@@ -19,7 +19,7 @@
 
 @implementation S3BucketLifecycleConfigurationRuleUnmarshaller
 
-@synthesize rule;
+@synthesize rule = _rule;
 
 #pragma mark - NSXMLParserDelegate implementation
 
@@ -59,12 +59,12 @@
     }
     else if ([elementName isEqualToString:@"Rule"])
     {
-        if (caller != nil) {
-            [parser setDelegate:caller];
+        if (_caller != nil) {
+            [parser setDelegate:_caller];
         }
         
-        if (parentObject != nil && [parentObject respondsToSelector:parentSetter]) {
-            [parentObject performSelector:parentSetter withObject:self.rule];
+        if (_parentObject != nil && [_parentObject respondsToSelector:_parentSetter]) {
+            [_parentObject performSelector:_parentSetter withObject:self.rule];
         }
         
         return;
@@ -75,20 +75,20 @@
 
 -(S3BucketLifecycleConfigurationRule *)rule
 {
-    if (rule == nil)
+    if (_rule == nil)
     {
-        rule = [[S3BucketLifecycleConfigurationRule alloc] init];
-        rule.transitions = [NSMutableArray arrayWithCapacity:1];
+        _rule = [[S3BucketLifecycleConfigurationRule alloc] init];
+        _rule.transitions = [NSMutableArray arrayWithCapacity:1];
     }
     
-    return rule;
+    return _rule;
 }
 
 #pragma mark -
 
 -(void)dealloc
 {
-    [rule release];
+    [_rule release];
     
     [super dealloc];
 }

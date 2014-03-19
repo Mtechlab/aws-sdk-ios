@@ -34,8 +34,9 @@
  * <br />Required Parameters: bucket, policy
  *
  */
-@interface S3SetBucketPolicyRequest:S3Request {
-    S3BucketPolicy *policy;
+@interface S3SetBucketPolicyRequest : S3Request
+{
+    S3BucketPolicy *_policy;
 }
 
 

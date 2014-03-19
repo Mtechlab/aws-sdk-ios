@@ -21,11 +21,6 @@ const int32_t kBufferSize = 32768;
 const int32_t kNotStarted = -1;
 
 @interface S3GetObjectOperation_Internal ()
-{
-    BOOL _isExecuting;
-    BOOL _isFinished;
-    CC_MD5_CTX md5sum;
-}
 
 @property (nonatomic, assign) int32_t retryCount;
 @property (nonatomic, assign) int64_t s3FileSize;
@@ -37,7 +32,14 @@ const int32_t kNotStarted = -1;
 
 @implementation S3GetObjectOperation_Internal
 
-@synthesize transferRequestType = _transferRequestType;
+@synthesize retryCount = _retryCount;
+@synthesize s3FileSize = _s3FileSize;
+@synthesize etag = _etag;
+@synthesize delegate = _delegate;
+@synthesize outputStream = _outputStream;
+@synthesize response = _response;
+@synthesize totalBytesTransferred = _totalBytesTransferred;
+@synthesize totalBytesExpected = _totalBytesExpected;
 
 #pragma mark - Class Lifecycle
 
@@ -270,8 +272,8 @@ const int32_t kNotStarted = -1;
 
     NSDictionary * headers = ((NSHTTPURLResponse *)response).allHeaderFields;
     //if content-range is not set (this is not a range download), content-length is the length of the file
-    if ([headers objectForKey:(@"Content-Range")] == nil) {
-        self.s3FileSize = [[headers objectForKey:(@"Content-Length")] longLongValue];
+    if ([headers objectForKey:(kHttpHdrContentRange)] == nil) {
+        self.s3FileSize = [[headers objectForKey:(kHttpHdrContentLength)] longLongValue];
     }
     
     if ([self.delegate respondsToSelector:@selector(request:didReceiveResponse:)]) {

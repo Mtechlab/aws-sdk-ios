@@ -21,11 +21,22 @@
 
 @implementation S3Response
 
+@synthesize connectionState = _connectionState;
+@synthesize etag = _etag;
+@synthesize server = _server;
+@synthesize id2 = _id2;
+@synthesize versionId = _versionId;
+@synthesize serverSideEncryption = _serverSideEncryption;
+@synthesize date = _date;
+@synthesize deleteMarker = _deleteMarker;
+@synthesize contentLength =_contentLength;
+@synthesize headers = _headers;
+
 -(id)init
 {
     self = [super init];
     if (self != nil) {
-        isFinishedLoading = NO;
+        _isFinishedLoading = NO;
         _headers = [NSMutableDictionary new];
     }
 
@@ -94,7 +105,7 @@
 
 -(NSData *)body
 {
-    return [NSData dataWithData:body];
+    return [NSData dataWithData:_body];
 }
 
 // Override this to perform processing on the body.
@@ -106,7 +117,7 @@
 
 -(NSException *)exception
 {
-    return exception;
+    return _exception;
 }
 
 -(NSString *)description
@@ -147,11 +158,11 @@
 
 -(void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data
 {
-    if (nil == body) {
-        body = [[NSMutableData data] retain];
+    if (nil == _body) {
+        _body = [[NSMutableData data] retain];
     }
 
-    [body appendData:data];
+    [_body appendData:data];
 
     if ([self.request.delegate respondsToSelector:@selector(request:didReceiveData:)]) {
         [self.request.delegate request:self.request didReceiveData:data];
@@ -178,19 +189,19 @@
         [parser setDelegate:errorHandler];
         [parser parse];
 
-        exception = [[errorHandler exception] copy];
+        _exception = [[errorHandler exception] copy];
         BOOL throwsExceptions = [AmazonErrorHandler throwsExceptions];
 
         if (throwsExceptions == YES
             && [self.request.delegate respondsToSelector:@selector(request:didFailWithServiceException:)]) {
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wdeprecated-declarations"
-            [self.request.delegate request:self.request didFailWithServiceException:(AmazonServiceException *)exception];
+            [self.request.delegate request:self.request didFailWithServiceException:(AmazonServiceException *)_exception];
 #pragma clang diagnostic pop
         }
         else if (throwsExceptions == NO
                  && [self.request.delegate respondsToSelector:@selector(request:didFailWithError:)]) {
-            [self.request.delegate request:self.request didFailWithError:[AmazonErrorHandler errorFromException:exception]];
+            [self.request.delegate request:self.request didFailWithError:[AmazonErrorHandler errorFromException:_exception]];
         }
 
         [parser release];
@@ -198,8 +209,8 @@
     }
     else {
         [self processBody];
-        processingTime    = fabs([startDate timeIntervalSinceNow]);
-        isFinishedLoading = YES;
+        _processingTime    = fabs([startDate timeIntervalSinceNow]);
+        _isFinishedLoading = YES;
     }
 
     if ([self.request.delegate respondsToSelector:@selector(request:didCompleteWithResponse:)]) {
@@ -218,7 +229,7 @@
     {
         AMZLog(@"UserInfo.%@ = %@", [key description], [[info valueForKey:key] description]);
     }
-    exception = [[AmazonServiceException exceptionWithMessage:[theError description] andError:theError] retain];
+    _exception = [[AmazonServiceException exceptionWithMessage:[theError description] andError:theError] retain];
     AMZLog(@"An error occured in the request: %@", [theError description]);
 
     if ([self.request.delegate respondsToSelector:@selector(request:didFailWithError:)]) {

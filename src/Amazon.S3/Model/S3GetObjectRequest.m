@@ -17,16 +17,16 @@
 
 @implementation S3GetObjectRequest
 
-@synthesize ifModifiedSince;
-@synthesize ifUnmodifiedSince;
-@synthesize ifMatch;
-@synthesize ifNoneMatch;
-@synthesize outputStream;
-@synthesize rangeStart;
-@synthesize rangeEnd;
-@synthesize versionId;
-@synthesize responseHeaderOverrides;
-@synthesize targetFilePath;
+@synthesize ifModifiedSince = _ifModifiedSince;
+@synthesize ifUnmodifiedSince = _ifUnmodifiedSince;
+@synthesize ifMatch = _ifMatch;
+@synthesize ifNoneMatch = _ifNoneMatch;
+@synthesize outputStream = _outputStream;
+@synthesize rangeStart = _rangeStart;
+@synthesize rangeEnd = _rangeEnd;
+@synthesize versionId = _versionId;
+@synthesize responseHeaderOverrides = _responseHeaderOverrides;
+@synthesize targetFilePath = _targetFilePath;
 
 -(id)initWithKey:(NSString *)aKey withBucket:(NSString *)aBucket
 {
@@ -57,7 +57,7 @@
         [self setIfMatch:[decoder decodeObjectForKey:@"IfMatch"]];
         [self setIfNoneMatch:[decoder decodeObjectForKey:@"IfNoneMatch"]];
         [self setRangeStart:[decoder decodeInt64ForKey:@"RangeStart"] rangeEnd:[decoder decodeInt64ForKey:@"RangeEnd"]];
-        rangeSet = [decoder decodeBoolForKey:@"RangeSet"];
+        _rangeSet = [decoder decodeBoolForKey:@"RangeSet"];
         [self setVersionId:[decoder decodeObjectForKey:@"VersionId"]];
         [self setResponseHeaderOverrides:[decoder decodeObjectForKey:@"ResponseHeaderOverrides"]];
         [self setTargetFilePath:[decoder decodeObjectForKey:@"TargetFilePath"]];
@@ -70,15 +70,15 @@
 {
     [super encodeWithCoder:encoder];
     
-    [encoder encodeObject:ifModifiedSince forKey:@"IfModifiedSince"];
-    [encoder encodeObject:ifUnmodifiedSince forKey:@"IfUnmodifiedSince"];
-    [encoder encodeObject:ifMatch forKey:@"IfMatch"];
-    [encoder encodeObject:ifNoneMatch forKey:@"IfNoneMatch"];
-    [encoder encodeInt64:rangeStart forKey:@"RangeStart"];
-    [encoder encodeInt64:rangeEnd forKey:@"RangeEnd"];
-    [encoder encodeBool:rangeSet forKey:@"RangeSet"];
-    [encoder encodeObject:versionId forKey:@"VersionId"];
-    [encoder encodeObject:responseHeaderOverrides forKey:@"ResponseHeaderOverrides"];
+    [encoder encodeObject:_ifModifiedSince forKey:@"IfModifiedSince"];
+    [encoder encodeObject:_ifUnmodifiedSince forKey:@"IfUnmodifiedSince"];
+    [encoder encodeObject:_ifMatch forKey:@"IfMatch"];
+    [encoder encodeObject:_ifNoneMatch forKey:@"IfNoneMatch"];
+    [encoder encodeInt64:_rangeStart forKey:@"RangeStart"];
+    [encoder encodeInt64:_rangeEnd forKey:@"RangeEnd"];
+    [encoder encodeBool:_rangeSet forKey:@"RangeSet"];
+    [encoder encodeObject:_versionId forKey:@"VersionId"];
+    [encoder encodeObject:_responseHeaderOverrides forKey:@"ResponseHeaderOverrides"];
     [encoder encodeObject:self.targetFilePath forKey:@"TargetFilePath"];
     
 }
@@ -99,33 +99,33 @@
 
     [super configureURLRequest];
 
-    [urlRequest setHTTPMethod:kHttpMethodGet];
+    [_urlRequest setHTTPMethod:kHttpMethodGet];
     [self.urlRequest setHTTPBody:nil];
 
     if (nil != self.ifModifiedSince) {
-        [urlRequest setValue:[self.ifModifiedSince stringWithRFC822Format] forHTTPHeaderField:kHttpHdrIfModified];
+        [_urlRequest setValue:[self.ifModifiedSince stringWithRFC822Format] forHTTPHeaderField:kHttpHdrIfModified];
     }
     if (nil != self.ifUnmodifiedSince) {
-        [urlRequest setValue:[self.ifUnmodifiedSince stringWithRFC822Format] forHTTPHeaderField:kHttpHdrIfUnmodified];
+        [_urlRequest setValue:[self.ifUnmodifiedSince stringWithRFC822Format] forHTTPHeaderField:kHttpHdrIfUnmodified];
     }
     if (nil != self.ifMatch) {
-        [urlRequest setValue:self.ifMatch forHTTPHeaderField:kHttpHdrIfMatch];
+        [_urlRequest setValue:self.ifMatch forHTTPHeaderField:kHttpHdrIfMatch];
     }
     if (nil != self.ifNoneMatch) {
-        [urlRequest setValue:self.ifNoneMatch forHTTPHeaderField:kHttpHdrIfNoneMatch];
+        [_urlRequest setValue:self.ifNoneMatch forHTTPHeaderField:kHttpHdrIfNoneMatch];
     }
 
-    if (rangeSet) {
-        [urlRequest setValue:[self getRange] forHTTPHeaderField:kHttpHdrRange];
+    if (_rangeSet) {
+        [_urlRequest setValue:[self getRange] forHTTPHeaderField:kHttpHdrRange];
     }
 
-    return urlRequest;
+    return _urlRequest;
 }
 
 -(NSString *)getRange
 {
-    if (rangeSet) {
-        return [NSString stringWithFormat:@"bytes=%lld-%lld", rangeStart, rangeEnd];
+    if (_rangeSet) {
+        return [NSString stringWithFormat:@"bytes=%lld-%lld", _rangeStart, _rangeEnd];
     }
 
     return nil;
@@ -133,9 +133,9 @@
 
 -(void)setRangeStart:(int64_t)start rangeEnd:(int64_t)end
 {
-    rangeStart = start;
-    rangeEnd   = end;
-    rangeSet   = YES;
+    _rangeStart = start;
+    _rangeEnd   = end;
+    _rangeSet   = YES;
 }
 
 - (AmazonClientException *)validate
@@ -144,13 +144,13 @@
     
     if(clientException == nil)
     {
-        if(rangeSet == YES)
+        if(_rangeSet == YES)
         {
-            if (rangeEnd <= rangeStart) {
+            if (_rangeEnd <= _rangeStart) {
                 clientException = (AmazonClientException *)[AmazonClientException exceptionWithName:@"Invalid range" 
                                                                     reason:@"rangeEnd must be larger than rangeStart" 
                                                                   userInfo:nil];
-                rangeSet = NO;
+                _rangeSet = NO;
             }
         }
     }
@@ -160,12 +160,12 @@
 
 -(void) dealloc
 {
-    [ifModifiedSince release];
-    [ifUnmodifiedSince release];
-    [ifMatch release];
-    [ifNoneMatch release];
-    [responseHeaderOverrides release];
-    [versionId release];
+    [_ifModifiedSince release];
+    [_ifUnmodifiedSince release];
+    [_ifMatch release];
+    [_ifNoneMatch release];
+    [_responseHeaderOverrides release];
+    [_versionId release];
 
     [super dealloc];
 }

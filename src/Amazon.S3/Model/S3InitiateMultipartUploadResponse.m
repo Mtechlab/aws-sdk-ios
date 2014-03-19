@@ -19,6 +19,8 @@
 
 @implementation S3InitiateMultipartUploadResponse
 
+@synthesize multipartUpload = _multipartUpload;
+
 -(void)processBody
 {
     NSXMLParser                                 *parser       = [[NSXMLParser alloc] initWithData:self.body];
@@ -27,11 +29,11 @@
     [parser setDelegate:unmarshaller];
     [parser parse];
 
-    if (multipartUpload != nil) {
-        [multipartUpload release];
+    if (_multipartUpload != nil) {
+        [_multipartUpload release];
     }
 
-    multipartUpload = [unmarshaller.multipartUpload retain];
+    _multipartUpload = [unmarshaller.multipartUpload retain];
 
     [unmarshaller release];
     [parser release];
@@ -39,15 +41,16 @@
 
 -(S3MultipartUpload *)multipartUpload
 {
-    if (nil == multipartUpload) {
-        multipartUpload = [[S3MultipartUpload alloc] init];
+    if (nil == _multipartUpload) {
+        _multipartUpload = [[S3MultipartUpload alloc] init];
     }
-    return multipartUpload;
+    
+    return _multipartUpload;
 }
 
 -(void)dealloc
 {
-    [multipartUpload release];
+    [_multipartUpload release];
 
     [super dealloc];
 }

@@ -19,12 +19,13 @@
 #import "../AmazonUnmarshallerXMLParserDelegate.h"
 
 /** Creates an S3CORSRule from an XML service repsonse. */
-@interface S3CORSRuleUnmarshaller:AmazonUnmarshallerXMLParserDelegate {
-    S3CORSRule *_rule;
-    NSMutableArray *allowedMethods;
-    NSMutableArray *allowedOrigins;
-    NSMutableArray *exposeHeaders;
-    NSMutableArray *allowedHeaders;
+@interface S3CORSRuleUnmarshaller : AmazonUnmarshallerXMLParserDelegate
+{
+    S3CORSRule      *_rule;
+    NSMutableArray  *_allowedMethods;
+    NSMutableArray  *_allowedOrigins;
+    NSMutableArray  *_exposeHeaders;
+    NSMutableArray  *_allowedHeaders;
 }
 
 /** The S3CORSRule represented by the XML */

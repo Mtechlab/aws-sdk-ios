@@ -25,7 +25,8 @@
 /** Contains the response from a putObject operation.
  *
  */
-@interface S3CopyObjectResponse:S3Response {
+@interface S3CopyObjectResponse : S3Response
+{
     NSDate *lastModified;
 }
 

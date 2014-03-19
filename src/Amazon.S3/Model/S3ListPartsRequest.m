@@ -17,6 +17,10 @@
 
 @implementation S3ListPartsRequest
 
+@synthesize uploadId = _uploadId;
+@synthesize maxParts = _maxParts;
+@synthesize partNumberMarker = _partNumberMarker;
+
 -(id)init
 {
     if (self = [super init])
@@ -55,9 +59,9 @@
 
     [super configureURLRequest];
 
-    [urlRequest setHTTPMethod:kHttpMethodGet];
+    [_urlRequest setHTTPMethod:kHttpMethodGet];
 
-    return urlRequest;
+    return _urlRequest;
 }
 
 -(void)dealloc

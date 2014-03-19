@@ -20,8 +20,7 @@
  * Contains the parameters used for the getBucketWebsiteConfiguration operation.
  *
  */
-@interface S3GetBucketWebsiteConfigurationRequest:S3Request
-{
+@interface S3GetBucketWebsiteConfigurationRequest : S3Request {
 }
 
 -(id)initWithBucketName:(NSString *)theBucketName;

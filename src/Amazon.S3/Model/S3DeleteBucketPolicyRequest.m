@@ -26,7 +26,7 @@
 
     [super configureURLRequest];
 
-    [urlRequest setHTTPMethod:kHttpMethodDelete];
+    [_urlRequest setHTTPMethod:kHttpMethodDelete];
 
     return self.urlRequest;
 }

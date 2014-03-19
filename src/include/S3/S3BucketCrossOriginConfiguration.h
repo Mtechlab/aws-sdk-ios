@@ -20,7 +20,9 @@
 /**
  *
  */
-@interface S3BucketCrossOriginConfiguration:NSObject {
+@interface S3BucketCrossOriginConfiguration : NSObject
+{
+    NSArray *_rules;
 }
 
 /** The list of rules */

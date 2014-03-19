@@ -18,9 +18,9 @@
 #import "BucketWebsiteConfiguration.h"
 
 /** Creates an BucketWebsiteConfiguration from an XML service repsonse. */
-@interface S3GetBucketWebsiteConfigurationResultUnmarshaller:AmazonUnmarshallerXMLParserDelegate
+@interface S3GetBucketWebsiteConfigurationResultUnmarshaller : AmazonUnmarshallerXMLParserDelegate
 {
-    BucketWebsiteConfiguration *configuration;
+    BucketWebsiteConfiguration *_configuration;
 }
 
 /** The BucketWebsiteConfiguration represented by the XML */

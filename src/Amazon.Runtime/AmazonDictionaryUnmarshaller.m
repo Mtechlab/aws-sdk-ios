@@ -17,17 +17,23 @@
 
 @implementation AmazonDictionaryUnmarshaller
 
-@synthesize key, value, dictionary, delegateClass, keyXpathElement, valueXpathElement, entryEndElement, dictionaryEndElement;
-
+@synthesize key = _key;
+@synthesize value = _value;
+@synthesize dictionary = _dictionary;
+@synthesize delegateClass = _delegateClass;
+@synthesize keyXpathElement = _keyXpathElement;
+@synthesize valueXpathElement = _valueXpathElement;
+@synthesize entryEndElement = _entryEndElement;
+@synthesize dictionaryEndElement = _dictionaryEndElement;
 
 -(void)parser:(NSXMLParser *)parser didStartElement:(NSString *)elementName namespaceURI:(NSString *)namespaceURI qualifiedName:(NSString *)qName attributes:(NSDictionary *)attributeDict
 {
     [super parser:parser didStartElement:elementName namespaceURI:namespaceURI qualifiedName:qName attributes:attributeDict];
     
     // Found the Value Element for the Dictionary Entry. Start Unmarshaller for complex type
-    if (delegateClass != nil && [elementName isEqualToString:valueXpathElement]) {
-        id delegate = [[[delegateClass alloc] initWithCaller:self withParentObject:self withSetter:@selector(setValue:)] autorelease];
-        [delegate setEndElementTagName:entryEndElement];
+    if (_delegateClass != nil && [elementName isEqualToString:_valueXpathElement]) {
+        id delegate = [[[_delegateClass alloc] initWithCaller:self withParentObject:self withSetter:@selector(setValue:)] autorelease];
+        [delegate setEndElementTagName:_entryEndElement];
         
         [parser setDelegate:delegate];
         return;
@@ -39,31 +45,31 @@
     [super parser:parser didEndElement:elementName namespaceURI:namespaceURI qualifiedName:qName];
 
     // Found the Key Element for the Dictionary Entry
-    if ([elementName isEqualToString:keyXpathElement]) {
+    if ([elementName isEqualToString:_keyXpathElement]) {
         self.key = self.currentText;
         return;
     }
     
     // Found the end of a Value Element, record text for Simple type
-    if (delegateClass == nil && [elementName isEqualToString:valueXpathElement]) {
+    if (_delegateClass == nil && [elementName isEqualToString:_valueXpathElement]) {
         self.value = self.currentText;
         return;
     }
     
     // Found the End of Entry Element for the Dictionary Entry, add current value
-    if ((entryEndElement != nil && [elementName isEqualToString:entryEndElement]) ||
-        [elementName isEqualToString:dictionaryEndElement]) {
-        [self.dictionary setValue:self.value forKey:key];
+    if ((_entryEndElement != nil && [elementName isEqualToString:_entryEndElement]) ||
+        [elementName isEqualToString:_dictionaryEndElement]) {
+        [self.dictionary setValue:self.value forKey:_key];
     }
     
     // Found End Element for entire Dictionary
-    if ([elementName isEqualToString:dictionaryEndElement]) {
-        if (caller != nil) {
-            [parser setDelegate:caller];
+    if ([elementName isEqualToString:_dictionaryEndElement]) {
+        if (_caller != nil) {
+            [parser setDelegate:_caller];
         }
         
-        if (parentObject != nil && [parentObject respondsToSelector:parentSetter]) {
-            [parentObject performSelector:parentSetter withObject:self.dictionary];
+        if (_parentObject != nil && [_parentObject respondsToSelector:_parentSetter]) {
+            [_parentObject performSelector:_parentSetter withObject:self.dictionary];
         }
         return;
     }
@@ -71,21 +77,21 @@
 
 -(NSMutableDictionary *)dictionary
 {
-    if (nil == dictionary) {
-        dictionary = [[NSMutableDictionary alloc] initWithCapacity:1];
+    if (nil == _dictionary) {
+        _dictionary = [[NSMutableDictionary alloc] initWithCapacity:1];
     }
-    return dictionary;
+    return _dictionary;
 }
 
 -(void)dealloc
 {
-    [dictionary release];
-    [key release];
-    [value release];
-    [keyXpathElement release];
-    [valueXpathElement release];
-    [entryEndElement release];
-    [delegateClass release];
+    [_dictionary release];
+    [_key release];
+    [_value release];
+    [_keyXpathElement release];
+    [_valueXpathElement release];
+    [_entryEndElement release];
+    [_delegateClass release];
 
     [super dealloc];
 }

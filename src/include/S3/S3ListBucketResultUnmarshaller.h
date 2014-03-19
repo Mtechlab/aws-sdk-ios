@@ -19,8 +19,9 @@
 #import "../AmazonUnmarshallerXMLParserDelegate.h"
 
 
-@interface S3ListBucketResultUnmarshaller:AmazonUnmarshallerXMLParserDelegate {
-    S3ListObjectsResult *objectListing;
+@interface S3ListBucketResultUnmarshaller : AmazonUnmarshallerXMLParserDelegate
+{
+    S3ListObjectsResult *_objectListing;
 }
 
 /** The result object represented by the XML */

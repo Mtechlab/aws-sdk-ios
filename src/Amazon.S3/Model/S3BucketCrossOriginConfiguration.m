@@ -18,7 +18,7 @@
 
 @implementation S3BucketCrossOriginConfiguration
 
-@synthesize rules=_rules;
+@synthesize rules = _rules;
 
 -(NSString *)toXml
 {

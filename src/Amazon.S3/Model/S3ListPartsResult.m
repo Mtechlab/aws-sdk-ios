@@ -17,6 +17,16 @@
 
 @implementation S3ListPartsResult
 
+@synthesize bucket = _bucket;
+@synthesize key = _key;
+@synthesize uploadId = _uploadId;
+@synthesize storageClass = _storageClass;
+@synthesize owner = _owner;
+@synthesize initiator = _initiator;
+@synthesize partNumberMarker = _partNumberMarker;
+@synthesize nextPartNumberMarker = _nextPartNumberMarker;
+@synthesize maxParts = _maxParts;
+@synthesize isTruncated = _isTruncated;
 @synthesize parts = _parts;
 
 -(NSMutableArray *)parts

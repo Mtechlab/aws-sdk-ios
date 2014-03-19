@@ -52,12 +52,12 @@ qualifiedName:(NSString *)qName
     }
 
     if ([elementName isEqualToString:@"Grant"]) {
-        if (caller != nil) {
-            [parser setDelegate:caller];
+        if (_caller != nil) {
+            [parser setDelegate:_caller];
         }
 
-        if (parentObject != nil && [parentObject respondsToSelector:parentSetter]) {
-            [parentObject performSelector:parentSetter withObject:self.grant];
+        if (_parentObject != nil && [_parentObject respondsToSelector:_parentSetter]) {
+            [_parentObject performSelector:_parentSetter withObject:self.grant];
         }
 
         return;
@@ -68,18 +68,20 @@ qualifiedName:(NSString *)qName
 
 -(S3Grant *)grant
 {
-    if (nil == grant)
+    if (nil == _grant)
     {
-        grant = [[S3Grant alloc] init];
+        _grant = [[S3Grant alloc] init];
 
-        [grant setGrantee:[S3Grantee granteeWithID:nil withDisplayName:nil]];
+        [_grant setGrantee:[S3Grantee granteeWithID:nil withDisplayName:nil]];
     }
-    return grant;
+    
+    return _grant;
 }
 
 -(void)dealloc
 {
-    [grant release];
+    [_grant release];
+    
     [super dealloc];
 }
 

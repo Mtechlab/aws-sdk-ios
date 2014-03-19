@@ -18,6 +18,17 @@
 
 @implementation S3ListVersionsResult
 
+@synthesize versionSummaries = _versionSummaries;
+@synthesize name = _name;
+@synthesize prefix = _prefix;
+@synthesize keyMarker = _keyMarker;
+@synthesize nextKeyMarker = _nextKeyMarker;
+@synthesize versionIdMarker = _versionIdMarker;
+@synthesize nextVersionIdMarker = _nextVersionIdMarker;
+@synthesize maxKeys = _maxKeys;
+@synthesize delimiter = _delimiter;
+@synthesize isTruncated = _isTruncated;
+@synthesize commonPrefixes = _commonPrefixes;
 
 -(NSMutableArray *)versionSummaries
 {

@@ -16,7 +16,7 @@
 #import <Foundation/Foundation.h>
 
 
-@interface AmazonMD5Util:NSObject {
+@interface AmazonMD5Util : NSObject {
 }
 
 /**

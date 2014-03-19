@@ -18,7 +18,7 @@
 
 @implementation S3BucketTagSetUnmarshaller
 
-@synthesize tagset;
+@synthesize tagset = _tagset;
 
 #pragma mark - NSXMLParserDelegate implementation
 
@@ -42,12 +42,12 @@
     
     if ([elementName isEqualToString:@"TagSet"])
     {
-        if (caller != nil) {
-            [parser setDelegate:caller];
+        if (_caller != nil) {
+            [parser setDelegate:_caller];
         }
         
-        if (parentObject != nil && [parentObject respondsToSelector:parentSetter]) {
-            [parentObject performSelector:parentSetter withObject:self.tagset];
+        if (_parentObject != nil && [_parentObject respondsToSelector:_parentSetter]) {
+            [_parentObject performSelector:_parentSetter withObject:self.tagset];
         }
         
         return;
@@ -58,20 +58,20 @@
 
 -(S3BucketTagSet *)tagset
 {
-    if (tagset == nil)
+    if (_tagset == nil)
     {
-        tagset = [[S3BucketTagSet alloc] init];
-        tagset.tags = [[[NSMutableDictionary alloc] init] autorelease];
+        _tagset = [[S3BucketTagSet alloc] init];
+        _tagset.tags = [[[NSMutableDictionary alloc] init] autorelease];
     }
     
-    return tagset;
+    return _tagset;
 }
 
 #pragma mark -
 
 -(void)dealloc
 {
-    [tagset release];
+    [_tagset release];
     
     [super dealloc];
 }

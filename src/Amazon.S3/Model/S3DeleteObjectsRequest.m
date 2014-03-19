@@ -18,6 +18,10 @@
 
 @implementation S3DeleteObjectsRequest
 
+@synthesize mfaAuth = _mfaAuth;
+@synthesize objects = _objects;
+@synthesize quiet = _quiet;
+
 -(id)init
 {
     self = [super init];
@@ -40,7 +44,7 @@
 
     if (nil != self.mfaAuth)
     {
-        [urlRequest setValue:self.mfaAuth forHTTPHeaderField:kHttpHdrAmzMfa];
+        [_urlRequest setValue:self.mfaAuth forHTTPHeaderField:kHttpHdrAmzMfa];
     }
 
     NSData *data = [[self toXml] dataUsingEncoding:NSUTF8StringEncoding];
@@ -51,7 +55,7 @@
 
     [self.urlRequest setHTTPBody:data];
 
-    return urlRequest;
+    return _urlRequest;
 }
 
 -(NSString *)toXml

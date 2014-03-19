@@ -17,7 +17,8 @@
 
 @implementation S3KeyVersion
 
-@synthesize key, version;
+@synthesize key = _key;
+@synthesize version = _version;
 
 -(id)initWithKey:(NSString *)theKey withVersion:(NSString *)theVersion
 {
@@ -60,8 +61,8 @@
 
 -(void)dealloc
 {
-    [key release];
-    [version release];
+    [_key release];
+    [_version release];
 
     [super dealloc];
 }

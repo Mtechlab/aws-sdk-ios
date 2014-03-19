@@ -25,6 +25,13 @@
 
 @implementation S3InitiateMultipartUploadRequest
 
+@synthesize cacheControl = _cacheControl;
+@synthesize contentDisposition = _contentDisposition;
+@synthesize contentEncoding = _contentEncoding;
+@synthesize redirectLocation = _redirectLocation;
+@synthesize expires = _expires;
+@synthesize expiresSet = _expiresSet;
+
 -(id)init
 {
     if (self = [super init])
@@ -59,7 +66,7 @@
 
     [super configureURLRequest];
 
-    [urlRequest setHTTPMethod:kHttpMethodPost];
+    [_urlRequest setHTTPMethod:kHttpMethodPost];
 
     if (nil != self.contentEncoding) {
         [self.urlRequest setValue:self.contentEncoding
@@ -83,7 +90,7 @@
                forHTTPHeaderField:kHttpHdrExpires];
     }
 
-    return urlRequest;
+    return _urlRequest;
 }
 
 -(void)dealloc

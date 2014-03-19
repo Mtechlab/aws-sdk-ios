@@ -17,8 +17,9 @@
 #import "AmazonUnmarshallerXMLParserDelegate.h"
 #import "AmazonServiceException.h"
 
-@interface AmazonServiceExceptionUnmarshaller:AmazonUnmarshallerXMLParserDelegate {
-    AmazonServiceException *exception;
+@interface AmazonServiceExceptionUnmarshaller : AmazonUnmarshallerXMLParserDelegate
+{
+    AmazonServiceException *_exception;
 }
 
 @property (nonatomic, readonly) AmazonServiceException *exception;

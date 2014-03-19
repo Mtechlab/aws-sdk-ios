@@ -23,9 +23,9 @@
     [super configureURLRequest];
 
     // same as the GetObject, except using HEAD instead of GET.
-    [urlRequest setHTTPMethod:kHttpMethodHead];
+    [_urlRequest setHTTPMethod:kHttpMethodHead];
 
-    return urlRequest;
+    return _urlRequest;
 }
 
 @end

@@ -18,6 +18,7 @@
 
 @implementation S3VersionSummaryUnmarshaller
 
+@synthesize summary = _summary;
 
 #pragma mark NSXMLParserDelegate implementation
 
@@ -82,12 +83,12 @@ qualifiedName:(NSString *)qName
     }
 
     if ([elementName isEqualToString:@"Version"] || [elementName isEqualToString:@"DeleteMarker"]) {
-        if (caller != nil) {
-            [parser setDelegate:caller];
+        if (_caller != nil) {
+            [parser setDelegate:_caller];
         }
 
-        if (parentObject != nil && [parentObject respondsToSelector:parentSetter]) {
-            [parentObject performSelector:parentSetter withObject:self.summary];
+        if (_parentObject != nil && [_parentObject respondsToSelector:_parentSetter]) {
+            [_parentObject performSelector:_parentSetter withObject:self.summary];
         }
 
         return;
@@ -99,16 +100,18 @@ qualifiedName:(NSString *)qName
 
 -(S3VersionSummary *)summary
 {
-    if (nil == summary)
+    if (nil == _summary)
     {
-        summary = [[S3VersionSummary alloc] init];
+        _summary = [[S3VersionSummary alloc] init];
     }
-    return summary;
+    
+    return _summary;
 }
 
 -(void)dealloc
 {
-    [summary release];
+    [_summary release];
+    
     [super dealloc];
 }
 

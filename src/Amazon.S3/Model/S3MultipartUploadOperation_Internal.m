@@ -17,18 +17,12 @@
 #import "AmazonErrorHandler.h"
 #import "AmazonServiceRequest.h"
 
-typedef void (^AbortMultipartUploadBlock)();
-
 typedef struct _AWSRange {
     int64_t location;
     int64_t length;
 } AWSRange;
 
 @interface S3MultipartUploadOperation_Internal ()
-{
-    BOOL _isExecuting;
-    BOOL _isFinished;
-}
 
 @property (nonatomic, assign) int64_t contentLength;
 @property (nonatomic, assign) int32_t currentPartNo;
@@ -45,7 +39,18 @@ typedef struct _AWSRange {
 
 @implementation S3MultipartUploadOperation_Internal
 
-@synthesize transferRequestType = _transferRequestType;
+@synthesize contentLength = _contentLength;
+@synthesize currentPartNo = _currentPartNo;
+@synthesize numberOfParts = _numberOfParts;
+@synthesize retryCount = _retryCount;
+@synthesize abortMultipartUpload = _abortMultipartUpload;
+@synthesize initRequest = _initRequest;
+@synthesize initResponse = _initResponse;
+@synthesize multipartUpload = _multipartUpload;
+@synthesize completeRequest = _completeRequest;
+@synthesize dataForPart = _dataForPart;
+@synthesize response = _response;
+@synthesize partSize = _partSize;
 
 #pragma mark - Class Lifecycle
 

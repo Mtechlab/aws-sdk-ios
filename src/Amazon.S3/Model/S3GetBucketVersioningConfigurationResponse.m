@@ -18,7 +18,7 @@
 
 @implementation S3GetBucketVersioningConfigurationResponse
 
-@synthesize versioningConfiguration;
+@synthesize versioningConfiguration = _versioningConfiguration;
 
 
 -(void)processBody
@@ -37,7 +37,7 @@
 
 -(void) dealloc
 {
-    [versioningConfiguration release];
+    [_versioningConfiguration release];
     [super dealloc];
 }
 

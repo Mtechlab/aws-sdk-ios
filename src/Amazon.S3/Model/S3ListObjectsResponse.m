@@ -18,7 +18,7 @@
 
 @implementation S3ListObjectsResponse
 
-@synthesize listObjectsResult;
+@synthesize listObjectsResult = _listObjectsResult;
 
 -(void)processBody
 {
@@ -45,15 +45,16 @@
     [unmarshaller release];
 
     if (errDescription != nil) {
-        if(exception == nil) {
-            exception = [AmazonClientException exceptionWithMessage :[NSString stringWithFormat:@"Error parsing XML response: %@", errDescription]];
+        if(_exception == nil) {
+            _exception = [AmazonClientException exceptionWithMessage :[NSString stringWithFormat:@"Error parsing XML response: %@", errDescription]];
         }
     }
 }
 
 -(void)dealloc
 {
-    [listObjectsResult release];
+    [_listObjectsResult release];
+    
     [super dealloc];
 }
 

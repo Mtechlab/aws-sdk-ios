@@ -38,12 +38,12 @@
 // Implementation
 @implementation S3ResponseHeaderOverrides
 
-@synthesize contentType;
-@synthesize contentLanguage;
-@synthesize expires;
-@synthesize cacheControl;
-@synthesize contentDisposition;
-@synthesize contentEncoding;
+@synthesize contentType = _contentType;
+@synthesize contentLanguage = _contentLanguage;
+@synthesize expires = _expires;
+@synthesize cacheControl = _cacheControl;
+@synthesize contentDisposition = _contentDisposition;
+@synthesize contentEncoding = _contentEncoding;
 
 - (id)initWithCoder:(NSCoder *)decoder
 {
@@ -61,12 +61,12 @@
 
 - (void)encodeWithCoder:(NSCoder *)encoder
 {
-    [encoder encodeObject:contentType forKey:@"ContentType"];
-    [encoder encodeObject:contentLanguage forKey:@"ContentLanguage"];
-    [encoder encodeObject:expires forKey:@"Expires"];
-    [encoder encodeObject:cacheControl forKey:@"CacheControl"];
-    [encoder encodeObject:contentDisposition forKey:@"ContentDisposition"];
-    [encoder encodeObject:contentEncoding forKey:@"ContentEncoding"];
+    [encoder encodeObject:_contentType forKey:@"ContentType"];
+    [encoder encodeObject:_contentLanguage forKey:@"ContentLanguage"];
+    [encoder encodeObject:_expires forKey:@"Expires"];
+    [encoder encodeObject:_cacheControl forKey:@"CacheControl"];
+    [encoder encodeObject:_contentDisposition forKey:@"ContentDisposition"];
+    [encoder encodeObject:_contentEncoding forKey:@"ContentEncoding"];
 }
 
 -(NSString *)queryString
@@ -91,11 +91,11 @@
 
 -(void)dealloc
 {
-    [contentType release];
-    [contentLanguage release];
-    [expires release];
-    [cacheControl release];
-    [contentEncoding release];
+    [_contentType release];
+    [_contentLanguage release];
+    [_expires release];
+    [_cacheControl release];
+    [_contentEncoding release];
 
     [super dealloc];
 }

@@ -17,6 +17,9 @@
 
 @implementation AmazonClientException
 
+@synthesize message = _message;
+@synthesize error = _error;
+
 +(id)exceptionWithMessage:(NSString *)theMessage
 {
     AmazonClientException *e = [[[self class] alloc] initWithName:@"AmazonClientException" 

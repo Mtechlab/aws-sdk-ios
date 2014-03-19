@@ -17,8 +17,8 @@
 
 @implementation AmazonBoolValueUnmarshaller
 
-@synthesize value;
-@synthesize internalElementName;
+@synthesize value = _value;
+@synthesize internalElementName = _internalElementName;
 
 
 -(void)parser:(NSXMLParser *)parser didStartElement:(NSString *)elementName namespaceURI:(NSString *)namespaceURI qualifiedName:(NSString *)qName attributes:(NSDictionary *)attributeDict
@@ -28,31 +28,31 @@
 
 -(void)parser:(NSXMLParser *)parser didEndElement:(NSString *)elementName namespaceURI:(NSString *)namespaceURI qualifiedName:(NSString *)qName
 {
-    if ([elementName isEqualToString:internalElementName]) {
+    if ([elementName isEqualToString:_internalElementName]) {
         self.value = [self.currentText boolValue];
 
-        if (caller != nil) {
-            [parser setDelegate:caller];
+        if (_caller != nil) {
+            [parser setDelegate:_caller];
         }
 
-        NSInvocation *inv = [NSInvocation invocationWithMethodSignature:[parentObject methodSignatureForSelector:parentSetter]];
-        [inv setSelector:parentSetter];
-        [inv setTarget:parentObject];
-        [inv setArgument:&value atIndex:2];
+        NSInvocation *inv = [NSInvocation invocationWithMethodSignature:[_parentObject methodSignatureForSelector:_parentSetter]];
+        [inv setSelector:_parentSetter];
+        [inv setTarget:_parentObject];
+        [inv setArgument:&_value atIndex:2];
         [inv invoke];
 
         return;
     }
 }
 
--(bool)value
+-(BOOL)value
 {
-    return value;
+    return _value;
 }
 
 -(void)dealloc
 {
-    [internalElementName release];
+    [_internalElementName release];
     [super dealloc];
 }
 

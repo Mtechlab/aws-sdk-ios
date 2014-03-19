@@ -18,7 +18,8 @@
 
 @implementation S3DeleteObjectsResponse
 
-@synthesize deletedObjects, deleteErrors;
+@synthesize deletedObjects = _deletedObjects;
+@synthesize deleteErrors = _deleteErrors;
 
 -(void)processBody
 {
@@ -37,8 +38,8 @@
 
 -(void)dealloc
 {
-    [deletedObjects release];
-    [deleteErrors release];
+    [_deletedObjects release];
+    [_deleteErrors release];
 
     [super dealloc];
 }

@@ -17,11 +17,11 @@
 
 @implementation S3AbstractPutRequest
 
-@synthesize cannedACL;
-@synthesize fullACL;
-@synthesize storageClass;
-@synthesize serverSideEncryption;
-@synthesize metadata;
+@synthesize cannedACL = _cannedACL;
+@synthesize fullACL = _fullACL;
+@synthesize storageClass = _storageClass;
+@synthesize serverSideEncryption = _serverSideEncryption;
+@synthesize metadata = _metadata;
 
 - (NSMutableURLRequest *)configureURLRequest
 {
@@ -46,15 +46,15 @@
         }
     }
 
-    return urlRequest;
+    return _urlRequest;
 }
 
 - (NSMutableDictionary *)metadata
 {
-    if (nil == metadata) {
-        metadata = [[NSMutableDictionary alloc] init];
+    if (nil == _metadata) {
+        _metadata = [[NSMutableDictionary alloc] init];
     }
-    return metadata;
+    return _metadata;
 }
 
 - (void) addMetadataWithValue:(NSString *)value forKey:(NSString *)aKey
@@ -88,11 +88,11 @@
 
 - (void)dealloc
 {
-    [cannedACL release];
-    [fullACL release];
-    [storageClass release];
-    [serverSideEncryption release];
-    [metadata release];
+    [_cannedACL release];
+    [_fullACL release];
+    [_storageClass release];
+    [_serverSideEncryption release];
+    [_metadata release];
 
     [super dealloc];
 }

@@ -20,7 +20,14 @@
 /** Contains the parameters used for the listMultipartUploads operation.
  *
  */
-@interface S3ListMultipartUploadsRequest:S3Request {
+@interface S3ListMultipartUploadsRequest : S3Request
+{
+    NSString    *_delimiter;
+    NSString    *_keyMarker;
+    NSString    *_prefix;
+    NSString    *_uploadIdMarker;
+    int32_t     _maxUploads;
+    BOOL        _maxUploadsIsSet;
 }
 
 

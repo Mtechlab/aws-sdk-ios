@@ -17,6 +17,7 @@
 
 @implementation S3SetBucketWebsiteConfigurationRequest
 
+@synthesize configuration = _configuration;
 
 -(id)initWithBucketName:(NSString *)theBucketName withConfiguration:(BucketWebsiteConfiguration *)theConfiguration
 {
@@ -60,7 +61,7 @@
     [self.urlRequest setValue:@"text/xml" forHTTPHeaderField:kHttpHdrContentType];
     [self.urlRequest setHTTPBody:data];
 
-    return urlRequest;
+    return _urlRequest;
 }
 
 -(void)dealloc

@@ -20,9 +20,10 @@
  * And a Creation Date which is the date that the S3 Bucket was created.
  *
  */
-@interface S3Bucket:NSObject {
-    NSString *name;
-    NSString *creationDate;
+@interface S3Bucket : NSObject
+{
+    NSString *_name;
+    NSString *_creationDate;
 }
 
 /** Gets and sets the BucketName property. */

@@ -18,6 +18,8 @@
 
 @implementation S3PartUnmarshaller
 
+@synthesize part = _part;
+
 #pragma mark NSXMLParserDelegate implementation
 
 -(void) parser:(NSXMLParser *)parser
@@ -37,16 +39,16 @@ qualifiedName:(NSString *)qName
         self.part.size = [self.currentText longLongValue];
     }
     if ([elementName isEqualToString:@"LastModified"]) {
-        self.part.lastModified = [NSDate dateWithISO8061Format:currentText];
+        self.part.lastModified = [NSDate dateWithISO8061Format:_currentText];
     }
 
     if ([elementName isEqualToString:@"Part"] || (self.endElementTagName != nil && [elementName isEqualToString:self.endElementTagName])) {
-        if (caller != nil) {
-            [parser setDelegate:caller];
+        if (_caller != nil) {
+            [parser setDelegate:_caller];
         }
 
-        if (parentObject != nil && [parentObject respondsToSelector:parentSetter]) {
-            [parentObject performSelector:parentSetter withObject:self.part];
+        if (_parentObject != nil && [_parentObject respondsToSelector:_parentSetter]) {
+            [_parentObject performSelector:_parentSetter withObject:self.part];
         }
 
         return;
@@ -57,16 +59,18 @@ qualifiedName:(NSString *)qName
 
 -(S3Part *)part
 {
-    if (nil == part)
+    if (nil == _part)
     {
-        part = [[S3Part alloc] init];
+        _part = [[S3Part alloc] init];
     }
-    return part;
+    
+    return _part;
 }
 
 -(void)dealloc
 {
-    [part release];
+    [_part release];
+    
     [super dealloc];
 }
 

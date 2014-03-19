@@ -22,7 +22,15 @@
  * @see http://docs.amazonwebservices.com/AmazonS3/latest/S3_QSAuth.html
  *
  */
-@interface S3GetPreSignedURLRequest:S3Request {
+@interface S3GetPreSignedURLRequest : S3Request
+{
+    NSDate                      *_expires;
+    NSString                    *_protocol;
+    NSString                    *_httpVerb;
+    NSString                    *_accessKey;
+    NSString                    *_versionId;
+    S3ResponseHeaderOverrides   *_responseHeaderOverrides;
+    NSString                    *_queryString;
 }
 
 /** Gets and sets the expires property for this request.

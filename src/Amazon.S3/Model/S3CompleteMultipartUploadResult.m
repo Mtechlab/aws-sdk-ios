@@ -18,17 +18,17 @@
 
 @implementation S3CompleteMultipartUploadResult
 
-@synthesize location;
-@synthesize bucket;
-@synthesize key;
-@synthesize etag;
+@synthesize location = _location;
+@synthesize bucket = _bucket;
+@synthesize key = _key;
+@synthesize etag = _etag;
 
 -(void)dealloc
 {
-    [location release];
-    [bucket release];
-    [key release];
-    [etag release];
+    [_location release];
+    [_bucket release];
+    [_key release];
+    [_etag release];
 
     [super dealloc];
 }

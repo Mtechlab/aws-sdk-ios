@@ -17,7 +17,7 @@
 
 @implementation S3DeletedObjectUnmarshaller
 
-@synthesize deletedObject;
+@synthesize deletedObject = _deletedObject;
 
 #pragma mark - NSXMLParserDelegate implementation
 
@@ -43,12 +43,12 @@
     }
     else if ([elementName isEqualToString:@"Deleted"])
     {
-        if (caller != nil) {
-            [parser setDelegate:caller];
+        if (_caller != nil) {
+            [parser setDelegate:_caller];
         }
 
-        if (parentObject != nil && [parentObject respondsToSelector:parentSetter]) {
-            [parentObject performSelector:parentSetter withObject:self.deletedObject];
+        if (_parentObject != nil && [_parentObject respondsToSelector:_parentSetter]) {
+            [_parentObject performSelector:_parentSetter withObject:self.deletedObject];
         }
 
         return;
@@ -59,19 +59,19 @@
 
 -(DeletedObject *)deletedObject
 {
-    if (deletedObject == nil)
+    if (_deletedObject == nil)
     {
-        deletedObject = [[DeletedObject alloc] init];
+        _deletedObject = [[DeletedObject alloc] init];
     }
 
-    return deletedObject;
+    return _deletedObject;
 }
 
 #pragma mark -
 
 -(void)dealloc
 {
-    [deletedObject release];
+    [_deletedObject release];
 
     [super dealloc];
 }

@@ -23,8 +23,9 @@
 
 
 
-@interface S3GrantUnmarshaller:AmazonUnmarshallerXMLParserDelegate {
-    S3Grant *grant;
+@interface S3GrantUnmarshaller:AmazonUnmarshallerXMLParserDelegate
+{
+    S3Grant *_grant;
 }
 
 @property (nonatomic, readonly) S3Grant *grant;

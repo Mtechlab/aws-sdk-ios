@@ -19,8 +19,11 @@
 /** Contains the response from a getObjectMetadata operation
  *
  */
-@interface S3GetObjectMetadataResponse:S3GetObjectResponse {
-    int missingMeta;
+@interface S3GetObjectMetadataResponse : S3GetObjectResponse
+{
+    int     _missingMeta;
+    BOOL    _ongoingRestore;
+    NSDate  *_restoreExpiry;
 }
 
 /** How many metadata items were not returned in the response. */

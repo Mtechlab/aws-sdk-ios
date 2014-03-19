@@ -17,6 +17,15 @@
 
 @implementation S3TransferOperation
 
+@synthesize s3 = _s3;
+@synthesize putRequest = _putRequest;
+@synthesize getRequest = _getRequest;
+@synthesize transferRequestType = _transferRequestType;
+@synthesize isPaused = _isPaused;
+@synthesize requestMetadataFile = _requestMetadataFile;
+@synthesize error = _error;
+@synthesize exception = _exception;
+
 - (void)dealloc
 {
     [_s3 release];

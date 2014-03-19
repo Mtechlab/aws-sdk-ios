@@ -17,10 +17,29 @@
 #import "S3TransferOperation.h"
 
 @class AmazonServiceRequest;
+
 @protocol AmazonCredentialsProvider;
+
+typedef void (^AbortMultipartUploadBlock)();
 
 @interface S3MultipartUploadOperation_Internal : S3TransferOperation
 {
+    BOOL _isExecuting;
+    BOOL _isFinished;
+    
+    int64_t                             _contentLength;
+    int32_t                             _currentPartNo;
+    int32_t                             _numberOfParts;
+    int32_t                             _retryCount;
+    AbortMultipartUploadBlock           _abortMultipartUpload;
+    S3InitiateMultipartUploadRequest    *_initRequest;
+    S3InitiateMultipartUploadResponse   *_initResponse;
+    S3MultipartUpload                   *_multipartUpload;
+    S3CompleteMultipartUploadRequest    *_completeRequest;
+    NSData                              *_dataForPart;
+    
+    AmazonServiceResponse   *_response;
+    int64_t                 _partSize;
 }
 
 @property (nonatomic, retain) AmazonServiceResponse *response;

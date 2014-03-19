@@ -18,6 +18,17 @@
 
 @implementation S3Request
 
+@synthesize authorization = _authorization;
+@synthesize contentLength = _contentLength;
+@synthesize contentType = _contentType;
+@synthesize date = _date;
+@synthesize host = _host;
+@synthesize securityToken = _securityToken;
+@synthesize bucket = _bucket;
+@synthesize key = _key;
+@synthesize subResource = _subResource;
+@synthesize url = _url;
+
 #pragma mark methods
 
 -(AmazonURLRequest *)configureURLRequest
@@ -45,7 +56,7 @@
 
     [self.urlRequest setURL:self.url];
 
-    return urlRequest;
+    return _urlRequest;
 }
 
 -(NSString *)timestamp

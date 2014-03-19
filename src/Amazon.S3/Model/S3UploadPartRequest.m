@@ -18,6 +18,13 @@
 
 @implementation S3UploadPartRequest
 
+@synthesize partNumber = _partNumber;
+@synthesize contentMD5 = _contentMD5;
+@synthesize generateMD5 = _generateMD5;
+@synthesize uploadId = _uploadId;
+@synthesize data = _data;
+@synthesize stream = _stream;
+
 -(id)initWithMultipartUpload:(S3MultipartUpload *)multipartUpload
 {
     if(self = [super init])
@@ -56,9 +63,9 @@
         [self.urlRequest setValue:self.contentMD5 forHTTPHeaderField:kHttpHdrContentMD5];
     }
 
-    [urlRequest setHTTPMethod:kHttpMethodPut];
+    [_urlRequest setHTTPMethod:kHttpMethodPut];
 
-    return urlRequest;
+    return _urlRequest;
 }
 
 -(void)dealloc

@@ -31,7 +31,18 @@
 /** Contains the parameters common to Amazon S3 operations.
  *
  */
-@interface S3Request:AmazonServiceRequest {
+@interface S3Request : AmazonServiceRequest
+{
+    NSString    *_authorization;
+    int64_t     _contentLength;
+    NSString    *_contentType;
+    NSDate      *_date;
+    NSString    *_host;
+    NSString    *_securityToken;
+    NSString    *_bucket;
+    NSString    *_key;
+    NSString    *_subResource;
+    NSURL       *_url;
 }
 
 #pragma mark Properties

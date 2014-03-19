@@ -25,7 +25,8 @@
  * </p>
  *
  */
-@interface S3Grant:NSObject {
+@interface S3Grant : NSObject
+{
     S3Grantee    *grantee;
     S3Permission *permission;
 }

@@ -17,6 +17,12 @@
 
 @implementation S3ListVersionsRequest
 
+@synthesize prefix = _prefix;
+@synthesize keyMarker = _keyMarker;
+@synthesize versionIdMarker = _versionIdMarker;
+@synthesize delimiter = _delimiter;
+@synthesize maxKeys = _maxKeys;
+
 -(NSMutableURLRequest *)configureURLRequest
 {
     NSMutableString *endQueryString = [NSMutableString stringWithCapacity:512];

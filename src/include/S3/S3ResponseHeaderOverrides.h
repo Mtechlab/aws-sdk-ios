@@ -34,13 +34,14 @@
  * when the object was uploaded to S3.
  *
  */
-@interface S3ResponseHeaderOverrides:NSObject <NSCoding> {
-    NSString *contentType;
-    NSString *contentLanguage;
-    NSString *expires;
-    NSString *cacheControl;
-    NSString *contentDisposition;
-    NSString *contentEncoding;
+@interface S3ResponseHeaderOverrides:NSObject <NSCoding>
+{
+    NSString *_contentType;
+    NSString *_contentLanguage;
+    NSString *_expires;
+    NSString *_cacheControl;
+    NSString *_contentDisposition;
+    NSString *_contentEncoding;
 }
 
 /** The Content-Type header to be included on the response. */

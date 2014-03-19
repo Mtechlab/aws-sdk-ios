@@ -17,27 +17,27 @@
 
 @implementation S3CopyObjectRequest
 
-@synthesize sourceKey;
-@synthesize sourceBucket;
-@synthesize metadataDirective;
-@synthesize ifMatch;
-@synthesize ifNoneMatch;
-@synthesize ifModifiedSince;
-@synthesize ifUnmodifiedSince;
-@synthesize redirectLocation;
+@synthesize sourceKey = _sourceKey;
+@synthesize sourceBucket = _sourceBucket;
+@synthesize metadataDirective = _metadataDirective;
+@synthesize ifMatch = _ifMatch;
+@synthesize ifNoneMatch = _ifNoneMatch;
+@synthesize ifModifiedSince = _ifModifiedSince;
+@synthesize ifUnmodifiedSince = _ifUnmodifiedSince;
+@synthesize redirectLocation = _redirectLocation;
 
 - (id)init
 {
     if(self = [super init])
     {
-        sourceKey = nil;
-        sourceBucket = nil;
-        metadataDirective = nil;
-        ifMatch = nil;
-        ifNoneMatch = nil;
-        ifModifiedSince = nil;
-        ifUnmodifiedSince = nil;
-        redirectLocation = nil;
+        _sourceKey = nil;
+        _sourceBucket = nil;
+        _metadataDirective = nil;
+        _ifMatch = nil;
+        _ifNoneMatch = nil;
+        _ifModifiedSince = nil;
+        _ifUnmodifiedSince = nil;
+        _redirectLocation = nil;
     }
 
     return self;
@@ -100,19 +100,19 @@
                forHTTPHeaderField:kHttpHdrAmzWebsiteRedirectLocation];
     }
 
-    return urlRequest;
+    return _urlRequest;
 }
 
 -(void)dealloc
 {
-    [sourceKey release];
-    [sourceBucket release];
-    [metadataDirective release];
-    [ifMatch release];
-    [ifNoneMatch release];
-    [ifModifiedSince release];
-    [ifUnmodifiedSince release];
-    [redirectLocation release];
+    [_sourceKey release];
+    [_sourceBucket release];
+    [_metadataDirective release];
+    [_ifMatch release];
+    [_ifNoneMatch release];
+    [_ifModifiedSince release];
+    [_ifUnmodifiedSince release];
+    [_redirectLocation release];
 
     [super dealloc];
 }

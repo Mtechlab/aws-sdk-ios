@@ -17,14 +17,17 @@
 
 @implementation DeleteError
 
-@synthesize key, versionId, code, message;
+@synthesize key = _key;
+@synthesize versionId = _versionId;
+@synthesize code = _code;
+@synthesize message = _message;
 
 -(void)dealloc
 {
-    [key release];
-    [versionId release];
-    [code release];
-    [message release];
+    [_key release];
+    [_versionId release];
+    [_code release];
+    [_message release];
 
     [super dealloc];
 }

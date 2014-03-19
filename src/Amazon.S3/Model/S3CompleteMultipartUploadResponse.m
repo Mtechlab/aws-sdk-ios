@@ -16,8 +16,9 @@
 #import "S3CompleteMultipartUploadResponse.h"
 #import "S3CompleteMultipartUploadResultUnmarshaller.h"
 
-
 @implementation S3CompleteMultipartUploadResponse
+
+@synthesize completeMultipartUploadResult = _completeMultipartUploadResult;
 
 -(void)processBody
 {
@@ -27,11 +28,11 @@
     [parser setDelegate:unmarshaller];
     [parser parse];
 
-    if (completeMultipartUploadResult != nil) {
-        [completeMultipartUploadResult release];
+    if (_completeMultipartUploadResult != nil) {
+        [_completeMultipartUploadResult release];
     }
 
-    completeMultipartUploadResult = [unmarshaller.completeMultipartUploadResult retain];
+    _completeMultipartUploadResult = [unmarshaller.completeMultipartUploadResult retain];
 
     [unmarshaller release];
     [parser release];
@@ -39,15 +40,16 @@
 
 -(S3CompleteMultipartUploadResult *)completeMultipartUploadResult
 {
-    if (nil == completeMultipartUploadResult) {
-        completeMultipartUploadResult = [[S3CompleteMultipartUploadResult alloc] init];
+    if (nil == _completeMultipartUploadResult) {
+        _completeMultipartUploadResult = [[S3CompleteMultipartUploadResult alloc] init];
     }
-    return completeMultipartUploadResult;
+    
+    return _completeMultipartUploadResult;
 }
 
 -(void)dealloc
 {
-    [completeMultipartUploadResult release];
+    [_completeMultipartUploadResult release];
 
     [super dealloc];
 }

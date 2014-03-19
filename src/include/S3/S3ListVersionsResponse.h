@@ -20,8 +20,9 @@
 /** Contains the response from a list versions operation.
  *
  */
-@interface S3ListVersionsResponse:S3Response {
-    S3ListVersionsResult *listVersionsResult;
+@interface S3ListVersionsResponse : S3Response
+{
+    S3ListVersionsResult *_listVersionsResult;
 }
 
 @property (nonatomic, retain) S3ListVersionsResult *listVersionsResult;

@@ -18,8 +18,8 @@
 
 @implementation S3BucketVersioningConfiguration
 
-@synthesize status;
-@synthesize isMfaDeleteEnabled;
+@synthesize status = _status;
+@synthesize isMfaDeleteEnabled = _isMfaDeleteEnabled;
 
 
 -(id)initWithStatus:(NSString *)theStatus
@@ -57,7 +57,8 @@
 
 -(void)dealloc
 {
-    [status release];
+    [_status release];
+    
     [super dealloc];
 }
 

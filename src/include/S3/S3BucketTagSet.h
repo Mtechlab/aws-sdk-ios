@@ -18,8 +18,9 @@
 /**
  *
  */
-@interface S3BucketTagSet:NSObject {
-    NSDictionary *tags;
+@interface S3BucketTagSet : NSObject
+{
+    NSDictionary *_tags;
 }
 
 /** The list of rules */

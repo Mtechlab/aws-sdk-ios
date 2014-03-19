@@ -17,8 +17,8 @@
 
 @implementation S3DeleteVersionRequest
 
-@synthesize versionId;
-@synthesize mfa;
+@synthesize versionId = _versionId;
+@synthesize mfa = _mfa;
 
 -(NSMutableURLRequest *)configureURLRequest
 {
@@ -36,14 +36,15 @@
     [super configureURLRequest];
     [self.urlRequest setHTTPMethod:kHttpMethodDelete];
 
-    return urlRequest;
+    return _urlRequest;
 }
 
 
 -(void)dealloc
 {
-    [versionId release];
-    [mfa release];
+    [_versionId release];
+    [_mfa release];
+    
     [super dealloc];
 }
 

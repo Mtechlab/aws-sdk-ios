@@ -20,8 +20,9 @@
 /**
  *
  */
-@interface S3BucketTaggingConfiguration:NSObject {
-    NSArray *tagsets;
+@interface S3BucketTaggingConfiguration : NSObject
+{
+    NSArray *_tagsets;
 }
 
 /** The list of tagsets (currently only one tag set is allowed) */

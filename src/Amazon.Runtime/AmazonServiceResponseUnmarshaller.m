@@ -39,13 +39,13 @@
     }
 
 
-    if (endElementTagName != nil && [elementName isEqualToString:endElementTagName]) {
-        if (caller != nil) {
-            [parser setDelegate:caller];
+    if (_endElementTagName != nil && [elementName isEqualToString:_endElementTagName]) {
+        if (_caller != nil) {
+            [parser setDelegate:_caller];
         }
 
-        if (parentObject != nil && [parentObject respondsToSelector:parentSetter]) {
-            [parentObject performSelector:parentSetter withObject:self.response];
+        if (_parentObject != nil && [_parentObject respondsToSelector:_parentSetter]) {
+            [_parentObject performSelector:_parentSetter withObject:self.response];
         }
 
         return;
@@ -60,7 +60,7 @@
 
 -(void)dealloc
 {
-    [endElementTagName release];
+    [_endElementTagName release];
     [super dealloc];
 }
 

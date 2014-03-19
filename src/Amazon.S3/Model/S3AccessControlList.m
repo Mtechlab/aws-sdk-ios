@@ -19,15 +19,16 @@
 
 @implementation S3AccessControlList
 
-@synthesize owner;
+@synthesize owner = _owner;
+@synthesize grantList = _grantList;
 
 -(void)addGrant:(S3Grant *)aGrant
 {
-    if (grantList == nil) {
-        grantList = [[NSMutableArray alloc] init];
+    if (_grantList == nil) {
+        _grantList = [[NSMutableArray alloc] init];
     }
 
-    [grantList addObject:aGrant];
+    [_grantList addObject:aGrant];
 }
 
 -(id)initWithOwner:(S3Owner *)theOwner
@@ -41,7 +42,7 @@
 
 -(NSArray *)grantList
 {
-    return [NSArray arrayWithArray:grantList];
+    return [NSArray arrayWithArray:_grantList];
 }
 
 -(NSString *)toXml
@@ -52,7 +53,7 @@
      self.owner.ID, self.owner.displayName];
 
     [xml appendString:@"<AccessControlList>"];
-    for (S3Grant *g in grantList)
+    for (S3Grant *g in _grantList)
     {
         [xml appendString:[g toXml]];
     }
@@ -74,7 +75,7 @@
     NSMutableString *wacpPerm = nil;
     NSMutableString *fPerm    = nil;
     
-    for (S3Grant *g in grantList)
+    for (S3Grant *g in _grantList)
     {
         NSString *grantee = @"";
         if (!((g.grantee.ID == nil) || [g.grantee.ID isEqualToString:@""])) {
@@ -170,8 +171,8 @@
 
 -(void)dealloc
 {
-    [owner release];
-    [grantList release];
+    [_owner release];
+    [_grantList release];
 
     [super dealloc];
 }

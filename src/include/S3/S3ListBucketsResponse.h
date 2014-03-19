@@ -21,8 +21,9 @@
 /** Contains the response from a listBuckets operation.
  *
  */
-@interface S3ListBucketsResponse:S3Response {
-    S3ListBucketsResult *listBucketsResult;
+@interface S3ListBucketsResponse : S3Response
+{
+    S3ListBucketsResult *_listBucketsResult;
 }
 
 /** The result of the listBuckets operations. Contains the list of buckets. */

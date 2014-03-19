@@ -18,6 +18,10 @@
 
 @implementation S3VersionSummary
 
+@synthesize versionId = _versionId;
+@synthesize displayName = _displayName;
+@synthesize isLatest = _isLatest;
+@synthesize isDeleteMarker = _isDeleteMarker;
 
 -(NSString *)description
 {

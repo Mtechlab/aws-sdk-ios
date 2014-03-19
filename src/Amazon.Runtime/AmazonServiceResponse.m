@@ -27,27 +27,27 @@ NSString *const AWSClockSkewError = @"AWSClockSkewError";
 
 @implementation AmazonServiceResponse
 
-@synthesize httpStatusCode;
-@synthesize isFinishedLoading;
-@synthesize request;
-@synthesize requestId;
-@synthesize didTimeout;
-@synthesize unmarshallerDelegate;
-@synthesize processingTime;
-@synthesize error;
-@synthesize exception;
-@synthesize responseHeader;
-@synthesize isAsyncCall;
-@synthesize hasClockSkewError;
+@synthesize httpStatusCode = _httpStatusCode;
+@synthesize isFinishedLoading = _isFinishedLoading;
+@synthesize request = _request;
+@synthesize requestId = _requestId;
+@synthesize didTimeout = _didTimeout;
+@synthesize unmarshallerDelegate = _unmarshallerDelegate;
+@synthesize processingTime = _processingTime;
+@synthesize error = _error;
+@synthesize exception = _exception;
+@synthesize responseHeader = _responseHeader;
+@synthesize isAsyncCall = _isAsyncCall;
+@synthesize hasClockSkewError = _hasClockSkewError;
 
 -(id)init
 {
     self = [super init];
     if (self != nil) {
-        isFinishedLoading = NO;
-        didTimeout        = NO;
-        exception         = nil;
-        error = nil;
+        _isFinishedLoading = NO;
+        _didTimeout        = NO;
+        _exception         = nil;
+        _error = nil;
     }
 
     return self;
@@ -55,7 +55,7 @@ NSString *const AWSClockSkewError = @"AWSClockSkewError";
 
 -(NSData *)body
 {
-    return [NSData dataWithData:body];
+    return [NSData dataWithData:_body];
 }
 
 // Override this to perform processing on the body.
@@ -71,28 +71,28 @@ NSString *const AWSClockSkewError = @"AWSClockSkewError";
 
 -(void)timeout
 {
-    if (!isFinishedLoading && !exception) {
+    if (!_isFinishedLoading && !_exception) {
 
-        didTimeout = YES;
+        _didTimeout = YES;
         [self.request.urlConnection cancel];
         self.request.responseTimer = nil;
 
-        exception  = [[AmazonClientException exceptionWithMessage:@"Request timed out."] retain];
+        _exception  = [[AmazonClientException exceptionWithMessage:@"Request timed out."] retain];
 
         BOOL throwsExceptions = [AmazonErrorHandler throwsExceptions];
 
         if (throwsExceptions == YES
-            && [request.delegate respondsToSelector:@selector(request:didFailWithServiceException:)]) {
+            && [_request.delegate respondsToSelector:@selector(request:didFailWithServiceException:)]) {
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wdeprecated-declarations"
-            [request.delegate request:request didFailWithServiceException:exception];
+            [_request.delegate request:_request didFailWithServiceException:_exception];
 #pragma clang diagnostic pop
         }
         else if (throwsExceptions == NO
-                 && [request.delegate respondsToSelector:@selector(request:didFailWithError:)]) {
+                 && [_request.delegate respondsToSelector:@selector(request:didFailWithError:)]) {
 
-            self.error = [AmazonErrorHandler errorFromException:exception];
-            [request.delegate request:request didFailWithError:self.error];
+            self.error = [AmazonErrorHandler errorFromException:_exception];
+            [_request.delegate request:_request didFailWithError:self.error];
         }
     }
 }
@@ -113,7 +113,7 @@ NSString *const AWSClockSkewError = @"AWSClockSkewError";
 
     self.httpStatusCode = [httpResponse statusCode];
 
-    [body setLength:0];
+    [_body setLength:0];
 
     if ([self.request.delegate respondsToSelector:@selector(request:didReceiveResponse:)]) {
         [self.request.delegate request:self.request didReceiveResponse:response];
@@ -122,11 +122,11 @@ NSString *const AWSClockSkewError = @"AWSClockSkewError";
 
 -(void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data
 {
-    if (nil == body) {
-        body = [[NSMutableData data] retain];
+    if (nil == _body) {
+        _body = [[NSMutableData data] retain];
     }
 
-    [body appendData:data];
+    [_body appendData:data];
 
     if ([self.request.delegate respondsToSelector:@selector(request:didReceiveData:)]) {
         [self.request.delegate request:self.request didReceiveData:data];
@@ -139,14 +139,14 @@ NSString *const AWSClockSkewError = @"AWSClockSkewError";
 
     NSDate *startDate = [NSDate date];
 
-    isFinishedLoading = YES;
+    _isFinishedLoading = YES;
 
-    NSString *tmpStr = [[NSString alloc] initWithData:body encoding:NSUTF8StringEncoding];
+    NSString *tmpStr = [[NSString alloc] initWithData:_body encoding:NSUTF8StringEncoding];
 
     AMZLogDebug(@"Response Body:\n%@", tmpStr);
     [tmpStr release];
-    NSXMLParser                       *parser         = [[NSXMLParser alloc] initWithData:body];
-    AmazonServiceResponseUnmarshaller *parserDelegate = [[unmarshallerDelegate alloc] init];
+    NSXMLParser                       *parser         = [[NSXMLParser alloc] initWithData:_body];
+    AmazonServiceResponseUnmarshaller *parserDelegate = [[_unmarshallerDelegate alloc] init];
     [parser setDelegate:parserDelegate];
     [parser parse];
 
@@ -160,8 +160,8 @@ NSString *const AWSClockSkewError = @"AWSClockSkewError";
         NSError *errorFound = [[response.error copy] autorelease];
         [response release];
 
-        if ([request.delegate respondsToSelector:@selector(request:didFailWithError:)]) {
-            [request.delegate request:request didFailWithError:errorFound];
+        if ([_request.delegate respondsToSelector:@selector(request:didFailWithError:)]) {
+            [_request.delegate request:_request didFailWithError:errorFound];
         }
     }
     else if (response.exception) {
@@ -180,27 +180,27 @@ NSString *const AWSClockSkewError = @"AWSClockSkewError";
         [response release];
         
         if(throwsExceptions == YES
-           && [request.delegate respondsToSelector:@selector(request:didFailWithServiceException:)]) {
+           && [_request.delegate respondsToSelector:@selector(request:didFailWithServiceException:)]) {
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wdeprecated-declarations"
-            [request.delegate request:request didFailWithServiceException:(AmazonServiceException *)exceptionFound];
+            [_request.delegate request:_request didFailWithServiceException:(AmazonServiceException *)exceptionFound];
 #pragma clang diagnostic pop
         }
         else if(throwsExceptions == NO
-                && [request.delegate respondsToSelector:@selector(request:didFailWithError:)]) {
-            [request.delegate request:request
+                && [_request.delegate respondsToSelector:@selector(request:didFailWithError:)]) {
+            [_request.delegate request:_request
                      didFailWithError:[AmazonErrorHandler errorFromException:exceptionFound]];
         }
     }
     else {
         [response postProcess];
-        processingTime          = fabs([startDate timeIntervalSinceNow]);
-        response.processingTime = processingTime;
+        _processingTime          = fabs([startDate timeIntervalSinceNow]);
+        response.processingTime = _processingTime;
 
 
 
-        if ([request.delegate respondsToSelector:@selector(request:didCompleteWithResponse:)]) {
-            [request.delegate request:request didCompleteWithResponse:response];
+        if ([_request.delegate respondsToSelector:@selector(request:didCompleteWithResponse:)]) {
+            [_request.delegate request:_request didCompleteWithResponse:response];
         }
 
         [response release];
@@ -216,7 +216,7 @@ NSString *const AWSClockSkewError = @"AWSClockSkewError";
     {
         AMZLogDebug(@"UserInfo.%@ = %@", [key description], [[info valueForKey:key] description]);
     }
-    exception = [[AmazonServiceException exceptionWithMessage:[theError description] andError:theError] retain];
+    _exception = [[AmazonServiceException exceptionWithMessage:[theError description] andError:theError] retain];
     AMZLogDebug(@"An error occured in the request: %@", [theError description]);
 
     if ([self.request.delegate respondsToSelector:@selector(request:didFailWithError:)]) {
@@ -299,12 +299,12 @@ NSString *const AWSClockSkewError = @"AWSClockSkewError";
 
 -(void)dealloc
 {
-    [requestId release];
-    [body release];
-    [exception release];
-    [request release];
-    [error release];
-    [responseHeader release];
+    [_requestId release];
+    [_body release];
+    [_exception release];
+    [_request release];
+    [_error release];
+    [_responseHeader release];
 
     [super dealloc];
 }
@@ -314,7 +314,7 @@ NSString *const AWSClockSkewError = @"AWSClockSkewError";
     NSMutableString *buffer = [[NSMutableString alloc] initWithCapacity:256];
 
     [buffer appendString:@"{"];
-    [buffer appendString:[[[NSString alloc] initWithFormat:@"requestId: %@", requestId] autorelease]];
+    [buffer appendString:[[[NSString alloc] initWithFormat:@"requestId: %@", _requestId] autorelease]];
     [buffer appendString:@"}"];
 
     return [buffer autorelease];

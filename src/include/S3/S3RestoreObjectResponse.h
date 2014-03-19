@@ -19,7 +19,7 @@
 /** Contains the response from a request to restore object from Amazon Glacier.
  *
  */
-@interface S3RestoreObjectResponse:S3Response {
+@interface S3RestoreObjectResponse : S3Response {
     
 }
 

@@ -19,7 +19,19 @@
 /** The S3ListPartsResult contains all the information about the listParts method.
  *
  */
-@interface S3ListPartsResult:NSObject {
+@interface S3ListPartsResult : NSObject
+{
+    NSString        *_bucket;
+    NSString        *_key;
+    NSString        *_uploadId;
+    NSString        *_storageClass;
+    S3Owner         *_owner;
+    S3Owner         *_initiator;
+    int32_t         _partNumberMarker;
+    int32_t         _nextPartNumberMarker;
+    int32_t         _maxParts;
+    BOOL            _isTruncated;
+    NSMutableArray  *_parts;
 }
 
 /** The name of the bucket to which the multipart upload was initiated. */

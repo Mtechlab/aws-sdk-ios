@@ -26,6 +26,11 @@
 
 @implementation S3GetObjectResponse
 
+@synthesize lastModified = _lastModified;
+@synthesize metadata = _metadata;
+@synthesize contentType = _contentType;
+@synthesize redirectLocation = _redirectLocation;
+@synthesize outputStream = _outputStream;
 
 // This method overrides the S3Response version, processing x-aws-meta-
 // headers, passing all others to the superclass.

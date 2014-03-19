@@ -19,6 +19,8 @@
 
 @implementation S3GetACLResponse
 
+@synthesize acl = _acl;
+
 -(void)processBody
 {
     NSXMLParser                     *parser       = [[NSXMLParser alloc] initWithData:self.body];
@@ -27,12 +29,12 @@
     [parser setDelegate:unmarshaller];
     [parser parse];
 
-    if (nil != acl) {
-        [acl release];
-        acl = nil;
+    if (nil != _acl) {
+        [_acl release];
+        _acl = nil;
     }
 
-    acl = [unmarshaller.accessControlList retain];
+    _acl = [unmarshaller.accessControlList retain];
 
     [unmarshaller release];
     [parser release];
@@ -40,12 +42,13 @@
 
 -(S3AccessControlList *)acl
 {
-    return acl;
+    return _acl;
 }
 
 -(void) dealloc
 {
-    [acl release];
+    [_acl release];
+    
     [super dealloc];
 }
 

@@ -18,12 +18,12 @@
 /**
  * An error that occurred when deleting an object.
  */
-@interface DeleteError:NSObject
+@interface DeleteError : NSObject
 {
-    NSString *key;
-    NSString *versionId;
-    NSString *code;
-    NSString *message;
+    NSString *_key;
+    NSString *_versionId;
+    NSString *_code;
+    NSString *_message;
 }
 
 /**
