@@ -28,12 +28,12 @@
 #define SIGV4_TERMINATOR    @"aws4_request"
 
 /** Utilities for signing requests */
-@interface AmazonAuthUtils:NSObject {
+@interface AmazonAuthUtils : NSObject {
 }
 
 +(void)signRequest:(AmazonServiceRequest *)serviceRequest endpoint:(NSString *)theEndpoint credentials:(AmazonCredentials *)credentials;
 +(NSString *)signRequestV3:(AmazonServiceRequest *)serviceRequest sts:(NSString *)theSts credentials:(AmazonCredentials *)credentials;
-+(void)signRequestV4:(AmazonServiceRequest *)serviceRequest headers:(NSMutableDictionary *)headers payload:(NSString *)payload credentials:(AmazonCredentials *)credentials;
++(void)signRequestV4:(AmazonServiceRequest *)serviceRequest headers:(NSMutableDictionary *)headers payload:(id)payload credentials:(AmazonCredentials *)credentials;
 +(NSString *)getV2StringToSign:(NSURL *)theEndpoint request:(AmazonServiceRequest *)serviceRequest;
 +(NSString *)amznAuthorization:(NSString *)accessKey algorithm:(NSString *)theAlgorithm signature:(NSString *)theSignature;
 
@@ -52,7 +52,7 @@
 +(NSData *)sha256HMacWithData:(NSData *)data withKey:(NSData *)key;
 
 +(NSData *)getV4DerivedKey:(NSString *)secret date:(NSString *)dateStamp region:(NSString *)regionName service:(NSString *)serviceName;
-+(NSString *)getCanonicalizedRequest:(NSString *)method path:(NSString *)path query:(NSString *)query headers:(NSMutableDictionary *)headers payload:(NSString *)payload;
++(NSString *)getCanonicalizedRequest:(NSString *)method path:(NSString *)path query:(NSString *)query headers:(NSMutableDictionary *)headers payload:(id)payload;
 +(NSString *)getCanonicalizedHeaderString:(NSMutableDictionary *)theHeaders;
 +(NSString *)getSignedHeadersString:(NSMutableDictionary *)theHeaders;
 

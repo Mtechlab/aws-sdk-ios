@@ -28,6 +28,15 @@
 #import "AmazonErrorHandler.h"
 #import "AmazonCredentialsProvider.h"
 
+/** Signature version of AWS S3 authenticating requests.
+ *
+ * Default is 2.
+ */
+typedef NS_OPTIONS(NSUInteger, S3SignatureVersion)
+{
+    S3SignatureVersion2 = 2,
+    S3SignatureVersion4 = 4,
+};
 
 @interface AmazonAbstractWebServiceClient : NSObject
 {
@@ -77,6 +86,9 @@
 
 /** The HTTP user agent header to send with all requests. */
 @property (nonatomic, retain) NSString *userAgent;
+
+/** Signature version of AWS S3 authenticating requests. */
+@property (nonatomic, assign) NSUInteger s3SignatureVersion;
 
 /** Inits the client with the given credentials. */
 -(id)initWithCredentials:(AmazonCredentials *)credentials;

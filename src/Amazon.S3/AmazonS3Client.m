@@ -18,6 +18,8 @@
 #import "AmazonEndpoints.h"
 #import "S3LocationConstraintUnmarshaller.h"
 
+static NSString * const kS3CanonicalizedAmzHeaders = @"canonicalizedAmzHeaders";
+static NSString * const kS3CanonicalizedResource = @"canonicalizedResource";
 
 @implementation AmazonS3Client
 
@@ -585,10 +587,13 @@
         [urlRequest addValue:@"application/x-www-form-urlencoded; charset=utf-8" forHTTPHeaderField:@"Content-Type"];
     }
 
-    NSString *contentMd5  = [urlRequest valueForHTTPHeaderField:@"Content-MD5"];
-    NSString *contentType = [urlRequest valueForHTTPHeaderField:@"Content-Type"];
-    NSString *timestamp   = [urlRequest valueForHTTPHeaderField:@"Date"];
-
+    NSString *contentMd5  = [urlRequest valueForHTTPHeaderField:kHttpHdrContentMD5];
+    NSString *contentLength = [urlRequest valueForHTTPHeaderField:kHttpHdrContentLength];
+    NSString *contentType = [urlRequest valueForHTTPHeaderField:kHttpHdrContentType];
+    NSString *date = [urlRequest valueForHTTPHeaderField:kHttpHdrDate];
+    NSString *hostName = request.hostName;
+    NSString *userAgent = [urlRequest valueForHTTPHeaderField:kHttpHdrUserAgent];
+    
     if (nil == contentMd5) {
         contentMd5 = @"";
     }
@@ -638,22 +643,63 @@
     if (isListParts) {
         canonicalizedResource = [canonicalizedResource stringByAppendingFormat:@"?%@=%@", kS3QueryParamUploadId, ((S3ListPartsRequest *)request).uploadId];
     }
+    
+    NSMutableDictionary *headersForSignatureCalculation = [NSMutableDictionary dictionary];
+    [headersForSignatureCalculation setObject:contentMd5 forKey:kHttpHdrContentMD5];
+    [headersForSignatureCalculation setObject:contentLength forKey:kHttpHdrContentLength];
+    [headersForSignatureCalculation setObject:contentType forKey:kHttpHdrContentType];
+    [headersForSignatureCalculation setObject:date forKey:kHttpHdrDate];
+    [headersForSignatureCalculation setObject:hostName forKey:kHttpHdrHost];
+    [headersForSignatureCalculation setObject:userAgent forKey:kHttpHdrUserAgent];
+    
+    switch (self.s3SignatureVersion)
+    {
+        case S3SignatureVersion4:
+        {
+            [self signS3RequestV4:request headersForSignatureCalculation:headersForSignatureCalculation];
+            break;
+        }
+        case S3SignatureVersion2:
+        default:
+        {
+            NSMutableDictionary *canonicalResources = [NSMutableDictionary dictionary];
+            [canonicalResources setObject:canonicalizedAmzHeaders forKey:kS3CanonicalizedAmzHeaders];
+            [canonicalResources setObject:canonicalizedResource forKey:kS3CanonicalizedResource];
+            [self signS3RequestV2:urlRequest headersForSignatureCalculation:headersForSignatureCalculation canonicalResources:canonicalResources];
+            break;
+        }
+    }
 
-    NSString *stringToSign = [NSString stringWithFormat:@"%@\n%@\n%@\n%@\n%@%@", [urlRequest HTTPMethod], contentMd5, contentType, timestamp, canonicalizedAmzHeaders, canonicalizedResource];
+    return urlRequest;
+}
+
+
+- (void)signS3RequestV2:(AmazonURLRequest *)request headersForSignatureCalculation:(NSDictionary *)headersForSignatureCalculation canonicalResources:(NSDictionary *)canonicalResources
+{
+    NSString *stringToSign = [NSString stringWithFormat:@"%@\n%@\n%@\n%@\n%@%@",
+                              [request HTTPMethod], [headersForSignatureCalculation valueForKey:kHttpHdrContentMD5],
+                              [headersForSignatureCalculation valueForKey:kHttpHdrContentType],
+                              [headersForSignatureCalculation valueForKey:kHttpHdrDate],
+                              [canonicalResources valueForKey:kS3CanonicalizedAmzHeaders],
+                              [canonicalResources valueForKey:kS3CanonicalizedResource]];
 
     AMZLogDebug(@"In SignURLRequest: String to Sign = [%@]", stringToSign);
 
     NSString *signature = nil;
     if (request.credentials != nil) {
         signature = [AmazonAuthUtils HMACSign:[stringToSign dataUsingEncoding:NSASCIIStringEncoding] withKey:request.credentials.secretKey usingAlgorithm:kCCHmacAlgSHA1];
-        [urlRequest setValue:[NSString stringWithFormat:@"AWS %@:%@", request.credentials.accessKey, signature] forHTTPHeaderField:@"Authorization"];
+        [request setValue:[NSString stringWithFormat:@"AWS %@:%@", request.credentials.accessKey, signature] forHTTPHeaderField:@"Authorization"];
     }
     else {
         signature = [AmazonAuthUtils HMACSign:[stringToSign dataUsingEncoding:NSASCIIStringEncoding] withKey:[self.provider credentials].secretKey usingAlgorithm:kCCHmacAlgSHA1];
-        [urlRequest setValue:[NSString stringWithFormat:@"AWS %@:%@", [self.provider credentials].accessKey, signature] forHTTPHeaderField:@"Authorization"];
+        [request setValue:[NSString stringWithFormat:@"AWS %@:%@", [self.provider credentials].accessKey, signature] forHTTPHeaderField:@"Authorization"];
     }
+}
 
-    return urlRequest;
+- (void)signS3RequestV4:(S3Request *)request headersForSignatureCalculation:(NSMutableDictionary *)headersForSignatureCalculation
+{
+    AmazonURLRequest *urlRequest = [request urlRequest];
+    [AmazonAuthUtils signRequestV4:request headers:headersForSignatureCalculation payload:[urlRequest HTTPBody] credentials:[self.provider credentials]];
 }
 
 -(NSString *)serviceEndpoint

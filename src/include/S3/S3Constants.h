@@ -46,11 +46,13 @@
 
 
 #define kHttpHdrAmzAcl                       @"x-amz-acl"
+#define kHttpHdrAmzContentSHA256             @"x-amz-content-sha256"
 #define kHttpHdrAmzCopySource                @"x-amz-copy-source"
 #define kHttpHdrAmzCopySourceIfMatch         @"x-amz-copy-source-if-match"
 #define kHttpHdrAmzCopySourceIfNoneMatch     @"x-amz-copy-source-if-none-match"
 #define kHttpHdrAmzCopySourceIfModified      @"x-amz-copy-source-if-modified-since"
 #define kHttpHdrAmzCopySourceIfUnmodified    @"x-amz-copy-source-if-unmodified-since"
+#define kHttpHdrAmzDate                      @"x-amz-date"
 #define kHttpHdrAmzGrantRead                 @"x-amz-grant-read"
 #define kHttpHdrAmzGrantWrite                @"x-amz-grant-write"
 #define kHttpHdrAmzGrantReadAcp              @"x-amz-grant-read-acp"

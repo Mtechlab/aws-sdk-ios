@@ -27,6 +27,7 @@
 @synthesize connectionTimeout = _connectionTimeout;
 @synthesize delay = _delay;
 @synthesize userAgent = _userAgent;
+@synthesize s3SignatureVersion = _s3SignatureVersion;
 
 - (id)init
 {
@@ -286,7 +287,8 @@
     o.connectionTimeout = self.connectionTimeout;
     o.delay = self.delay;
     o.userAgent = [[self.userAgent copy] autorelease];
-
+    o.s3SignatureVersion = self.s3SignatureVersion;
+    
     return o;
 }
 

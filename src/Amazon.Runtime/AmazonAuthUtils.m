@@ -14,7 +14,10 @@
  */
 
 #import "AmazonAuthUtils.h"
+#import "AmazonSDKUtil.h"
 #import "AmazonLogger.h"
+
+#import "S3Constants.h"
 
 @implementation AmazonAuthUtils
 
@@ -31,7 +34,7 @@
     return [AmazonAuthUtils HMACSign:[theSts dataUsingEncoding:NSUTF8StringEncoding] withKey:credentials.secretKey usingAlgorithm:kCCHmacAlgSHA256];
 }
 
-+(void)signRequestV4:(AmazonServiceRequest *)serviceRequest headers:(NSMutableDictionary *)headers payload:(NSString *)payload credentials:(AmazonCredentials *)credentials
++(void)signRequestV4:(AmazonServiceRequest *)serviceRequest headers:(NSMutableDictionary *)headers payload:(id)payload credentials:(AmazonCredentials *)credentials
 {
     NSDate *date = [NSDate date];
 
@@ -39,9 +42,18 @@
     NSString *dateTime  = [date dateTime];
 
     // add date header (done here for consistency in timestamp)
-    [headers setObject:dateTime forKey:@"X-Amz-Date"];
-    [serviceRequest.urlRequest setValue:dateTime forHTTPHeaderField:@"X-Amz-Date"];
+    [headers setObject:dateTime forKey:kHttpHdrAmzDate];
+    [serviceRequest.urlRequest setValue:dateTime forHTTPHeaderField:kHttpHdrAmzDate];
 
+    // Add using the Reduced Redundancy Storage.
+    // [headers setObject:@"REDUCED_REDUNDANCY" forKey:kHttpHdrAmzStorageClass];
+    // [serviceRequest.urlRequest setValue:@"REDUCED_REDUNDANCY" forHTTPHeaderField:kHttpHdrAmzStorageClass];
+    
+    NSString *hexStringFromPayload = [AmazonAuthUtils getHexStringFromPayload:payload];
+    
+    [headers setObject:hexStringFromPayload forKey:kHttpHdrAmzContentSHA256];
+    [serviceRequest.urlRequest setValue:hexStringFromPayload forHTTPHeaderField:kHttpHdrAmzContentSHA256];
+    
     NSString *path = serviceRequest.urlRequest.URL.path;
     if (path.length == 0) {
         path = [NSString stringWithFormat:@"/"];
@@ -73,7 +85,7 @@
     NSString *signatureAuthorizationHeader     = [NSString stringWithFormat:@"Signature=%@", [AmazonSDKUtil hexEncode:[[[NSString alloc] initWithData:signature encoding:NSASCIIStringEncoding] autorelease]]];
 
     NSString *authorization = [NSString stringWithFormat:@"%@ %@, %@, %@", SIGV4_ALGORITHM, credentialsAuthorizationHeader, signedHeadersAuthorizationHeader, signatureAuthorizationHeader];
-    [serviceRequest.urlRequest setValue:authorization     forHTTPHeaderField:@"Authorization"];
+    [serviceRequest.urlRequest setValue:authorization forHTTPHeaderField:kHttpHdrAuthorization];
 }
 
 +(NSString *)getV2StringToSign:(NSURL *)theEndpoint request:(AmazonServiceRequest *)serviceRequest
@@ -84,7 +96,7 @@
     if (nil == path || [path length] < 1) {
         path = @"/";
     }
-    NSString *sts = [NSString stringWithFormat:@"POST\n%@\n%@\n%@", host, path, [serviceRequest queryString]];
+    NSString *sts = [NSString stringWithFormat:@"%@\n%@\n%@\n%@", kHttpMethodPost, host, path, [serviceRequest queryString]];
     AMZLogDebug(@"String To Sign:\n%@", sts);
     return sts;
 }
@@ -201,7 +213,7 @@
     return kSigning;
 }
 
-+(NSString *)getCanonicalizedRequest:(NSString *)method path:(NSString *)path query:(NSString *)query headers:(NSMutableDictionary *)headers payload:(NSString *)payload
++(NSString *)getCanonicalizedRequest:(NSString *)method path:(NSString *)path query:(NSString *)query headers:(NSMutableDictionary *)headers payload:(id)payload
 {
     NSMutableString *canonicalRequest = [[NSMutableString new] autorelease];
     [canonicalRequest appendString:method];
@@ -220,13 +232,12 @@
 
     AMZLogDebug(@"AWS4 Content to Hash: [%@]", payload);
 
-    NSString* hashString = [AmazonSDKUtil hexEncode:[AmazonAuthUtils hashString:payload]];
+    NSString* hashString = [AmazonAuthUtils getHexStringFromPayload:payload];
 
     [canonicalRequest appendString:[NSString stringWithFormat:@"%@", hashString]];
 
     return canonicalRequest;
 }
-
 
 +(NSString *)getCanonicalizedHeaderString:(NSMutableDictionary *)theHeaders
 {
@@ -266,6 +277,62 @@
     }
     
     return headerString;
+}
+
++ (NSString *)hexStringFromString:(NSString *)string
+{
+    NSUInteger length = [string length];
+    unichar *chars = malloc(length * sizeof(unichar));
+    
+    [string getCharacters:chars];
+    
+    NSMutableString *hexString = [[[NSMutableString alloc] init] autorelease];
+    
+    for (NSUInteger i = 0; i < length; i++)
+    {
+        [hexString appendFormat:@"%02x", chars[i]];
+    }
+    free(chars);
+    
+    return [NSString stringWithString:hexString];
+}
+
++ (NSString *)hexStringFromData:(NSData *)data
+{
+    const unsigned char *dataBuffer = [data bytes];
+    
+    if (!dataBuffer)
+    {
+        return [NSString string];
+    }
+    
+    NSUInteger dataLength  = [data length];
+    NSMutableString *hexString  = [NSMutableString stringWithCapacity:(dataLength * 2)];
+    
+    for (int i = 0; i < dataLength; ++i)
+    {
+        [hexString appendFormat:@"%02x", dataBuffer[i]];
+    }
+    
+    return [NSString stringWithString:hexString];
+}
+
++(NSString *)getHexStringFromPayload:(id)payload
+{
+    NSParameterAssert([payload isKindOfClass:[NSData class]] || [payload isKindOfClass:[NSString class]]);
+    
+    NSString *hexString = [AmazonSDKUtil hexEncode:[AmazonAuthUtils hashString:@""]];
+    
+    if ([payload isKindOfClass:[NSString class]])
+    {
+        hexString = [AmazonAuthUtils hexStringFromString:[AmazonAuthUtils hashString:payload]];
+    }
+    else if ([payload isKindOfClass:[NSData class]])
+    {
+        hexString = [AmazonAuthUtils hexStringFromData:[AmazonAuthUtils hash:payload]];
+    }
+    
+    return hexString;
 }
 
 @end
