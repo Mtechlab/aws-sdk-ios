@@ -478,6 +478,7 @@ static NSString * const kS3CanonicalizedResource = @"canonicalizedResource";
             NSURLConnection *urlConnection = [[NSURLConnection alloc] initWithRequest:urlRequest
                                                                              delegate:response
                                                                      startImmediately:NO];
+            [urlConnection scheduleInRunLoop:[NSRunLoop currentRunLoop] forMode:AWSDefaultRunLoopMode];
             request.urlConnection = urlConnection;
             [urlConnection release];
 
