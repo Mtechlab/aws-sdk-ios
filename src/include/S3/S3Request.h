@@ -33,16 +33,18 @@
  */
 @interface S3Request : AmazonServiceRequest
 {
-    NSString    *_authorization;
-    int64_t     _contentLength;
-    NSString    *_contentType;
-    NSDate      *_date;
-    NSString    *_host;
-    NSString    *_securityToken;
-    NSString    *_bucket;
-    NSString    *_key;
-    NSString    *_subResource;
-    NSURL       *_url;
+    NSString        *_authorization;
+    int64_t         _contentLength;
+    NSString        *_contentType;
+    NSDate          *_date;
+    NSString        *_host;
+    UInt32          _port;
+    NSString        *_securityToken;
+    S3AccessStyle   _accessStyle;
+    NSString        *_bucket;
+    NSString        *_key;
+    NSString        *_subResource;
+    NSURL           *_url;
 }
 
 #pragma mark Properties
@@ -67,8 +69,12 @@
  */
 @property (nonatomic, readonly) NSString *host;
 
+@property (nonatomic, assign) UInt32 port;
 /** The security tokens for operations that use Amazon DevPay. */
 @property (nonatomic, retain) NSString *securityToken;
+
+/** Accessing a Bucket, virtual-hosted–style or path-style URLs to access a bucket.*/
+@property (nonatomic, assign) S3AccessStyle accessStyle;
 
 /** The name of the bucket */
 @property (nonatomic, retain) NSString *bucket;

@@ -23,7 +23,9 @@
 @synthesize contentType = _contentType;
 @synthesize date = _date;
 @synthesize host = _host;
+@synthesize port = _port;
 @synthesize securityToken = _securityToken;
+@synthesize accessStyle = _accessStyle;
 @synthesize bucket = _bucket;
 @synthesize key = _key;
 @synthesize subResource = _subResource;
@@ -78,15 +80,24 @@
         keyPath  = (self.key == nil ? [NSString stringWithFormat:@"%@/", self.bucket] : [NSString stringWithFormat:@"%@/%@", self.bucket, [self.key stringWithURLEncoding]]);
     }
     resQuery = (self.subResource == nil ? @"" : [NSString stringWithFormat:@"?%@", self.subResource]);
-
-    return [NSURL URLWithString:[NSString stringWithFormat:@"%@://%@/%@%@", self.protocol, self.host, keyPath, resQuery]];
+    
+    NSString *hostPort = (self.port != 0) ? [NSString stringWithFormat:@":%d", self.port] : @"";
+    
+    if (self.accessStyle == S3VirtualHostedAccessStyle) {
+        return [NSURL URLWithString:[NSString stringWithFormat:@"%@://%@.%@%@/%@%@", self.protocol, self.bucket, self.hostName, hostPort, keyPath, resQuery]];
+    }
+    else {
+        return [NSURL URLWithString:[NSString stringWithFormat:@"%@://%@%@/%@/%@%@", self.protocol, self.hostName, hostPort, self.bucket, keyPath, resQuery]];
+    }
 }
 
 -(NSString *)host
 {
     if (nil != self.bucket) {
-        if ( [S3BucketNameUtilities isDNSBucketName:self.bucket]) {
-            return [NSString stringWithFormat:@"%@.%@", self.bucket, self.hostName];
+        if ([S3BucketNameUtilities isDNSBucketName:self.bucket]) {
+            if (self.accessStyle == S3VirtualHostedAccessStyle) {
+                return [NSString stringWithFormat:@"%@.%@", self.bucket, self.hostName];
+            }
         }
     }
 
@@ -125,7 +136,9 @@
     [self setAuthorization:[decoder decodeObjectForKey:@"Authorization"]];
     self.contentLength = [decoder decodeInt64ForKey:@"ContentLength"];
     [self setContentType:[decoder decodeObjectForKey:@"ContentType"]];
+    self.port = [decoder decodeInt32ForKey:@"Port"];
     [self setSecurityToken:[decoder decodeObjectForKey:@"SecurityToken"]];
+    self.accessStyle = [decoder decodeInt32ForKey:@"AccessStyle"];
     [self setBucket:[decoder decodeObjectForKey:@"Bucket"]];
     [self setKey:[decoder decodeObjectForKey:@"Key"]];
     [self setSubResource:[decoder decodeObjectForKey:@"SubResource"]];
@@ -140,7 +153,9 @@
     [encoder encodeObject:self.authorization forKey:@"Authorization"];
     [encoder encodeInt64:self.contentLength forKey:@"ContentLength"];
     [encoder encodeObject:self.contentType forKey:@"ContentType"];
+    [encoder encodeInt32:self.port forKey:@"Port"];
     [encoder encodeObject:self.securityToken forKey:@"SecurityToken"];
+    [encoder encodeInt32:self.accessStyle forKey:@"AccessStyle"];
     [encoder encodeObject:self.bucket forKey:@"Bucket"];
     [encoder encodeObject:self.key forKey:@"Key"];
     [encoder encodeObject:self.subResource forKey:@"SubResource"];

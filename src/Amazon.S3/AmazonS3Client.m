@@ -428,6 +428,14 @@ static NSString * const kS3CanonicalizedResource = @"canonicalizedResource";
         [request setEndpoint:self.endpoint];
     }
 
+    if (request.port == 0) {
+        [request setPort:self.port];
+    }
+    
+    if (request.accessStyle == 0) {
+        [request setAccessStyle:self.accessStyle];
+    }
+    
     if (request.securityToken == nil)
     {
         if(request.credentials == nil && [self.provider credentials].securityToken != nil)
@@ -459,16 +467,8 @@ static NSString * const kS3CanonicalizedResource = @"canonicalizedResource";
         }
 
         if ([AmazonLogger isVerboseLoggingEnabled]) {
-            AMZLogDebug(@"%@ %@", [urlRequest HTTPMethod], [urlRequest URL]);
-            AMZLogDebug(@"Request headers: ");
-            for (id hKey in [[urlRequest allHTTPHeaderFields] allKeys])
-            {
-                AMZLogDebug(@"  %@: %@", [hKey description], [[urlRequest allHTTPHeaderFields] valueForKey:hKey]);
-            }
-            AMZLogDebug(@"Request body: ");
-            NSString *rBody = [[NSString alloc] initWithData:[urlRequest HTTPBody] encoding:NSUTF8StringEncoding];
-            AMZLogDebug(@"%@", rBody);
-            [rBody release];
+            [self logTheRequestHeaders:urlRequest];
+            [self logTheRequest:urlRequest];
         }
 
         response = [AmazonS3Client constructResponseFromRequest:request];
@@ -564,7 +564,7 @@ static NSString * const kS3CanonicalizedResource = @"canonicalizedResource";
     NSString *requestClassName  = NSStringFromClass([request class]);
     NSString *responseClassName = [[requestClassName substringToIndex:[requestClassName length] - 7] stringByAppendingFormat:@"Response"];
 
-    id       response = [[NSClassFromString(responseClassName) alloc] init];
+    id response = [[NSClassFromString(responseClassName) alloc] init];
 
     if (nil == response) {
         response = [[S3Response alloc] init];

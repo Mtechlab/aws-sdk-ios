@@ -222,7 +222,7 @@
         return [serviceAndRegion substringToIndex:index.location];
     }
     else {
-        return nil;
+        return @"s3";
     }
 }
 

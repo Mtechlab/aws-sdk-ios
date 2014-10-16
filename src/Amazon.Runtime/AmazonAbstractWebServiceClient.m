@@ -21,7 +21,9 @@
 @implementation AmazonAbstractWebServiceClient
 
 @synthesize provider = _provider;
+@synthesize accessStyle = _accessStyle;
 @synthesize endpoint = _endpoint;
+@synthesize port = _port;
 @synthesize maxRetries = _maxRetries;
 @synthesize timeout = _timeout;
 @synthesize connectionTimeout = _connectionTimeout;
@@ -32,6 +34,8 @@
 - (id)init
 {
     if (self = [super init]) {
+        _accessStyle = S3VirtualHostedAccessStyle;
+        _port = 0;
         _maxRetries = 5;
         _timeout = 240;
         _connectionTimeout = 0;
@@ -281,7 +285,9 @@
 {
     AmazonAbstractWebServiceClient *o = [[[self class] allocWithZone:zone] init];
     o.provider = self.provider;
+    o.accessStyle = self.accessStyle;
     o.endpoint = [[self.endpoint copy] autorelease];
+    o.port = self.port;
     o.maxRetries = self.maxRetries;
     o.timeout = self.timeout;
     o.connectionTimeout = self.connectionTimeout;

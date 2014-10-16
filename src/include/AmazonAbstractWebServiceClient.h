@@ -32,7 +32,7 @@
  *
  * Default is 2.
  */
-typedef NS_OPTIONS(NSUInteger, S3SignatureVersion)
+typedef NS_OPTIONS(UInt32, S3SignatureVersion)
 {
     S3SignatureVersion2 = 2,
     S3SignatureVersion4 = 4,
@@ -41,7 +41,9 @@ typedef NS_OPTIONS(NSUInteger, S3SignatureVersion)
 @interface AmazonAbstractWebServiceClient : NSObject
 {
     id<AmazonCredentialsProvider>   _provider;
+    S3AccessStyle                   _accessStyle;
     NSString                        *_endpoint;
+    UInt32                          _port;
     NSInteger                       _maxRetries;
     NSTimeInterval                  _timeout;
     NSTimeInterval                  _connectionTimeout;
@@ -52,9 +54,13 @@ typedef NS_OPTIONS(NSUInteger, S3SignatureVersion)
 
 @property (atomic, retain) id<AmazonCredentialsProvider> provider;
 
+/** Accessing a Bucket, virtual-hosted–style or path-style URLs to access a bucket. */
+@property (nonatomic, assign) S3AccessStyle accessStyle;
+
 /** The service endpoint to which requests should be sent. */
 @property (nonatomic, retain) NSString *endpoint;
 
+@property (nonatomic, assign) UInt32 port;
 /** The maximum number of retry attempts for failed retryable requests
  * (ex: 5xx error responses from a service).
  *

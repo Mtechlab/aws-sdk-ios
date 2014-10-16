@@ -20,6 +20,23 @@
 #import "AmazonCredentials.h"
 #import "AmazonClientException.h"
 
+/** Amazon S3 supports both virtual-hosted–style and path-style URLs to access a bucket.
+ *  In a virtual-hosted–style URL, the bucket name is part of the domain name in the URL. For example:
+ *      http://bucket.s3.amazonaws.com
+ *      http://bucket.s3-aws-region.amazonaws.com.
+ *  In a path-style URL, the bucket name is not part of the domain (unless you use a region-specific endpoint). For example:
+ *      US Standard endpoint, http://s3.amazonaws.com/bucket
+ *      Region-specific endpoint, http://s3-aws-region.amazonaws.com/bucket
+ *
+ *      Default is virtual-hosted–style.
+ */
+
+typedef NS_ENUM(int32_t, S3AccessStyle)
+{
+    S3VirtualHostedAccessStyle = 1,
+    S3PathAccessStyle,
+};
+
 @protocol AmazonServiceRequestDelegate;
 @class AmazonServiceResponse;
 @class AmazonServiceException;
