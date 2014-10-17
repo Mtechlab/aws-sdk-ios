@@ -38,7 +38,7 @@
     NSString        *_contentType;
     NSDate          *_date;
     NSString        *_host;
-    UInt32          _port;
+    uint32_t        _port;
     NSString        *_securityToken;
     S3AccessStyle   _accessStyle;
     NSString        *_bucket;
@@ -69,7 +69,7 @@
  */
 @property (nonatomic, readonly) NSString *host;
 
-@property (nonatomic, assign) UInt32 port;
+@property (nonatomic, assign) uint32_t port;
 /** The security tokens for operations that use Amazon DevPay. */
 @property (nonatomic, retain) NSString *securityToken;
 

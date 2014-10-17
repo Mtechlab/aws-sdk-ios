@@ -32,7 +32,7 @@
  *
  * Default is 2.
  */
-typedef NS_OPTIONS(UInt32, S3SignatureVersion)
+typedef NS_OPTIONS(int32_t, S3SignatureVersion)
 {
     S3SignatureVersion2 = 2,
     S3SignatureVersion4 = 4,
@@ -43,13 +43,13 @@ typedef NS_OPTIONS(UInt32, S3SignatureVersion)
     id<AmazonCredentialsProvider>   _provider;
     S3AccessStyle                   _accessStyle;
     NSString                        *_endpoint;
-    UInt32                          _port;
+    int32_t                          _port;
     NSInteger                       _maxRetries;
     NSTimeInterval                  _timeout;
     NSTimeInterval                  _connectionTimeout;
     NSTimeInterval                  _delay;
     NSString                        *_userAgent;
-    NSUInteger                      _s3SignatureVersion;
+    S3SignatureVersion              _s3SignatureVersion;
 }
 
 @property (atomic, retain) id<AmazonCredentialsProvider> provider;
@@ -60,7 +60,7 @@ typedef NS_OPTIONS(UInt32, S3SignatureVersion)
 /** The service endpoint to which requests should be sent. */
 @property (nonatomic, retain) NSString *endpoint;
 
-@property (nonatomic, assign) UInt32 port;
+@property (nonatomic, assign) int32_t port;
 /** The maximum number of retry attempts for failed retryable requests
  * (ex: 5xx error responses from a service).
  *
@@ -94,7 +94,7 @@ typedef NS_OPTIONS(UInt32, S3SignatureVersion)
 @property (nonatomic, retain) NSString *userAgent;
 
 /** Signature version of AWS S3 authenticating requests. */
-@property (nonatomic, assign) NSUInteger s3SignatureVersion;
+@property (nonatomic, assign) S3SignatureVersion s3SignatureVersion;
 
 /** Inits the client with the given credentials. */
 -(id)initWithCredentials:(AmazonCredentials *)credentials;
